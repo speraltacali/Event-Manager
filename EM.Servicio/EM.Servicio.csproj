@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1C234457-F4C8-4DAD-890A-1278746FD851}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EM.Servicio</RootNamespace>
+    <AssemblyName>EM.Servicio</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Alojamiento\AlojamientoServicio.cs" />
+    <Compile Include="Comprobante\ComprobanteServicio.cs" />
+    <Compile Include="CondicionIva\CondicionIvaServicio.cs" />
+    <Compile Include="Domicilio\DomicilioServicio.cs" />
+    <Compile Include="Empresa\EmpresaServicio.cs" />
+    <Compile Include="Entrada\EntradaServicio.cs" />
+    <Compile Include="EventoLugar\EventoLugarServicio.cs" />
+    <Compile Include="Evento\EventoServicio.cs" />
+    <Compile Include="FormaPago\FormaPagoServicio.cs" />
+    <Compile Include="Gastronomia\GastronomiaServicio.cs" />
+    <Compile Include="Localidad\LocalidadServicio.cs" />
+    <Compile Include="Lugar\LugarServicio.cs" />
+    <Compile Include="Ocupacion\OcupacionServicio.cs" />
+    <Compile Include="Pais\PaisServicio.cs" />
+    <Compile Include="Persona\PersonaServicio.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Provincia\ProvinciaServicio.cs" />
+    <Compile Include="Sala\SalaServicio.cs" />
+    <Compile Include="Transporte\TransporteServicio.cs" />
+    <Compile Include="Usuario\UsuarioServicio.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EM.Aplicacion.ConnectionString\EM.Aplicacion.ConnectionString.csproj">
+      <Project>{1435f466-03bd-4f42-804c-2844b74ea1e1}</Project>
+      <Name>EM.Aplicacion.ConnectionString</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EM.Dominio.Base\EM.Dominio.Base.csproj">
+      <Project>{020EBAD6-48AD-4F6B-B619-4601B24D05B4}</Project>
+      <Name>EM.Dominio.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EM.Dominio.Entity\EM.Dominio.Entity.csproj">
+      <Project>{DF2F79D9-549C-47FC-8612-77AF49F025F2}</Project>
+      <Name>EM.Dominio.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EM.Dominio.Repositorio\EM.Dominio.Repositorio.csproj">
+      <Project>{66016ABD-B3D0-43EF-BF22-6B864040B4FD}</Project>
+      <Name>EM.Dominio.Repositorio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EM.Infraestructura.Context\EM.Infraestructura.Context.csproj">
+      <Project>{4c0ee280-988d-48d4-b88d-06cf7b5b63d5}</Project>
+      <Name>EM.Infraestructura.Context</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EM.Infraestructura.Repositorio\EM.Infraestructura.Repositorio.csproj">
+      <Project>{9029949f-884a-45ec-aec1-58b70d6ffd49}</Project>
+      <Name>EM.Infraestructura.Repositorio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EM.IServicio\EM.IServicio.csproj">
+      <Project>{2CA016EA-30C7-417D-AEC5-0F69C8F6F2B6}</Project>
+      <Name>EM.IServicio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EM.Repositorio.Base\EM.Repositorio.Base.csproj">
+      <Project>{9D3C56B6-9294-4C05-AB2A-E3FB6F485269}</Project>
+      <Name>EM.Repositorio.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EM.Repositorio\EM.Repositorio.csproj">
+      <Project>{c1e4d210-58de-4577-8630-345c739d21de}</Project>
+      <Name>EM.Repositorio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EM.Servicio.Base\EM.Servicio.Base.csproj">
+      <Project>{eab1fbd5-3ce3-475f-a69e-3980999abd37}</Project>
+      <Name>EM.Servicio.Base</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
