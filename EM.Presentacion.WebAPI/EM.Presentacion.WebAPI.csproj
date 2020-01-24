@@ -183,6 +183,15 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\APIs\CondicionIvaController.cs" />
+    <Compile Include="Controllers\APIs\DomicilioController.cs" />
+    <Compile Include="Controllers\APIs\EmpresaController.cs" />
+    <Compile Include="Controllers\APIs\LocalidadController.cs" />
+    <Compile Include="Controllers\APIs\LugarController.cs" />
+    <Compile Include="Controllers\APIs\PaisController.cs" />
+    <Compile Include="Controllers\APIs\ProvinciaController.cs" />
+    <Compile Include="Controllers\APIs\SalaController.cs" />
+    <Compile Include="Controllers\APIs\TransporteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelesController.cs" />
     <Compile Include="Controllers\PaisController.cs" />
@@ -263,6 +272,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Site.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />

@@ -12,6 +12,8 @@ namespace EM.Dominio.Entity.Entidades
     {
         public string Descripcion { get; set; }
 
+        public bool Eliminado { get; set; }
+
         //public virtual ICollection<Persona> Personas { get; set; }
     }
 }

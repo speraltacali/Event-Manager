@@ -28,7 +28,7 @@ namespace EM.Servicio.Usuario
                     Password = x.Password,
                     Mail = x.Mail,
                     FechaCreacion = x.FechaCreacion,
-                    EmpresaId = x.EmpresaId
+
                 }).ToList();
         }
 
@@ -44,7 +44,6 @@ namespace EM.Servicio.Usuario
                     Password = x.Password,
                     Mail = x.Mail,
                     FechaCreacion = x.FechaCreacion,
-                    EmpresaId = x.EmpresaId
                 }).ToList();
         }
 
@@ -61,7 +60,6 @@ namespace EM.Servicio.Usuario
                 Password = usuario.Password,
                 Mail = usuario.Mail,
                 FechaCreacion = usuario.FechaCreacion,
-                EmpresaId = usuario.EmpresaId
 
             };
         }
@@ -74,7 +72,7 @@ namespace EM.Servicio.Usuario
                 Password = dto.Password,
                 Mail = dto.Mail,
                 FechaCreacion = dto.FechaCreacion,
-                EmpresaId = dto.EmpresaId
+
             };
 
             _usuarioRepositorio.Add(usuario);
@@ -91,7 +89,6 @@ namespace EM.Servicio.Usuario
             usuario.Password = dto.Password;
             usuario.Mail = dto.Mail;
             usuario.FechaCreacion = dto.FechaCreacion;
-            usuario.EmpresaId = dto.EmpresaId;
 
             _usuarioRepositorio.Update(usuario);
             Guardar();

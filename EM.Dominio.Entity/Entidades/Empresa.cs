@@ -36,6 +36,8 @@ namespace EM.Dominio.Entity.Entidades
 
         public virtual ICollection<TipoComprobante> TiposComprobantes { get; set; }
 
-        public virtual ICollection<Usuario> Usuarios { get; set; }
+        //Podemos diferentes perfiles tal como Empleado - oyentes y no todos puden estar asociados a una empresa 
+
+        //public virtual ICollection<Usuario> Usuarios { get; set; }
     }
 }

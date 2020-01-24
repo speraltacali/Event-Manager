@@ -10,5 +10,7 @@ namespace EM.Dominio.Entity.Entidades
     public class FormaPago : EntityBase
     {
         public string Descripcion { get; set; }
+
+        public bool Eliminado { get; set; }
     }
 }

@@ -24,7 +24,5 @@ namespace EM.Dominio.Entity.MetaData
         [Index("Index_Usuario_FechaCreacion", IsUnique = true)]
         DateTime FechaCreacion { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es obligatorio")]
-        long EmpresaId { get; set; }
     }
 }

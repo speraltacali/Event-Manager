@@ -18,8 +18,11 @@ namespace EM.Dominio.Entity.Entidades
 
         public DateTime FechaCreacion { get; set; }
 
-        public long EmpresaId { get; set; }
+        public long OcupacionId { get; set; }
 
-        public virtual Empresa Empresa { get; set; }
+        //==========================================================//
+
+        public virtual Ocupacion Ocupacion{ get; set; }
+
     }
 }
