@@ -5,85 +5,67 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-
+    <title>@ViewBag.Title Event Manager</title>
+    <link rel="icon" href="~/img/event.ico" type="image/x-icon" />
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="/Content/bootstrap.min.css">
-    <script src="/Scripts/jquery-3.4.1.slim.min.js" ></script>
-    <script src="/Scripts/popper.min.js" ></script>
-    <script src="/Scripts/bootstrap.min.js" ></script>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <script src="~/Scripts/jquery-3.4.1.slim.min.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
 
     <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
 
     <!-- Site -->
     <link rel="stylesheet" href="~/Content/Site.css">
     <script src="~/Scripts/Site.js"></script>
 </head>
 <body>
-    <div class="d-flex" id="wrapper">
-        <!-- ============================================================== -->
-        <!-- Sidebar -->
-        <!-- ============================================================== -->
-        <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">
-                Project Management
-            </div>
-            <div class="list-group list-group-flush">
-                @if (Request.IsAuthenticated)
-                {
-                    <a href="#" class="list-group-item list-group-item-action bg-light">Projects</a>
 
-                    if (User.IsInRole("Admin"))
-                    {
-                        @*@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
-                        @Html.ActionLink("UsersAdmin", "Index", "UsersAdmin", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })*@
-                    }
-                }
-                else
-                {
-                    @Html.ActionLink("Home", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
-                    @*@Html.ActionLink("About", "About", "Home", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })
-                    @Html.ActionLink("Contact", "Contact", "Home", routeValues: null, htmlAttributes: new { @class = "list-group-item list-group-item-action bg-light" })*@
-                }
-            </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Event Manager</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Nuevo Evento</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Perfil
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="~/Usuario/Login">Iniciar Sesion</a>
+                        <a class="dropdown-item" href="#">Crear Cuenta</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Eventos</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Bienvenido!</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
         </div>
-        <!-- ============================================================== -->
-        <!-- End Sidebar -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Page Content -->
-        <!-- ============================================================== -->
-        <div id="page-content-wrapper">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <i class="fas fa-align-justify" id="menu-toggle"></i>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    @*@Html.Partial("_LoginPartial")*@
-                </div>
-            </nav>
-            <div class="container-fluid">
-                @RenderBody()
-            </div>
-        </div>
-        <!-- ============================================================== -->
-        <!-- End Page Content -->
-        <!-- ============================================================== -->
+    </nav>
+
+    <br />
+
+    <div class="container-fluid">
+        @RenderBody()
     </div>
 
-    <!-- ============================================================== -->
-    <!-- Menu Toggle Script -->
-    <!-- ============================================================== -->
-    <script>
-        $("#menu-toggle").click(function (e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-    </script>
-
     @RenderSection("scripts", required: false)
+
 </body>
 </html>
 
