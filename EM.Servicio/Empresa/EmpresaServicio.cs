@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using EM.Dominio.Repositorio.CondicionIva;
 using EM.Dominio.Repositorio.Empresa;
+using EM.Infraestructura.Repositorio.CondicionIva;
+using EM.Infraestructura.Repositorio.Empresa;
 using EM.IServicio.Empresa;
 using EM.IServicio.Empresa.DTOs;
 
@@ -12,14 +14,8 @@ namespace EM.Servicio.Empresa
 {
     public class EmpresaServicio : IEmpresaServicio
     {
-        private readonly IEmpresaRepositorio _empresaRepositorio;
-        private readonly ICondicionIvaRepositorio _condicionIvaRepositorio;
+        private readonly IEmpresaRepositorio _empresaRepositorio = new EmpresaRepositorio();
 
-        public EmpresaServicio(IEmpresaRepositorio empresaRepositorio, ICondicionIvaRepositorio condicionIvaRepositorio)
-        {
-            _empresaRepositorio = empresaRepositorio;
-            _condicionIvaRepositorio = condicionIvaRepositorio;
-        }
 
         public void Insertar(EmpresaDto empresa)
         {
@@ -33,7 +29,6 @@ namespace EM.Servicio.Empresa
                 Email = empresa.Email,
                 Imagen = empresa.Imagen,
                 Eliminado = empresa.Eliminado,
-                CondicionIva = _condicionIvaRepositorio.GetById(empresa.CondicionIvaId)
             });
 
             _empresaRepositorio.Save();
@@ -53,7 +48,6 @@ namespace EM.Servicio.Empresa
             update.Email = empresa.Email;
             update.Imagen = empresa.Imagen;
             update.Eliminado = empresa.Eliminado;
-            update.CondicionIva = _condicionIvaRepositorio.GetById(empresa.CondicionIvaId);
 
             _empresaRepositorio.Save();
         }
@@ -85,7 +79,6 @@ namespace EM.Servicio.Empresa
                     Email = x.Email,
                     Imagen = x.Imagen,
                     Eliminado = x.Eliminado,
-                    CondicionIvaId = x.CondicionIva.Id
                 }).ToList();
         }
 
@@ -105,7 +98,6 @@ namespace EM.Servicio.Empresa
                 Email = empresa.Email,
                 Imagen = empresa.Imagen,
                 Eliminado = empresa.Eliminado,
-                CondicionIvaId = empresa.CondicionIva.Id
             };
 
         }

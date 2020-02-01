@@ -192,6 +192,7 @@
     <Compile Include="Controllers\APIs\ProvinciaController.cs" />
     <Compile Include="Controllers\APIs\SalaController.cs" />
     <Compile Include="Controllers\APIs\TransporteController.cs" />
+    <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelesController.cs" />
     <Compile Include="Controllers\PaisController.cs" />
@@ -306,6 +307,7 @@
     <Content Include="Views\Persona\Index.cshtml" />
     <Content Include="Views\Persona\Create.cshtml" />
     <Content Include="Views\Persona\Update.cshtml" />
+    <Content Include="Views\Empresa\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
