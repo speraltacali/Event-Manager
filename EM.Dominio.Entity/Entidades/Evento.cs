@@ -22,7 +22,7 @@ namespace EM.Dominio.Entity.Entidades
 
         public byte[] Imagen { get; set; }
 
-        public virtual Empresa Empresas { get; set; }
+        public virtual Empresa Empresa { get; set; }
 
         public virtual ICollection<Entrada> Entradas { get; set; }
 
