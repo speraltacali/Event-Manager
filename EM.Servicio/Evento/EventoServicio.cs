@@ -38,7 +38,7 @@ namespace EM.Servicio.Evento
         public IEnumerable<EventoDto> Obtener(string cadenaBuscar)
         {
             return _eventoRepositorio.GetByFilter(x=>x.Descripcion.Contains(cadenaBuscar)
-            || x.TiposEventos.Descripcion.Contains(cadenaBuscar) || x.Empresas.RazonSocial.Contains(cadenaBuscar)
+            || x.TiposEventos.Descripcion.Contains(cadenaBuscar) || x.Empresa.RazonSocial.Contains(cadenaBuscar)
             || x.Titulo.Contains(cadenaBuscar))
                 .Select(x => new EventoDto()
                 {

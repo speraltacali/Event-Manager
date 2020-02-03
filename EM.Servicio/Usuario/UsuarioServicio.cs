@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EM.Dominio.Repositorio.Usuario;
+using EM.Infraestructura.Repositorio.Usuario;
 using EM.IServicio.Usuario;
 using EM.IServicio.Usuario.DTOs;
 
@@ -11,12 +12,7 @@ namespace EM.Servicio.Usuario
 {
     public class UsuarioServicio : IUsuarioServicio
     {
-        private readonly IUsuarioRepositorio _usuarioRepositorio;
-
-        public UsuarioServicio(IUsuarioRepositorio usuarioRepositorio)
-        {
-            _usuarioRepositorio = usuarioRepositorio;
-        }
+        private readonly IUsuarioRepositorio _usuarioRepositorio = new UsuarioRepositorio();
 
         public IEnumerable<UsuarioDto> ObtenerTodo()
         {
