@@ -114,6 +114,27 @@ namespace EM.Servicio.Evento
             Guardar();
         }
 
+        public IEnumerable<EventoDto> ObtenerEventosPorTipoEventoId(long tipoEventoId)
+        {
+
+            var eventos = _eventoRepositorio.GetByFilter(x => x.TipoEventoId == tipoEventoId).Select(x => new EventoDto
+            {
+                Id = x.Id,
+                EmpresaId = x.EmpresaId,
+                Titulo = x.Titulo,
+                Descripcion = x.Descripcion,
+                Mail = x.Mail,
+                TipoEventoId = x.TipoEventoId,
+                Imagen = x.Imagen
+
+            }).ToList();
+
+            if (eventos == null) throw new Exception("No se encontro el registro solicitado.");
+
+            return eventos;
+
+        }
+
         public void Guardar()
         {
             _eventoRepositorio.Save();
