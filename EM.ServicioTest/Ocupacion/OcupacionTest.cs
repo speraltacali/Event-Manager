@@ -28,8 +28,8 @@ namespace EM.ServicioTest.Ocupacion
             };
 
             // Act
-            servicio.Insert(dto);
-            var result = servicio.GetById(1);
+            servicio.Agregar(dto);
+            var result = servicio.ObtenerPorId(dto.Id);
 
             // Assert
             Assert.IsNotNull(result);
@@ -47,9 +47,9 @@ namespace EM.ServicioTest.Ocupacion
                 Descripcion = "Ocupacion 2"
             };
 
-            servicio.Update(ocupacionAModificar);
+            servicio.Modificar(ocupacionAModificar);
 
-            var ocupacion = servicio.GetById(1);
+            var ocupacion = servicio.ObtenerPorId(1);
 
             Assert.AreEqual("Ocupacion 2", ocupacion.Descripcion);
         }
@@ -60,11 +60,11 @@ namespace EM.ServicioTest.Ocupacion
             IOcupacionRepositorio repo = new OcupacionRepositorio();
             OcupacionServicio servicio = new OcupacionServicio(repo);
 
-            var ocupacionEliminar = servicio.GetById(1);
+            var ocupacionEliminar = servicio.ObtenerPorId(1);
 
-            servicio.Delete(ocupacionEliminar.Id);
+            servicio.Eliminar(ocupacionEliminar.Id);
 
-            var result = servicio.GetById(1);
+            var result = servicio.ObtenerPorId(1);
 
             Assert.IsNull(result);
         }

@@ -18,47 +18,47 @@ namespace EM.Servicio.Ocupacion
             _repositorio = repositorio;
         }
 
-        public IEnumerable<OcupacionDto> Get()
+        public IEnumerable<OcupacionDto> Obtener()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<OcupacionDto> GetByFilter(string cadenaBuscar)
+        public IEnumerable<OcupacionDto> ObtenerPorFiltro(string cadenaBuscar)
         {
             throw new NotImplementedException();
         }
 
-        public Dominio.Entity.Entidades.Ocupacion GetById(long id)
+        public Dominio.Entity.Entidades.Ocupacion ObtenerPorId(long id)
         {
             return _repositorio.GetById(id);
         }
 
-        public void Insert(OcupacionDto dto)
+        public void Agregar(OcupacionDto dto)
         {
             var ocupacion = new Dominio.Entity.Entidades.Ocupacion
             {
                 Descripcion = dto.Descripcion
             };
             _repositorio.Add(ocupacion);
-            Save();
+            Guardar();
         }
 
-        public void Update(OcupacionDto dto)
+        public void Modificar(OcupacionDto dto)
         {
-            var ocupacion = GetById(dto.Id);
+            var ocupacion = ObtenerPorId(dto.Id);
             
             ocupacion.Descripcion = dto.Descripcion;
             _repositorio.Update(ocupacion);
-            Save();
+            Guardar();
         }
 
-        public void Delete(long id)
+        public void Eliminar(long id)
         {
             _repositorio.Delete(id);
-            Save();
+            Guardar();
         }
 
-        public void Save()
+        public void Guardar()
         {
             _repositorio.Save();
         }

@@ -5,18 +5,18 @@ namespace EM.IServicio.Ocupacion
 {
     public interface IOcupacionServicio
     {
-        IEnumerable<OcupacionDto> Get();
+        IEnumerable<OcupacionDto> Obtener();
 
-        IEnumerable<OcupacionDto> GetByFilter(string cadenaBuscar);
+        IEnumerable<OcupacionDto> ObtenerPorFiltro(string cadenaBuscar);
 
-        Dominio.Entity.Entidades.Ocupacion GetById(long id);
+        Dominio.Entity.Entidades.Ocupacion ObtenerPorId(long id);
 
-        void Insert(OcupacionDto dto);
+        void Agregar(OcupacionDto dto);
 
-        void Update(OcupacionDto dto);
+        void Modificar(OcupacionDto dto);
 
-        void Delete(long id);
+        void Eliminar(long id);
 
-        void Save();
+        void Guardar();
     }
 }

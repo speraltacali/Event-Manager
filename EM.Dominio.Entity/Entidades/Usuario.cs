@@ -20,7 +20,11 @@ namespace EM.Dominio.Entity.Entidades
 
         public long OcupacionId { get; set; }
 
+        public long PersonaId { get; set; }
+
         //==========================================================//
+
+        public virtual Persona Persona { get; set; }
 
         public virtual Ocupacion Ocupacion{ get; set; }
 

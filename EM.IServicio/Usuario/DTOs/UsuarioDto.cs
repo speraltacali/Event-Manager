@@ -9,10 +9,12 @@ namespace EM.IServicio.Usuario.DTOs
 
         public string Password { get; set; }
 
+        public string PasswordRep { get; set; }
+
         public string Mail { get; set; }
 
         public DateTime FechaCreacion { get; set; }
 
-        public long EmpresaId { get; set; }
+        //public long EmpresaId { get; set; }
     }
 }

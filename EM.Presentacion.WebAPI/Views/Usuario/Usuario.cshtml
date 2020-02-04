@@ -1,82 +1,161 @@
-﻿
+﻿@using EM.IServicio.Usuario.DTOs
+@model EM.IServicio.Persona.DTOs.PersonaDto
 @{
     ViewBag.Title = "Usuario";
+
+    var Usuario = new UsuarioDto();
 }
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="~/Content/Login/js/user.js"></script>
-<link rel="stylesheet" type="text/css" href="~/Content/Login/css/user.css">
-
-<!------ Include the above in your HEAD tag ---------->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/animate/animate.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login/css/util.css">
+<link rel="stylesheet" type="text/css" href="~/Content/Login/css/main.css">
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="panel panel-login">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <a href="#" class="active" id="login-form-link">Datos Personales</a>
-                            </div>
-                            <div class="col-xs-6">
-                                <a href="#" id="register-form-link">Regístrate ahora</a>
-                            </div>
-                        </div>
-                        <hr>
+
+    <div class="limiter">
+        <div class="container-login100">
+            <span class="login100-form-title p-b-32">
+                Crear Cuenta
+            </span>
+            <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
+                <form class="login100-form validate-form flex-sb flex-w">
+                    <span class="login100-form-title p-b-32">
+                        Datos Personales
+                    </span>
+
+                    <span class="txt1 p-b-11">
+                        Apellido
+                    </span>
+                    <div class="wrap-input100 validate-input m-b-36" data-validate="Apellido Requerido">
+                        <input asp-for="Apellido" class="input100" type="text" name="Apellido">
+                        <span class="focus-input100"></span>
                     </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <form id="login-form" action="http://phpoll.com/login/process" method="post" role="form" style="display: block;">
-                                    <div class="form-group">
-                                        <input type="text" name="Apellido" id="Apellido" tabindex="1" class="form-control" placeholder="Apellido" value="">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="Nombre" id="Nombre" tabindex="2" class="form-control" placeholder="Nombre" value="">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="Cuil" id="Cuil" tabindex="3" class="form-control" placeholder="Cuil" value="">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="Telefono" id="Telefono" tabindex="4" class="form-control" placeholder="Telefono" value="">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="Domicilio" id="Domicilio" tabindex="5" class="form-control" placeholder="Domicilio">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="date" name="FechaNacimiento" id="FechaNacimiento" tabindex="6" class="form-control" placeholder="Fecha de Nacimiento">
-                                    </div>
-                                </form>
-                                <form id="register-form" action="http://phpoll.com/register/process" method="post" role="form" style="display: none;">
-                                    <div class="form-group">
-                                        <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Usuario" value="">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Correo electronico" value="">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Contraseña">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirmar contraseña">
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-sm-6 col-sm-offset-3">
-                                                <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Crear cuenta">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+
+                    <span class="txt1 p-b-11">
+                        Nombre
+                    </span>
+                    <div class="wrap-input100 validate-input m-b-12" data-validate="Nombre Requerido">
+                        <input asp-for="Nombre" class="input100" type="text" name="Nombre">
+                        <span class="focus-input100"></span>
                     </div>
-                </div>
+
+                    <span class="txt1 p-b-11">
+                        Cuil
+                    </span>
+                    <div class="wrap-input100 validate-input m-b-12" data-validate="Cuil Requerido">
+                        <input asp-for="Cuil" class="input100" type="text" name="Cuil">
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <span class="txt1 p-b-11">
+                        Telefono
+                    </span>
+                    <div class="wrap-input100 validate-input m-b-12">
+                        <input asp-for="Telefono" class="input100" type="text" name="Telefono">
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <span class="txt1 p-b-11">
+                        Domicilio
+                    </span>
+                    <div class="wrap-input100 validate-input m-b-12">
+                        <input asp-for="Domicilio" class="input100" type="text" name="Domicilio">
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <span class="txt1 p-b-11">
+                        Fecha De Nacimiento
+                    </span>
+                    <div class="wrap-input100 validate-input m-b-12">
+                        <input asp-for="FechaNacimiento" class="input100" type="date" name="FechaNacimiento">
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <hr size="8px" color="black" />
+
+                    <span class="login100-form-title p-b-32">
+                        Datos de Usuario
+                    </span>
+
+                    <span class="txt1 p-b-11">
+                        Usuario
+                    </span>
+                    <div class="wrap-input100 validate-input m-b-36" data-validate="Usuario Requerido">
+                        <input asp-for="@Usuario.User" class="input100" type="text" name="Usuario">
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <span class="txt1 p-b-11">
+                        Correo Electronico
+                    </span>
+                    <div class="wrap-input100 validate-input m-b-36" data-validate="Correo Electronico Requerido">
+                        <input asp-for="@Usuario.Mail" class="input100" type="text" name="Apellido">
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <span class="txt1 p-b-11">
+                        Contraseña
+                    </span>
+                    <div class="wrap-input100 validate-input m-b-36" data-validate="Contraseña Requerida">
+                        <input asp-for="@Usuario.Password" class="input100" type="password" name="Apellido">
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <span class="txt1 p-b-11">
+                        RepetirContraseña
+                    </span>
+                    <div class="wrap-input100 validate-input m-b-36" data-validate="Repetir Contraseña">
+                        <input asp-for="@Usuario.PasswordRep" class="input100" type="password" name="Apellido">
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" style='width: 500px; height: 80px;'>
+                            Crear
+                        </button>
+                    </div>
+
+                </form>
             </div>
         </div>
     </div>
+
+
+    <div id="dropDownSelect1"></div>
+
+    <!--===============================================================================================-->
+    <script src="~/Content/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/Content/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/js/main.js"></script>
 
 </body>
