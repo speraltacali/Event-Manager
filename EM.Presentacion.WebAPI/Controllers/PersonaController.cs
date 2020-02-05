@@ -33,7 +33,7 @@ namespace EM.Presentacion.WebAPI.Controllers
         [HttpPost]
         public ActionResult Create(PersonaDto persona)
         {
-            var Persona = _personaServicio.Agregar(persona);
+            var Persona = _personaServicio.Insertar(persona);
             return RedirectToAction("Index");
         }
 

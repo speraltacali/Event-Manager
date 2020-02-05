@@ -11,7 +11,7 @@ namespace EM.IServicio.Persona
 
         PersonaDto ObtenerPorId(long id);
 
-        PersonaDto Agregar(PersonaDto personaDto);
+        PersonaDto Insertar(PersonaDto personaDto);
 
         void Modificar(PersonaDto personaDto);
 

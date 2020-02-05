@@ -68,7 +68,7 @@ namespace EM.Servicio.Usuario
                 Password = dto.Password,
                 Mail = dto.Mail,
                 FechaCreacion = dto.FechaCreacion,
-
+                PersonaId = dto.PersonaId
             };
 
             _usuarioRepositorio.Add(usuario);

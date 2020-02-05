@@ -75,7 +75,7 @@ namespace EM.Servicio.Persona
             };
         }
 
-        public PersonaDto Agregar(PersonaDto dto)
+        public PersonaDto Insertar(PersonaDto dto)
         {
             var persona = new Dominio.Entity.Entidades.Persona
             {

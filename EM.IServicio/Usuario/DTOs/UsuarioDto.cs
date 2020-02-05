@@ -15,6 +15,8 @@ namespace EM.IServicio.Usuario.DTOs
 
         public DateTime FechaCreacion { get; set; }
 
+        public long PersonaId { get; set; }
+
         //public long EmpresaId { get; set; }
     }
 }

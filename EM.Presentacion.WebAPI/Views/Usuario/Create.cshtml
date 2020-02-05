@@ -1,7 +1,7 @@
 ﻿@using EM.IServicio.Usuario.DTOs
 @model EM.IServicio.Persona.DTOs.PersonaDto
 @{
-    ViewBag.Title = "Usuario";
+    ViewBag.Title = "Create";
 
     var Usuario = new UsuarioDto();
 }
@@ -31,9 +31,9 @@
 <body>
 
     <div class="limiter">
-        <div class="container-login100">            
+        <div class="container-login100">
             <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
-                <form class="login100-form validate-form flex-sb flex-w">
+                <form class="login100-form validate-form flex-sb flex-w" asp-action="Create" asp-controller="Usuario" method="post">
                     <span class="login100-form-title p-b-32">
                         Datos Personales
                     </span>
@@ -106,7 +106,7 @@
                         Correo Electronico
                     </span>
                     <div class="wrap-input100 validate-input m-b-12" data-validate="Correo Electronico Requerido">
-                        <input asp-for="@Usuario.Mail" class="input100" type="text" name="Apellido">
+                        <input asp-for="@Usuario.Mail" class="input100" type="text" name="Mail">
                         <span class="focus-input100"></span>
                     </div>
 
@@ -114,7 +114,7 @@
                         Contraseña
                     </span>
                     <div class="wrap-input100 validate-input m-b-12" data-validate="Contraseña Requerida">
-                        <input asp-for="@Usuario.Password" class="input100" type="password" name="Apellido">
+                        <input asp-for="@Usuario.Password" class="input100" type="password" name="Password">
                         <span class="focus-input100"></span>
                     </div>
 
@@ -122,7 +122,7 @@
                         Repetir Contraseña
                     </span>
                     <div class="wrap-input100 validate-input m-b-12" data-validate="Repetir Contraseña">
-                        <input asp-for="@Usuario.PasswordRep" class="input100" type="password" name="Apellido">
+                        <input asp-for="@Usuario.PasswordRep" class="input100" type="password" name="PasswordRep">
                         <span class="focus-input100"></span>
                     </div>
 
@@ -160,3 +160,4 @@
     <script src="~/Content/js/main.js"></script>
 
 </body>
+
