@@ -30,6 +30,11 @@ namespace EM.Presentacion.WebAPI.Controllers
             return View();
         }
 
+        public ActionResult Perfil()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult Create(PersonaDto persona)
         {
