@@ -1,0 +1,16 @@
+﻿.containerPerfil {
+    padding: 5%;
+}
+
+.containerPerfil .img {
+    text-align: center;
+}
+
+.containerPerfil .details {
+    border-left: 3px solid #ded4da;
+}
+
+.containerPerfil .details p {
+    font-size: 15px;
+    font-weight: bold;
+}
