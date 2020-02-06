@@ -125,5 +125,19 @@ namespace EM.Servicio.Persona
         {
             _personaRepositorio.Save();
         }
+
+        public bool ValidarPersona(string cuil)
+        {
+            var Persona = _personaRepositorio.GetByFilter(x => x.Cuil == cuil);
+
+            if (Persona != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

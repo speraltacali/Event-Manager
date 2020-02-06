@@ -18,7 +18,7 @@ namespace EM.Dominio.Entity.Entidades
 
         public DateTime FechaCreacion { get; set; }
 
-        public long OcupacionId { get; set; }
+        //public long OcupacionId { get; set; }
 
         public long PersonaId { get; set; }
 
@@ -26,7 +26,7 @@ namespace EM.Dominio.Entity.Entidades
 
         public virtual Persona Persona { get; set; }
 
-        public virtual Ocupacion Ocupacion{ get; set; }
+        //public virtual Ocupacion Ocupacion{ get; set; }
 
     }
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using EM.Dominio.Entity.Entidades;
 using EM.IServicio.Persona;
 using EM.IServicio.Persona.DTOs;
 using EM.IServicio.Usuario;
@@ -24,12 +23,6 @@ namespace EM.Presentacion.WebAPI.Controllers
             return View();
         }
 
-        public ActionResult Usuario()
-        {
-            return View();
-        }
-
-
 
         public ActionResult Create()
         {
@@ -47,6 +40,7 @@ namespace EM.Presentacion.WebAPI.Controllers
 
                     var persona =_personaServicio.Insertar(Persona);
                     Usuario.PersonaId = persona.Id;
+                    Usuario.FechaCreacion = DateTime.Now;
                     _usuarioServicio.Insertar(Usuario);
                 }
                 else

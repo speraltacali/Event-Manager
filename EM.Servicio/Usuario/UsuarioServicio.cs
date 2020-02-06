@@ -24,6 +24,7 @@ namespace EM.Servicio.Usuario
                     Password = x.Password,
                     Mail = x.Mail,
                     FechaCreacion = x.FechaCreacion,
+                    PersonaId = x.PersonaId
 
                 }).ToList();
         }
@@ -40,6 +41,7 @@ namespace EM.Servicio.Usuario
                     Password = x.Password,
                     Mail = x.Mail,
                     FechaCreacion = x.FechaCreacion,
+                    PersonaId = x.PersonaId
                 }).ToList();
         }
 
@@ -56,7 +58,7 @@ namespace EM.Servicio.Usuario
                 Password = usuario.Password,
                 Mail = usuario.Mail,
                 FechaCreacion = usuario.FechaCreacion,
-
+                PersonaId = usuario.PersonaId
             };
         }
 
@@ -105,6 +107,82 @@ namespace EM.Servicio.Usuario
         public void Guardar()
         {
             _usuarioRepositorio.Save();
+        }
+
+
+        //***********************************************************************************************************************
+        //       ******************************************  LOGIN  ********************************************
+        //***********************************************************************************************************************
+
+        public UsuarioDto ValidarAcceso(string user , string pass)
+        {
+            var Usuario = _usuarioRepositorio.GetAll().FirstOrDefault(x => x.Password == pass && x.User == user);
+
+            if (Usuario != null)
+            {
+                return new UsuarioDto()
+                {
+                    Id = Usuario.Id,
+                    User = Usuario.User,
+                    Password = Usuario.Password,
+                    Mail = Usuario.Mail,
+                    FechaCreacion = Usuario.FechaCreacion,
+                    PersonaId = Usuario.PersonaId
+                };
+            }
+
+            else
+            {
+                return null;
+            }
+
+        }
+
+
+        //***********************************************************************************************************************
+        //       ******************************************  VAIDACIONES  ********************************************
+        //***********************************************************************************************************************
+
+        public bool ValidarUser(string user)
+        {
+            var User = _usuarioRepositorio.GetByFilter(x => x.User == user);
+
+            if(User != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool ValidarPass(string pass)
+        {
+            var Pass = _usuarioRepositorio.GetByFilter(x => x.Password == pass);
+
+            if (Pass != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool ValidarMail(string mail)
+        {
+            var Mail = _usuarioRepositorio.GetByFilter(x => x.User == mail);
+
+            if (Mail != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
