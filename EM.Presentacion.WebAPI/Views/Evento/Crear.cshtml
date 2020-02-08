@@ -26,7 +26,7 @@
                         </div>
                         <div class="form-holder">
                             <label for="">
-                                Breve Descripcion *
+                                Quien dara la Charla? *
                             </label>
                             <input type="text" class="form-control">
                         </div>
@@ -39,16 +39,47 @@
                     </div>
                     <div class="form-row">
                         <label for="">
+                            Tipo Evento *
+                        </label>
+                        <div class="form-holder">
+                            <select name="" id="" class="form-control">
+                                <option value="Economiam" class="option">Economia</option>
+                                <option value="Comercio" class="option">Comercio</option>
+                                <option value="Ciencia" class="option">Ciencia</option>
+                            </select>
+                            <i class="zmdi zmdi-caret-down"></i>
+                        </div>
+                    </div>
+                    <div class="form-row" style="margin-bottom: 18px">
+                        <label for="">
+                            Descripcion del Evento
+                        </label>
+                        <textarea name="" id="" class="form-control" placeholder="Note about your order, eg. special notes fordelivery." style="height: 149px"></textarea>
+                    </div>
+
+                </section>
+
+                <!-- SECTION 2 -->
+                <h4></h4>
+                <section>
+                    <div class="form-row">
+                        <label for="">
                             Pais *
                         </label>
                         <div class="form-holder">
                             <select name="" id="" class="form-control">
-                                <option value="viet nam" class="option">Viet Nam</option>
+                                <option value="viet nam" class="option">Argentina</option>
                                 <option value="united states" class="option">United States</option>
                                 <option value="united kingdom" class="option">United Kingdom</option>
                             </select>
                             <i class="zmdi zmdi-caret-down"></i>
                         </div>
+                    </div>
+                    <div class="form-row">
+                        <label for="">
+                            Provincia *
+                        </label>
+                        <input type="text" class="form-control">
                     </div>
                     <div class="form-row">
                         <label for="">
@@ -63,17 +94,7 @@
                         </label>
                         <input type="text" class="form-control">
                     </div>
-                </section>
 
-                <!-- SECTION 2 -->
-                <h4></h4>
-                <section>
-                    <div class="form-row">
-                        <label for="">
-                            Provincia *
-                        </label>
-                        <input type="text" class="form-control">
-                    </div>
                     <div class="form-row">
                         <label for="">
                             Codigo Postal / Zip *
@@ -89,100 +110,93 @@
                         </div>
                         <div class="form-holder">
                             <label for="">
-                                Dirrecion Email *
+                                Email *
                             </label>
                             <input type="text" class="form-control">
                         </div>
                     </div>
-                    <div class="form-row" style="margin-bottom: 18px">
-                        <label for="">
-                            Notas
-                        </label>
-                        <textarea name="" id="" class="form-control" placeholder="Note about your order, eg. special notes fordelivery." style="height: 149px"></textarea>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Create an account?
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
+                    <br />
                 </section>
 
                 <!-- SECTION 3 -->
                 <h4></h4>
                 <section>
                     <div class="product">
+
                         <div class="item">
                             <div class="left">
                                 <a href="#" class="thumb">
-                                    <img src="~/Content/CrearEvento/images/item-1.png" alt="">
+                                    <img src="~/Content/CrearEvento/images/ticket.png" alt="">
                                 </a>
                                 <div class="purchase">
                                     <h6>
-                                        <a href="#">Low Table/Stool</a>
+                                        <a href="#">Valor de la Entrada</a>
                                     </h6>
-                                    <span>x4</span>
+                                    <span>x1</span>
                                 </div>
                             </div>
-                            <span class="price">$29</span>
                         </div>
-                        <div class="item">
-                            <div class="left">
-                                <a href="#" class="thumb">
-                                    <img src="~/Content/CrearEvento/images/item-2.png" alt="">
-                                </a>
-                                <div class="purchase">
-                                    <h6>
-                                        <a href="#">Set of 3 Porcelain</a>
-                                    </h6>
-                                    <span>x2</span>
-                                </div>
-                            </div>
-                            <span class="price">$124</span>
-                        </div>
+
                     </div>
+
+                    <div class="form-holder">
+                        <label for="">
+                            Precio: *
+                        </label>
+                        <input type="number" class="form-control">
+                    </div>
+                    <br />
+
                     <div class="checkout">
-                        <div class="subtotal">
-                            <span class="heading">Subtotal</span>
-                            <span>$364</span>
-                        </div>
                         <p class="shipping">
-                            <span class="heading">Shipping</span>
-                            there are no shipping methods available. please double check your address, or contact us if you need any help.
+                            <span class="heading">Informacion:</span>
+                            Atencion si el evento es GRATUITO ingrese como valor de la ENTRADA $ 0
                         </p>
-                        <div class="total">
-                            <span class="heading">Subtotal</span>
-                            <span class="total-price">$364</span>
-                        </div>
                     </div>
+                    <br />
                 </section>
 
                 <!-- SECTION 4 -->
                 <h4></h4>
                 <section>
-                    <div class="checkbox-circle">
+                    <div class="form-holder">
+
                         <label class="active">
-                            <input type="radio" name="billing method" value="Direct bank transfer" checked>Direct bank transfer>
-                            <span class="checkmark"></span>
-                            <div class="tooltip">
-                                Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.
-                            </div>
+                            Agregue una Imagen para el Evento:
                         </label>
-                        <label>
-                            <input type="radio" name="billing method" value="Check payments">Check payments
-                            <span class="checkmark"></span>
-                            <div class="tooltip">
-                                Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.
-                            </div>
-                        </label>
-                        <label>
-                            <input type="radio" name="billing method" value="Cash on delivery">Cash on delivery
-                            <span class="checkmark"></span>
-                            <div class="tooltip">
-                                Pay with cash upon delivery.
-                            </div>
-                        </label>
+                        <input name="uploadedfile" type="file" />
+
                     </div>
+                    <br />
+                    <div class="form-holder">
+                        <label>
+                            Fecha del Evento:
+                        </label>
+                        <input type="date" class="form-control">
+                    </div>
+                    <br />
+                    <div class="form-holder">
+                        <label>
+                            Hora Inicio:
+                        </label>
+                        <input type="time" class="form-control">
+                    </div>
+                    <br />
+                    <div class="form-holder">
+                        <label>
+                            Hora Fin del Evento:
+                        </label>
+                        <input type="time" class="form-control">
+                    </div>
+                    <br />
+                    <br />
+                    <div class="checkout">
+                        <p class="shipping">
+                            <span class="heading">Atencion:</span>
+                            Antes De Finalizar Revise SI Todos Los DATOS SON CORRECTOS.
+                        </p>
+                    </div>
+
                 </section>
             </div>
         </form>

@@ -113,7 +113,7 @@ body {
 			}
 		}
 		&:before {
-			content: "Billing Details";
+			content: "Datos del Evento";
 			font-size: 22px;
 			font-family: "Poppins-SemiBold";
 			color: #333;
@@ -122,17 +122,17 @@ body {
 		}
 		&.step-2 {
 			&:before {
-				content: "Additional Information";
+				content: "Lugar del Evento";
 			}
 		}
 		&.step-3 {
 			&:before {
-				content: "Your Order";
+				content: "Entrada";
 			}
 		}
 		&.step-4 {
 			&:before {
-				content: "Billing Method";
+				content: "Ultimos Datos";
 			}
 		}
 	}

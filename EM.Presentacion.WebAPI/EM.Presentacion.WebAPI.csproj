@@ -225,6 +225,7 @@
     <Content Include="Content\CrearEvento\images\form-wizard.png" />
     <Content Include="Content\CrearEvento\images\item-1.png" />
     <Content Include="Content\CrearEvento\images\item-2.png" />
+    <Content Include="Content\CrearEvento\images\ticket.png" />
     <Content Include="Content\CrearEvento\js\jquery-3.3.1.min.js" />
     <Content Include="Content\CrearEvento\js\jquery.steps.js" />
     <Content Include="Content\CrearEvento\js\main.js" />

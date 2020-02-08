@@ -100,18 +100,22 @@ body {
         background: #f3d4b7;
         transition: all 0.5s ease; }
     .steps ul:before {
-      content: "Billing Details";
-      font-size: 22px;
-      font-family: "Poppins-SemiBold";
-      color: #333;
-      top: -38px;
-      position: absolute; }
+        content: "Datos del Evento";
+        font-size: 22px;
+        font-family: "Poppins-SemiBold";
+        color: #333;
+        top: -38px;
+        position: absolute;
+    }
     .steps ul.step-2:before {
-      content: "Additional Information"; }
+        content: "Lugar del Evento";
+    }
     .steps ul.step-3:before {
-      content: "Your Order"; }
+        content: "Entrada";
+    }
     .steps ul.step-4:before {
-      content: "Billing Method"; }
+        content: "Ultimos Datos";
+    }
 
 h3 {
   font-family: "Poppins-SemiBold"; }

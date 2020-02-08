@@ -27,9 +27,9 @@ $(function(){
             return true; 
         },
         labels: {
-            finish: "Place Holder",
+            finish: "Finalizar",
             next: "Next",
-            previous: "Previous"
+            previous: "Anterior"
         }
     });
     // Custom Steps Jquery Steps
