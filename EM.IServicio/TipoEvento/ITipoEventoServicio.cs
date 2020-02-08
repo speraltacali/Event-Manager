@@ -11,6 +11,8 @@ namespace EM.IServicio.TipoEvento
 
         Dominio.Entity.Entidades.TipoEvento GetById(long id);
 
+        TipoEventoDto ObtenerId(long id);
+
         void Insert(TipoEventoDto dto);
 
         void Update(TipoEventoDto dto);

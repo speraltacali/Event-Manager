@@ -20,6 +20,24 @@ namespace EM.Presentacion.WebAPI.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Index(string cadena)
+        {
+            ViewData["Busqueda"] = cadena;
+
+            if (!String.IsNullOrEmpty(cadena))
+            {
+                var ListaTipos = _tipoEvento.GetByFilter(cadena);
+                return View(ListaTipos);
+            }
+            else
+            {
+                var list = _tipoEvento.Get();
+
+                return View(list);
+            }
+        }
+
         public ActionResult NuevoEvento()
         {
             return View();
@@ -34,11 +52,32 @@ namespace EM.Presentacion.WebAPI.Controllers
 
                 _tipoEvento.Insert(tipoEventoDto);
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "TipoEvento");
             }
 
             return View();
         }
 
+        public ActionResult Update(long id)
+        {
+            var tipo =_tipoEvento.ObtenerId(id);
+
+            return View(tipo);
+        }
+
+        [HttpPost]
+        public ActionResult Update(TipoEventoDto tipoEventoDto)
+        {
+            if (ModelState.IsValid)
+            {
+                var tipo = _tipoEvento.ObtenerId(tipoEventoDto.Id);
+
+                _tipoEvento.Update(tipo);
+
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Index", "TipoEvento");
+        }
     }
 }

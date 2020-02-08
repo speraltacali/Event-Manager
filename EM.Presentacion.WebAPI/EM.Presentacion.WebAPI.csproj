@@ -589,6 +589,7 @@
     <Content Include="Views\Evento\Crear.cshtml" />
     <Content Include="Views\TipoEvento\Index.cshtml" />
     <Content Include="Views\TipoEvento\NuevoEvento.cshtml" />
+    <Content Include="Views\TipoEvento\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

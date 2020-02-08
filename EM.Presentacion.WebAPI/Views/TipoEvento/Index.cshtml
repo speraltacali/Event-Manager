@@ -1,7 +1,80 @@
-﻿
+﻿@model IEnumerable<EM.IServicio.TipoEvento.DTOs.TipoEventoDto>
 @{
+    /**/
+
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<link rel="stylesheet" type="text/css" href="~/Content/Login/css/util.css">
+<link rel="stylesheet" type="text/css" href="~/Content/Login/css/main.css">
 
+<link href="~/Content/Perfil/perfil.css" rel="stylesheet" />
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+<!--===============================================================================================-->
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<section id="tabs" class="project-tab" style="background-color:oldlace; margin-right:30px; margin-left:30px; border:groove">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+                <nav>
+                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Mis Tipos De Eventos</a>
+                    </div>
+                </nav>
+                <br />
+                <form asp-action="Index" method="get">
+                    <div>
+                        <p>
+                            Buscar: <input type="text" name="cadena" value="@ViewData["Busqueda"]" style="background-color:gray;padding-left:2px;" />
+                            <input type="submit" value="Buscar" btn="btn btn-default" class="btn btn-primary" />
+                        </p>
+
+
+                    </div>
+                </form><br />
+
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <table class="table" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>@Html.DisplayNameFor(model => model.Id)</th>
+                                    <th> | </th>
+                                    <th>@Html.DisplayNameFor(model => model.Descripcion)</th>
+                                    <th> | </th>
+                                    <th>Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td> @Html.DisplayFor(modelItem => item.Id)</td>
+                                        <td> | </td>
+                                        <td> @Html.DisplayFor(modelItem => item.Descripcion)</td>
+                                        <td> | </td>
+                                        <td>
+                                            <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-secondary">Modificar</a>
+                                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-warning">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<br />
+<br />
+<br />
+<br />
