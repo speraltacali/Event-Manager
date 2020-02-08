@@ -409,7 +409,7 @@ textarea.form-control {
     transform: translateX(0); } }
 @media (max-width: 1500px) {
   .wrapper {
-    height: auto; } }
+    height: auto; } }/*
 @media (max-width: 1199px) {
   .wrapper {
     height: 100vh; }
@@ -418,7 +418,7 @@ textarea.form-control {
     margin-right: 40px;
     min-height: 829px;
     padding-left: 60px;
-    padding-right: 60px; } }
+    padding-right: 60px; } }*/
 @media (max-width: 991px) {
   .wrapper {
     justify-content: center; }
@@ -426,7 +426,7 @@ textarea.form-control {
       display: none; }
     .wrapper form {
       width: 60%; }
-
+    
   #wizard {
     margin-right: 0;
     padding-left: 40px;
