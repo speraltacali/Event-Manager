@@ -6,6 +6,6 @@ namespace EM.IServicio.Lugar.DTOs
     {
         public string Descripcion { get; set; }
 
-        public long PaisId { get; set; }
+        public long DomicilioId { get; set; }
     }
 }

@@ -72,6 +72,8 @@ namespace EM.Presentacion.WebAPI.Controllers
             {
                 var tipo = _tipoEvento.ObtenerId(tipoEventoDto.Id);
 
+                tipo.Descripcion = tipoEventoDto.Descripcion;
+
                 _tipoEvento.Update(tipo);
 
                 return RedirectToAction("Index");

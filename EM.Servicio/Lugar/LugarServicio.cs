@@ -25,19 +25,19 @@ namespace EM.Servicio.Lugar
                 {
                     Id = x.Id,
                     Descripcion = x.Descripcion,
-                    PaisId = x.PaisId
+                    DomicilioId = x.DomicilioId
                 }).ToList();
         }
 
         public IEnumerable<LugarDto> Obtener(string cadenaBuscar)
         {
             return _lugarRepositorio.GetByFilter(x => x.Descripcion.Contains(cadenaBuscar)
-                                                      || x.Pais.Descripcion.Contains(cadenaBuscar))
+                                                      || x.Domicilio.Descripción.Contains(cadenaBuscar))
                 .Select(x => new LugarDto()
                 {
                     Id = x.Id,
                     Descripcion = x.Descripcion,
-                    PaisId = x.PaisId
+                    DomicilioId = x.DomicilioId
                 }).ToList();
         }
 
@@ -51,7 +51,7 @@ namespace EM.Servicio.Lugar
             {
                 Id = lugar.Id,
                 Descripcion = lugar.Descripcion,
-                PaisId = lugar.PaisId
+                DomicilioId = lugar.DomicilioId
             };
         }
 
@@ -60,7 +60,7 @@ namespace EM.Servicio.Lugar
             var lugar = new Dominio.Entity.Entidades.Lugar()
             {
                 Descripcion = dto.Descripcion,
-                PaisId = dto.PaisId
+                DomicilioId = dto.DomicilioId
             };
 
             _lugarRepositorio.Add(lugar);
@@ -74,7 +74,7 @@ namespace EM.Servicio.Lugar
             if(lugar == null) throw new Exception("No se encontro el registro solicitado.");
 
             lugar.Descripcion = dto.Descripcion;
-            lugar.PaisId = dto.PaisId;
+            lugar.DomicilioId = dto.DomicilioId;
 
             _lugarRepositorio.Update(lugar);
             Guardar();

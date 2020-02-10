@@ -15,7 +15,9 @@ namespace EM.IServicio.CondicionIva
 
         void Eliminar(long id);
 
-        IEnumerable<CondicionIvaDto> Obtener(string buscar);
+        IEnumerable<CondicionIvaDto> ObtenerPorFiltro(string buscar);
+
+        IEnumerable<CondicionIvaDto> Obtener();
 
         CondicionIvaDto ObtenerPorId(long id);
     }

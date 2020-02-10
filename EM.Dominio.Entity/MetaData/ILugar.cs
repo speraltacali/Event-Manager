@@ -6,7 +6,7 @@ namespace EM.Dominio.Entity.MetaData
     public interface ILugar
     {
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        long PaisId { get; set; }
+        long DomicilioId { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es obligatorio")]
         [StringLength(250, ErrorMessage = "El campo {0} debe ser menor a {1} caracteres")]

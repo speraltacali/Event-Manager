@@ -12,9 +12,11 @@ namespace EM.Dominio.Entity.Entidades
     {
         public string Descripcion { get; set; }
 
-        public long PaisId { get; set; }
+        public long DomicilioId { get; set; }
 
-        public virtual Pais Pais { get; set; }
+        //**********************************************************//
+
+        public virtual Domicilio Domicilio { get; set; }
 
         public virtual ICollection<Sala> Salas { get; set; }
 

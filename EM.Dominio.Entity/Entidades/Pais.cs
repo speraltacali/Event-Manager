@@ -18,10 +18,6 @@ namespace EM.Dominio.Entity.Entidades
 
         //propiedades de navegación
 
-        public virtual ICollection<Lugar> Lugares { get; set; }
-
-        //public virtual ICollection<Persona> Personas { get; set; }
-
         public virtual ICollection<Provincia> Provincias { get; set; }
     }
 }
