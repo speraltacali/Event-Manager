@@ -6,6 +6,11 @@
 <link href="~/Content/CrearEvento/css/style.css" rel="stylesheet" />
 <link href="~/Content/CrearEvento/fonts/material-design-iconic-font/css/material-design-iconic-font.css" rel="stylesheet" />
 
+<!--Load the API from the specified URL-->
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyCFA0cdJHdJdccOiUiKNpwQ3wze89fWH38">
+</script>
+
 <body>
 
     <div class="wrapper">
@@ -62,6 +67,60 @@
                 <!-- SECTION 2 -->
                 <h4></h4>
                 <section>
+
+                    <script>
+
+                        var searchInput = 'search_input';
+
+                        $(document).ready(function () {
+                            var autocomplete;
+
+                            autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+                                types: ['geocode']
+                            });
+
+                            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+
+                                var near_place = autocomplete.getPlace();
+                                document.getElementById('latidude_input').value = near_place.geometry.location.lat();
+                                document.getElementById('longitude_input').value = near_place.geometry.location.lng();
+
+                                document.getElementById('latidude_view').innerHTML = near_place.geometry.location.lat();
+                                document.getElementById('longitude_view').innerHTML = near_place.geometry.location.lng();
+
+                            });
+
+                        });
+
+                        $(document).on('change', '#' + searchInput, function () {
+
+                            document.getElementById('latidude_input').value = '';
+                            document.getElementById('longitude_input').value = '';
+                            document.getElementById('latidude_view').innerHTML = '';
+                            document.getElementById('longitude_input').innerHTML = '';
+
+                        });
+
+                    </script>
+
+                    <div class="form-row">
+
+                        <label>Localizacion:</label>
+
+                        <input type="text" class="form-control" id="search_input" placeholder="Escriba aqui el lugar del Evento"/>
+                        <input type="hidden" id="latidude_input"/>
+                        <input type="hidden" id="longitude_input"/>
+
+                    </div>
+
+                    <div class="form-row">
+
+                        <p><b>Latitude:<span id="latidude_view"></span></b></p><br />
+
+                        <p><b>Longitude:<span id="longitude_view"></span></b></p>
+
+                    </div>
+
                     <div class="form-row">
                         <label for="">
                             Pais *
@@ -209,6 +268,7 @@
     <br />
     <br />
     <br />
+
 </body>
 <script src="~/Content/CrearEvento/js/jquery-3.3.1.min.js"></script>
 <script src="~/Content/CrearEvento/js/jquery.steps.js"></script>
