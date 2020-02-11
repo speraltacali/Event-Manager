@@ -76,7 +76,7 @@ namespace EM.Presentacion.WebAPI.Controllers
 
                 _tipoEvento.Update(tipo);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "TipoEvento");
             }
 
             return RedirectToAction("Index", "TipoEvento");
