@@ -77,5 +77,36 @@ namespace EM.Servicio.Pais
                 RowVersion = x.RowVersion,
             };
         }
+
+        //*************************************** INSERT POR DEFECTO **********************************************
+
+        public void InsertarPorDefecto()
+        {
+            Insertar(new PaisDto()
+            {
+                Descripcion = "Argentina"
+            });
+
+            Insertar(new PaisDto()
+            {
+                Descripcion = "Paraguay"
+            });
+
+            Insertar(new PaisDto()
+            {
+                Descripcion = "Uruguay"
+            });
+
+            Insertar(new PaisDto()
+            {
+                Descripcion = "Brasil"
+            });
+
+            Insertar(new PaisDto()
+            {
+                Descripcion = "Mexico"
+            });
+        }
+
     }
 }

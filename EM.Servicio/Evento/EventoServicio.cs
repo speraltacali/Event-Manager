@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using EM.Dominio.Repositorio.Evento;
+using EM.Infraestructura.Repositorio.Evento;
 using EM.IServicio.Evento;
 using EM.IServicio.Evento.DTOs;
 using EM.IServicio.EventoLugar.DTOs;
@@ -13,12 +14,7 @@ namespace EM.Servicio.Evento
 {
     public class EventoServicio : IEventoServicio
     {
-        private readonly IEventoRepositorio _eventoRepositorio;
-
-        public EventoServicio(IEventoRepositorio eventoRepositorio)
-        {
-            _eventoRepositorio = eventoRepositorio;
-        }
+        private readonly IEventoRepositorio _eventoRepositorio = new EventoRepositorio();
 
         public IEnumerable<EventoDto> ObtenerTodo()
         {

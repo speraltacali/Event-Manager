@@ -11,7 +11,9 @@ namespace EM.IServicio.Empresa
 
         void Eliminar(long id);
 
-        IEnumerable<EmpresaDto> Obtener(string buscar);
+        IEnumerable<EmpresaDto> Obtener();
+
+        IEnumerable<EmpresaDto> ObtenerPorFiltro(string buscar);
 
         EmpresaDto ObtenerPorId(long id);
     }

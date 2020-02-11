@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using EM.Dominio.Repositorio.Pais;
 using EM.Dominio.Repositorio.Provincia;
+using EM.Infraestructura.Repositorio.Pais;
+using EM.Infraestructura.Repositorio.Provincia;
 using EM.IServicio.Provincia;
 using EM.IServicio.Provincia.DTOs;
 
@@ -13,14 +15,9 @@ namespace EM.Servicio.Provincia
     public class ProvinciaServicio : IProvinciaServicio
     {
 
-        private readonly IProvinciaRepositorio _provinciaRepositorio;
-        private readonly IPaisRepositorio _paisRepositorio;
+        private readonly IProvinciaRepositorio _provinciaRepositorio = new ProvinciaRepositorio();
+        private readonly IPaisRepositorio _paisRepositorio = new PaisRepositorio();
 
-        public ProvinciaServicio(IProvinciaRepositorio provinciaRepositorio, IPaisRepositorio paisRepositorio)
-        {
-            _provinciaRepositorio = provinciaRepositorio;
-            _paisRepositorio = paisRepositorio;
-        }
 
         public void Insertar(ProvinciaDto provincia)
         {
@@ -60,10 +57,20 @@ namespace EM.Servicio.Provincia
             _provinciaRepositorio.Save();
         }
 
-        public IEnumerable<ProvinciaDto> Obtener(string buscar)
+        public IEnumerable<ProvinciaDto> ObtenerPorFiltro(string buscar)
         {
             return _provinciaRepositorio.GetByFilter(x => x.Descripcion.Contains(buscar)
                                                           || x.Pais.Descripcion.Contains(buscar))
+                .Select(x => new ProvinciaDto()
+                {
+                    Descripcion = x.Descripcion,
+                    PaisId = x.PaisId
+                }).ToList();
+        }
+
+        public IEnumerable<ProvinciaDto> Obtener()
+        {
+            return _provinciaRepositorio.GetAll()
                 .Select(x => new ProvinciaDto()
                 {
                     Descripcion = x.Descripcion,
@@ -82,6 +89,55 @@ namespace EM.Servicio.Provincia
                 Descripcion = provincia.Descripcion,
                 PaisId = provincia.PaisId
             };
+        }
+
+        //****************************************** Insert por Defecto **************************************
+
+        public void InsertarPorDefecto()
+        {
+            var Pais = _paisRepositorio.GetAll().FirstOrDefault(x => x.Descripcion == "Argentina");
+
+            Insertar(new ProvinciaDto()
+            {
+                Descripcion = "Tucuman",
+                PaisId = Pais.Id
+            });
+
+            Insertar(new ProvinciaDto()
+            {
+                Descripcion = "Santa Fe",
+                PaisId = Pais.Id
+            });
+
+            Insertar(new ProvinciaDto()
+            {
+                Descripcion = "Catamarca",
+                PaisId = Pais.Id
+            });
+
+            Insertar(new ProvinciaDto()
+            {
+                Descripcion = "Salta",
+                PaisId = Pais.Id
+            });
+
+            Insertar(new ProvinciaDto()
+            {
+                Descripcion = "Rio Negro",
+                PaisId = Pais.Id
+            });
+
+            Insertar(new ProvinciaDto()
+            {
+                Descripcion = "Corriente",
+                PaisId = Pais.Id
+            });
+
+            Insertar(new ProvinciaDto()
+            {
+                Descripcion = "Neuquen",
+                PaisId = Pais.Id
+            });
         }
 
     }

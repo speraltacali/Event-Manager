@@ -63,7 +63,7 @@ namespace EM.Servicio.Empresa
         }
 
 
-        public IEnumerable<EmpresaDto> Obtener(string buscar)
+        public IEnumerable<EmpresaDto> ObtenerPorFiltro(string buscar)
         {
             return _empresaRepositorio.GetByFilter(x => x.NombreFantasia.Contains(buscar)
                                                         || x.RazonSocial.Contains(buscar)
@@ -81,6 +81,23 @@ namespace EM.Servicio.Empresa
                     Eliminado = x.Eliminado,
                 }).ToList();
         }
+
+        public IEnumerable<EmpresaDto> Obtener()
+        {
+            return _empresaRepositorio.GetAll()
+                .Select(x => new EmpresaDto()
+                {
+                    NombreFantasia = x.NombreFantasia,
+                    RazonSocial = x.RazonSocial,
+                    Cuil = x.Cuil,
+                    Telefono = x.Telefono,
+                    Direccion = x.Direccion,
+                    Email = x.Email,
+                    Imagen = x.Imagen,
+                    Eliminado = x.Eliminado,
+                }).ToList();
+        }
+
 
         public EmpresaDto ObtenerPorId(long id)
         {

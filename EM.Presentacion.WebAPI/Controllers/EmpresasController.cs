@@ -25,7 +25,7 @@ namespace EM.Presentacion.WebAPI.Controllers
 
         public ActionResult Create()
         {
-            ViewData["condicionIva"] = _condicionIvaServicio.Obtener();
+            ViewBag.ListaCondicionIva = _condicionIvaServicio.Obtener();
 
             return View();
         }

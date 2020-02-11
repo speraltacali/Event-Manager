@@ -1,6 +1,9 @@
-﻿@model EM.IServicio.Empresa.DTOs.EmpresaDto
+﻿@using EM.IServicio.CondicionIva
+@using EM.Servicio.CondicionIva
+@model EM.IServicio.Empresa.DTOs.EmpresaDto
 @{
     ViewBag.Title = "Create";
+
 }
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -84,10 +87,15 @@
 
                     </div>
                     
-                    <div class="form-holder">
+                    <div class="form-group">
+                        <label for="">
+                            Condicion Iva 
+                        </label>
+                        <div class="form-holder">
 
-                        @*@Html.DropDownList("condicionIva", ViewData["condicionIva"] as SelectList)*@
-
+                            @Html.DropDownList("Id", new SelectList(ViewBag.ListaCondicionIva ,"Id" , "Descripcion"),"Seleccionar Campo")
+                            <i class="zmdi zmdi-caret-down"></i>
+                        </div>
                     </div>
 
                     <div class="flex-sb-m w-full p-b-48"></div>

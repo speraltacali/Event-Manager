@@ -11,7 +11,9 @@ namespace EM.IServicio.Provincia
 
         void Eliminar(long id);
 
-        IEnumerable<ProvinciaDto> Obtener(string cadena);
+        IEnumerable<ProvinciaDto> Obtener();
+
+        IEnumerable<ProvinciaDto> ObtenerPorFiltro(string cadena);
 
         ProvinciaDto ObtenerPorId(long id);
     }
