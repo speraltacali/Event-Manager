@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EM.Dominio.Repositorio.Pais;
+using EM.Infraestructura.Repositorio.Pais;
 using EM.IServicio.Pais;
 using EM.IServicio.Pais.DTOs;
 
@@ -11,12 +12,8 @@ namespace EM.Servicio.Pais
 {
     public class PaisServicio : IPaisServicio
     {
-        private readonly IPaisRepositorio _paisRepositorio;
+        private readonly IPaisRepositorio _paisRepositorio = new PaisRepositorio();
 
-        public PaisServicio(IPaisRepositorio paisRepositorio)
-        {
-            _paisRepositorio = paisRepositorio;
-        }
 
         public void Insertar(PaisDto pais)
         {
@@ -51,9 +48,22 @@ namespace EM.Servicio.Pais
             _paisRepositorio.Save();
         }
 
-        public IEnumerable<PaisDto> Obtener(string cadenabuscar)
+        public IEnumerable<PaisDto> ObtenerPorFiltro(string cadenabuscar)
         {
             return _paisRepositorio.GetByFilter(x => x.Descripcion.Contains(cadenabuscar))
+                .Select(x => new PaisDto
+                {
+                    Descripcion = x.Descripcion,
+                    FileName = x.FileName,
+                    Path = x.Path,
+                    RowVersion = x.RowVersion
+                })
+                .ToList();
+        }
+
+        public IEnumerable<PaisDto> Obtener()
+        {
+            return _paisRepositorio.GetAll()
                 .Select(x => new PaisDto
                 {
                     Descripcion = x.Descripcion,
@@ -82,30 +92,35 @@ namespace EM.Servicio.Pais
 
         public void InsertarPorDefecto()
         {
-            Insertar(new PaisDto()
-            {
-                Descripcion = "Argentina"
-            });
+            var validar = _paisRepositorio.GetAll().Any();
 
-            Insertar(new PaisDto()
+            if(!validar)
             {
-                Descripcion = "Paraguay"
-            });
+                Insertar(new PaisDto()
+                {
+                    Descripcion = "Argentina"
+                });
 
-            Insertar(new PaisDto()
-            {
-                Descripcion = "Uruguay"
-            });
+                Insertar(new PaisDto()
+                {
+                    Descripcion = "Paraguay"
+                });
 
-            Insertar(new PaisDto()
-            {
-                Descripcion = "Brasil"
-            });
+                Insertar(new PaisDto()
+                {
+                    Descripcion = "Uruguay"
+                });
 
-            Insertar(new PaisDto()
-            {
-                Descripcion = "Mexico"
-            });
+                Insertar(new PaisDto()
+                {
+                    Descripcion = "Brasil"
+                });
+
+                Insertar(new PaisDto()
+                {
+                    Descripcion = "Mexico"
+                });
+            }
         }
 
     }

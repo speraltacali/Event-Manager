@@ -16,5 +16,7 @@ namespace EM.IServicio.Provincia
         IEnumerable<ProvinciaDto> ObtenerPorFiltro(string cadena);
 
         ProvinciaDto ObtenerPorId(long id);
+
+        void InsertarPorDefecto();
     }
 }

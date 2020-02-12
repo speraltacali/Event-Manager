@@ -47,11 +47,8 @@
                             Tipo Evento *
                         </label>
                         <div class="form-holder">
-                            <select name="" id="" class="form-control">
-                                <option value="Economiam" class="option">Economia</option>
-                                <option value="Comercio" class="option">Comercio</option>
-                                <option value="Ciencia" class="option">Ciencia</option>
-                            </select>
+
+                            @Html.DropDownList("TipoEventoId", new SelectList(ViewBag.ListaTipoEvento, "Id", "Descripcion"), "Seleccionar Campo")
                             <i class="zmdi zmdi-caret-down"></i>
                         </div>
                     </div>
@@ -126,11 +123,8 @@
                             Pais *
                         </label>
                         <div class="form-holder">
-                            <select name="" id="" class="form-control">
-                                <option value="viet nam" class="option">Argentina</option>
-                                <option value="united states" class="option">United States</option>
-                                <option value="united kingdom" class="option">United Kingdom</option>
-                            </select>
+
+                            @Html.DropDownList("PaisId", new SelectList(ViewBag.ListaPais, "Id", "Descripcion"), "Seleccionar Campo")
                             <i class="zmdi zmdi-caret-down"></i>
                         </div>
                     </div>
@@ -138,7 +132,11 @@
                         <label for="">
                             Provincia *
                         </label>
-                        <input type="text" class="form-control">
+                        <div class="form-holder">
+
+                            @Html.DropDownList("ProvinciaId", new SelectList(ViewBag.ListaProvincia, "Id", "Descripcion"), "Seleccionar Campo")
+                            <i class="zmdi zmdi-caret-down"></i>
+                        </div>
                     </div>
                     <div class="form-row">
                         <label for="">

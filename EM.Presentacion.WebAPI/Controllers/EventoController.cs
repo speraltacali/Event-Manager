@@ -9,10 +9,12 @@ using EM.Infraestructura.Repositorio.Pais;
 using EM.IServicio.Empresa;
 using EM.IServicio.Evento;
 using EM.IServicio.Evento.DTOs;
+using EM.IServicio.Pais;
 using EM.IServicio.Provincia;
 using EM.IServicio.TipoEvento;
 using EM.Servicio.Empresa;
 using EM.Servicio.Evento;
+using EM.Servicio.Pais;
 using EM.Servicio.Provincia;
 using EM.Servicio.TipoEvento;
 
@@ -23,7 +25,7 @@ namespace EM.Presentacion.WebAPI.Controllers
         private IEventoServicio _eventoServicio = new EventoServicio();
         private IEmpresaServicio _empresaServicio = new EmpresaServicio();
         private ITipoEventoServicio _tipoEventoServicio = new TipoEventoServicio();
-        private IPaisRepositorio _paisRepositorio = new PaisRepositorio();
+        private IPaisServicio _paisServicio = new PaisServicio();
         private IProvinciaServicio _provinciaServicio = new ProvinciaServicio();
 
 
@@ -32,10 +34,18 @@ namespace EM.Presentacion.WebAPI.Controllers
         {
 
             ViewBag.ListaTipoEvento = _tipoEventoServicio.Get().ToList();
+            
             ViewBag.ListaEmpresa = _empresaServicio.Obtener();
-            ViewBag.ListaPais = _paisRepositorio.GetAll();
-            ViewBag.Provincia = _provinciaServicio.Obtener();
 
+            //*************************************************************************//
+
+            _paisServicio.InsertarPorDefecto();
+
+            ViewBag.ListaPais = _paisServicio.Obtener();
+
+            _provinciaServicio.InsertarPorDefecto();
+
+            ViewBag.ListaProvincia = _provinciaServicio.Obtener();
 
             return View();
         }

@@ -96,48 +96,52 @@ namespace EM.Servicio.Provincia
         public void InsertarPorDefecto()
         {
             var Pais = _paisRepositorio.GetAll().FirstOrDefault(x => x.Descripcion == "Argentina");
+            var validar = _provinciaRepositorio.GetAll().Any();
 
-            Insertar(new ProvinciaDto()
+            if (!validar)
             {
-                Descripcion = "Tucuman",
-                PaisId = Pais.Id
-            });
+                Insertar(new ProvinciaDto()
+                {
+                    Descripcion = "Tucuman",
+                    PaisId = Pais.Id
+                });
 
-            Insertar(new ProvinciaDto()
-            {
-                Descripcion = "Santa Fe",
-                PaisId = Pais.Id
-            });
+                Insertar(new ProvinciaDto()
+                {
+                    Descripcion = "Santa Fe",
+                    PaisId = Pais.Id
+                });
 
-            Insertar(new ProvinciaDto()
-            {
-                Descripcion = "Catamarca",
-                PaisId = Pais.Id
-            });
+                Insertar(new ProvinciaDto()
+                {
+                    Descripcion = "Catamarca",
+                    PaisId = Pais.Id
+                });
 
-            Insertar(new ProvinciaDto()
-            {
-                Descripcion = "Salta",
-                PaisId = Pais.Id
-            });
+                Insertar(new ProvinciaDto()
+                {
+                    Descripcion = "Salta",
+                    PaisId = Pais.Id
+                });
 
-            Insertar(new ProvinciaDto()
-            {
-                Descripcion = "Rio Negro",
-                PaisId = Pais.Id
-            });
+                Insertar(new ProvinciaDto()
+                {
+                    Descripcion = "Rio Negro",
+                    PaisId = Pais.Id
+                });
 
-            Insertar(new ProvinciaDto()
-            {
-                Descripcion = "Corriente",
-                PaisId = Pais.Id
-            });
+                Insertar(new ProvinciaDto()
+                {
+                    Descripcion = "Corriente",
+                    PaisId = Pais.Id
+                });
 
-            Insertar(new ProvinciaDto()
-            {
-                Descripcion = "Neuquen",
-                PaisId = Pais.Id
-            });
+                Insertar(new ProvinciaDto()
+                {
+                    Descripcion = "Neuquen",
+                    PaisId = Pais.Id
+                });
+            }
         }
 
     }

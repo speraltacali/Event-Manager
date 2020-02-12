@@ -11,8 +11,12 @@ namespace EM.IServicio.Pais
 
         void Eliminar(long Id);
 
-        IEnumerable<PaisDto> Obtener(string cadenabuscar);
+        IEnumerable<PaisDto> Obtener();
+
+        IEnumerable<PaisDto> ObtenerPorFiltro(string cadenabuscar);
 
         PaisDto ObtenerPorId(long Id);
+
+        void InsertarPorDefecto();
     }
 }
