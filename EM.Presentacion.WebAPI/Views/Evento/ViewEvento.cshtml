@@ -6,6 +6,11 @@
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <link href="~/Content/ImgEvento/ImagenPortada.css" rel="stylesheet" />
 
+<!--Load the API from the specified URL-->
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFA0cdJHdJdccOiUiKNpwQ3wze89fWH38&callback=initMap">
+</script>
+
 <div class="container">
 
     <div class="polaroid">
@@ -25,7 +30,7 @@
 
             <section class="container">
 
-                <div class="col-lg-4" style="background-color:antiquewhite; float:left;margin-left:15px;padding-top:4px;padding-bottom:2px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);">
+                <div class="col-lg-4" style="background-color:antiquewhite; float:left;padding-top:4px;padding-bottom:2px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);">
 
                     <h5>Horario del Evento:</h5>
 
@@ -34,7 +39,7 @@
                 </div>
 
 
-                <div class="col-lg-4" style="background-color:antiquewhite; float:right;margin-left:15px;padding-top:4px;padding-bottom:2px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);">
+                <div class="col-lg-4" style="background-color:antiquewhite; float:right;padding-top:4px;padding-bottom:2px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);">
 
                     <h5>Quien Dara La Charla:</h5>
 
@@ -52,14 +57,37 @@
 
             <section class="container">
 
-                <h5>Lugar:</h5>
+                <h5>Lugar del Evento:</h5>
 
-                <img width="600" src="https://api.mapbox.com/v4/mapbox.emerald/-73.7638,42.6564,13/600x300@2x.png?access_token=YOUR-API-KEY-HERE" alt="Mapbox Map of -73.7638,42.6564">
-                © <a href='https://www.mapbox.com/map-feedback/'>Mapbox</a> © <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap contributors</a>
+                <div id="map">
+                </div>
+
+                <style>
+                    #map{
+                        height:400px;
+                        width:100%;
+                    }
+                </style>
+
+                <script>
+
+                    function initMap()
+                    {
+
+                        var options =
+                        {
+                            zoom: 8,
+                            center: { lat: 42.3601, lng: -71.0589 }
+                        }
+
+
+                        var map = new google.maps.Map(document.getElementById('map'), options);
+                    }
+                </script>
 
             </section>
 
-
+            <br />
 
         </div>
     </div>
