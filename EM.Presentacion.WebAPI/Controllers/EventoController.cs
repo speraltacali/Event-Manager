@@ -60,5 +60,11 @@ namespace EM.Presentacion.WebAPI.Controllers
 
             return View();
         }
+
+        public ActionResult ViewEvento()
+        {
+            return View();
+        }
+
     }
 }
