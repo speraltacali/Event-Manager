@@ -27,7 +27,7 @@
                             <label for="">
                                 Nombre del Evento *
                             </label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="Titulo">
                         </div>
                         <div class="form-holder">
                             <label for="">
@@ -56,7 +56,7 @@
                         <label for="">
                             Descripcion del Evento
                         </label>
-                        <textarea name="" id="" class="form-control" placeholder="Note about your order, eg. special notes fordelivery." style="height: 149px"></textarea>
+                        <textarea name="Descripcion" id="" class="form-control" placeholder="Note about your order, eg. special notes fordelivery." style="height: 149px"></textarea>
                     </div>
 
                 </section>
@@ -84,7 +84,7 @@
 
                                 document.getElementById('latidude_view').innerHTML = near_place.geometry.location.lat();
                                 document.getElementById('longitude_view').innerHTML = near_place.geometry.location.lng();
-
+                                
                             });
 
                         });
@@ -105,16 +105,15 @@
                         <label>Localizacion:</label>
 
                         <input type="text" class="form-control" id="search_input" placeholder="Escriba aqui el lugar del Evento"/>
-                        <input type="hidden" id="latidude_input"/>
-                        <input type="hidden" id="longitude_input"/>
+                        <input type="hidden" id="latidude_input" name="Longitud"/>
+                        <input type="hidden" id="longitude_input" name="Latitud"/>
 
                     </div>
 
                     <div class="form-row">
 
-                        <p><b>Latitude:<span id="latidude_view"></span></b></p><br />
-
-                        <p><b>Longitude:<span id="longitude_view"></span></b></p>
+                        <p style="visibility:hidden"><b>Latitude:<span id="latidude_view"></span></b></p>
+                        <p style="visibility:hidden"><b>Longitude:<span id="longitude_view"></span></b></p>
 
                     </div>
 
@@ -169,7 +168,7 @@
                             <label for="">
                                 Email *
                             </label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="Mail">
                         </div>
                     </div>
                     <br />

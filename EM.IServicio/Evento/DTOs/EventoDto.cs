@@ -14,6 +14,10 @@ namespace EM.IServicio.Evento.DTOs
 
         public long TipoEventoId { get; set; }
 
+        public string Latitud { get; set; }
+
+        public string Longitud { get; set; }
+        
         public byte[] Imagen { get; set; }
     }
 }
