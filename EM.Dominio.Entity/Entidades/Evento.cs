@@ -10,7 +10,7 @@ namespace EM.Dominio.Entity.Entidades
     [MetadataType(typeof(IEvento))]
     public class Evento : EntityBase
     {
-        public long EmpresaId { get; set; }
+        //public long EmpresaId { get; set; }
 
         public string Titulo { get; set; }
 
@@ -22,7 +22,7 @@ namespace EM.Dominio.Entity.Entidades
 
         public byte[] Imagen { get; set; }
 
-        public virtual Empresa Empresa { get; set; }
+        //public virtual Empresa Empresa { get; set; }
 
         public virtual ICollection<Entrada> Entradas { get; set; }
 

@@ -5,8 +5,8 @@ namespace EM.Dominio.Entity.MetaData
 {
     public interface IEvento
     {
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es obligatorio")]
-        long EmpresaId { get; set; }
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es obligatorio")]
+        //long EmpresaId { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es obligatorio")]
         long TipoEventoId { get; set; }

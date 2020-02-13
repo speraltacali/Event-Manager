@@ -32,7 +32,7 @@ namespace EM.Dominio.Entity.Entidades
 
         public virtual CondicionIva CondicionIva { get; set; }
 
-        public virtual ICollection<Evento> Eventos { get; set; }
+        //public virtual ICollection<Evento> Eventos { get; set; }
 
         public virtual ICollection<TipoComprobante> TiposComprobantes { get; set; }
 
