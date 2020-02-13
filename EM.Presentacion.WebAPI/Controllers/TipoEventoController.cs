@@ -12,7 +12,7 @@ namespace EM.Presentacion.WebAPI.Controllers
 {
     public class TipoEventoController : Controller
     {
-        ITipoEventoServicio _tipoEvento = new TipoEventoServicio();
+        private readonly ITipoEventoServicio _tipoEvento = new TipoEventoServicio();
 
         // GET: TipoEvento
         public ActionResult Index()
