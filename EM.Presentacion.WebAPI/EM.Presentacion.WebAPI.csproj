@@ -232,6 +232,7 @@
     <Content Include="Content\CrearEvento\js\jquery.steps.js" />
     <Content Include="Content\CrearEvento\js\main.js" />
     <Content Include="Content\Grilla\Grilla.css" />
+    <Content Include="Content\ImgEvento\ImagenPortada.css" />
     <Content Include="Content\Login\css\main.css" />
     <Content Include="Content\Login\css\user.css" />
     <Content Include="Content\Login\css\util.css" />
@@ -595,6 +596,7 @@
     <Content Include="Views\TipoEvento\Update.cshtml" />
     <Content Include="Views\CondicionIva\Create.cshtml" />
     <Content Include="Views\Empresas\Create.cshtml" />
+    <Content Include="Views\Evento\ViewEvento.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
