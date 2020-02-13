@@ -60,6 +60,7 @@
     <Compile Include="EventoLugar\DTOs\EventoLugarDto.cs" />
     <Compile Include="EventoLugar\IEventoLugarServicio.cs" />
     <Compile Include="Evento\DTOs\EventoDto.cs" />
+    <Compile Include="Evento\DTOs\EventoViewDto.cs" />
     <Compile Include="Evento\IEventoServicio.cs" />
     <Compile Include="FechaEvento\DTOs\FechaEventoDto.cs" />
     <Compile Include="FechaEvento\IFechaEventoServicio.cs" />

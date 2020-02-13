@@ -1,4 +1,4 @@
-﻿@model EM.IServicio.Evento.DTOs.EventoDto
+﻿@model EM.IServicio.Evento.DTOs.EventoViewDto
 @{
     ViewBag.Title = "CrearEvento";
 }
@@ -33,14 +33,14 @@
                             <label for="">
                                 Quien dara la Charla? *
                             </label>
-                            <input type="text" class="form-control">
+                            <input name="Orante" type="text" class="form-control">
                         </div>
                     </div>
                     <div class="form-row">
                         <label for="">
                             Organizacion
                         </label>
-                        <input type="text" class="form-control">
+                        <input name="Organizacion" type="text" class="form-control">
                     </div>
                     <div class="form-row">
                         <label for="">
@@ -48,7 +48,7 @@
                         </label>
                         <div class="form-holder">
 
-                            @Html.DropDownList("TipoEventoId", new SelectList(ViewBag.ListaTipoEvento, "Id", "Descripcion"), "Seleccionar Campo" , new { @class="form-control"})
+                            @Html.DropDownList("TipoEventoId", new SelectList(ViewBag.ListaTipoEvento, "Id", "Descripcion"), "Seleccionar Campo", new { @class = "form-control" })
                             <i class="zmdi zmdi-caret-down"></i>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
 
                                 document.getElementById('latidude_view').innerHTML = near_place.geometry.location.lat();
                                 document.getElementById('longitude_view').innerHTML = near_place.geometry.location.lng();
-                                
+
                             });
 
                         });
@@ -104,9 +104,9 @@
 
                         <label>Localizacion:</label>
 
-                        <input type="text" class="form-control" id="search_input" placeholder="Escriba aqui el lugar del Evento"/>
-                        <input type="hidden" id="latidude_input" name="Longitud"/>
-                        <input type="hidden" id="longitude_input" name="Latitud"/>
+                        <input type="text" class="form-control" id="search_input" placeholder="Escriba aqui el lugar del Evento" />
+                        <input type="hidden" id="latidude_input" name="Longitud" />
+                        <input type="hidden" id="longitude_input" name="Latitud" />
 
                     </div>
 
@@ -117,13 +117,13 @@
 
                     </div>
 
-                    <div class="form-row">
+                    @*<div class="form-row">
                         <label for="">
                             Pais *
                         </label>
                         <div class="form-holder">
 
-                            @Html.DropDownList("PaisId", new SelectList(ViewBag.ListaPais, "Id", "Descripcion"), "Seleccionar Campo", new { @class="form-control"})
+                            @Html.DropDownList("PaisId", new SelectList(ViewBag.ListaPais, "Id", "Descripcion"), "Seleccionar Campo", new { @class = "form-control" })
                             <i class="zmdi zmdi-caret-down"></i>
                         </div>
                     </div>
@@ -133,36 +133,23 @@
                         </label>
                         <div class="form-holder">
 
-                            @Html.DropDownList("ProvinciaId", new SelectList(ViewBag.ListaProvincia, "Id", "Descripcion"), "Seleccionar Campo", new { @class="form-control"})
+                            @Html.DropDownList("ProvinciaId", new SelectList(ViewBag.ListaProvincia, "Id", "Descripcion"), "Seleccionar Campo", new { @class = "form-control" })
                             <i class="zmdi zmdi-caret-down"></i>
                         </div>
-                    </div>
+                    </div>*@
                     <div class="form-row">
                         <label for="">
                             Direccion *
                         </label>
-                        <input type="text" class="form-control" placeholder="Calle" style="margin-bottom: 20px">
-                        <input type="text" class="form-control" placeholder="Apartment, suite, unit etc. (optional)">
-                    </div>
-                    <div class="form-row">
-                        <label for="">
-                            Localidad / Ciudad *
-                        </label>
-                        <input type="text" class="form-control">
-                    </div>
-
-                    <div class="form-row">
-                        <label for="">
-                            Codigo Postal / Zip *
-                        </label>
-                        <input type="text" class="form-control">
+                        <input name="Calle" type="text" class="form-control" placeholder="Calle" style="margin-bottom: 20px">
+                        <input name="CalleNumero" type="text" class="form-control" placeholder="Numero">
                     </div>
                     <div class="form-row form-group">
                         <div class="form-holder">
                             <label for="">
                                 Telefono *
                             </label>
-                            <input type="text" class="form-control">
+                            <input name="Telefono" type="text" class="form-control">
                         </div>
                         <div class="form-holder">
                             <label for="">
@@ -199,7 +186,7 @@
                         <label for="">
                             Precio: *
                         </label>
-                        <input type="number" class="form-control">
+                        <input name="Precio" type="number" class="form-control">
                     </div>
                     <br />
 
@@ -229,21 +216,21 @@
                         <label>
                             Fecha del Evento:
                         </label>
-                        <input type="date" class="form-control">
+                        <input name="FechaEvento" type="date" class="form-control">
                     </div>
                     <br />
                     <div class="form-holder">
                         <label>
                             Hora Inicio:
                         </label>
-                        <input type="time" class="form-control">
+                        <input name="HoraInicio" type="time" class="form-control">
                     </div>
                     <br />
                     <div class="form-holder">
                         <label>
                             Hora Fin del Evento:
                         </label>
-                        <input type="time" class="form-control">
+                        <input name="HoraFin" type="time" class="form-control">
                     </div>
                     <br />
                     <br />

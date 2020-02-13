@@ -63,6 +63,7 @@ namespace EM.Servicio.Provincia
                                                           || x.Pais.Descripcion.Contains(buscar))
                 .Select(x => new ProvinciaDto()
                 {
+                    Id = x.Id,
                     Descripcion = x.Descripcion,
                     PaisId = x.PaisId
                 }).ToList();
@@ -73,6 +74,7 @@ namespace EM.Servicio.Provincia
             return _provinciaRepositorio.GetAll()
                 .Select(x => new ProvinciaDto()
                 {
+                    Id = x.Id,
                     Descripcion = x.Descripcion,
                     PaisId = x.PaisId
                 }).ToList();

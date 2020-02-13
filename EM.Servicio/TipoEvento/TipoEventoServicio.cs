@@ -13,23 +13,19 @@ namespace EM.Servicio.TipoEvento
 {
     public class TipoEventoServicio : ITipoEventoServicio
     {
-        private readonly ITipoEventoRepositorio tipoEventoServicio;
+        private readonly ITipoEventoRepositorio _tipoEventoServicio = new TipoEventoRepositorio();
 
-        public TipoEventoServicio()
-        {
-            tipoEventoServicio = new TipoEventoRepositorio();
-        }
 
         public void Delete(long id)
         {
-            tipoEventoServicio.Delete(id);
+            _tipoEventoServicio.Delete(id);
 
-            tipoEventoServicio.Save();
+            _tipoEventoServicio.Save();
         }
 
         public IEnumerable<TipoEventoDto> Get()
         {
-            return tipoEventoServicio.GetAll().Select(x => new TipoEventoDto
+            return _tipoEventoServicio.GetAll().Select(x => new TipoEventoDto
             {
                 Id = x.Id,
                 Descripcion = x.Descripcion
@@ -38,7 +34,7 @@ namespace EM.Servicio.TipoEvento
 
         public IEnumerable<TipoEventoDto> GetByFilter(string cadenaBuscar)
         {
-            return tipoEventoServicio.GetByFilter(x => x.Descripcion.Contains(cadenaBuscar))
+            return _tipoEventoServicio.GetByFilter(x => x.Descripcion.Contains(cadenaBuscar))
                 .Select(x => new TipoEventoDto
                 {
                     Id = x.Id,
@@ -49,7 +45,7 @@ namespace EM.Servicio.TipoEvento
 
         public Dominio.Entity.Entidades.TipoEvento GetById(long id)
         {
-            return tipoEventoServicio.GetById(id);
+            return _tipoEventoServicio.GetById(id);
         }
 
         public void Insert(TipoEventoDto dto)
@@ -59,15 +55,15 @@ namespace EM.Servicio.TipoEvento
                Descripcion = dto.Descripcion
             };
 
-            tipoEventoServicio.Add(tipo);
+            _tipoEventoServicio.Add(tipo);
 
-            tipoEventoServicio.Save();
+            _tipoEventoServicio.Save();
 
         }
 
         public TipoEventoDto ObtenerId(long id)
         {
-            var tipo = tipoEventoServicio.GetById(id);
+            var tipo = _tipoEventoServicio.GetById(id);
 
             return new TipoEventoDto
             {
@@ -78,18 +74,54 @@ namespace EM.Servicio.TipoEvento
 
         public void Save()
         {
-            tipoEventoServicio.Save();
+            _tipoEventoServicio.Save();
         }
 
         public void Update(TipoEventoDto dto)
         {
-            var tipo = tipoEventoServicio.GetById(dto.Id);
+            var tipo = _tipoEventoServicio.GetById(dto.Id);
 
             tipo.Descripcion = dto.Descripcion;
 
-            tipoEventoServicio.Update(tipo);
-            tipoEventoServicio.Save();
+            _tipoEventoServicio.Update(tipo);
+            _tipoEventoServicio.Save();
 
+        }
+
+        //****************************** Insert Por Defecto ****************************//
+
+        public void InsertarPorDefecto()
+        {
+            var validar = _tipoEventoServicio.GetAll().Any();
+
+            if (!validar)
+            {
+                Insert(new TipoEventoDto()
+                {
+                    Descripcion = "Ciencia y Tecnologia"
+                });
+
+                Insert(new TipoEventoDto()
+                {
+                    Descripcion = "Deporte"
+                });
+
+                Insert(new TipoEventoDto()
+                {
+                    Descripcion = "Robotica"
+                });
+
+                Insert(new TipoEventoDto()
+                {
+                    Descripcion = "Arte"
+                });
+
+                Insert(new TipoEventoDto()
+                {
+                    Descripcion = "Politica"
+                });
+
+            }
         }
     }
 }

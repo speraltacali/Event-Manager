@@ -53,6 +53,7 @@ namespace EM.Servicio.Pais
             return _paisRepositorio.GetByFilter(x => x.Descripcion.Contains(cadenabuscar))
                 .Select(x => new PaisDto
                 {
+                    Id=x.Id,
                     Descripcion = x.Descripcion,
                     FileName = x.FileName,
                     Path = x.Path,
@@ -66,6 +67,7 @@ namespace EM.Servicio.Pais
             return _paisRepositorio.GetAll()
                 .Select(x => new PaisDto
                 {
+                    Id = x.Id,
                     Descripcion = x.Descripcion,
                     FileName = x.FileName,
                     Path = x.Path,

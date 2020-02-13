@@ -19,6 +19,8 @@ namespace EM.IServicio.TipoEvento
 
         void Delete(long id);
 
+        void InsertarPorDefecto();
+
         void Save();
     }
 }

@@ -32,26 +32,17 @@ namespace EM.Presentacion.WebAPI.Controllers
         // GET: Evento
         public ActionResult Crear()
         {
+            _tipoEventoServicio.InsertarPorDefecto();
 
             ViewBag.ListaTipoEvento = _tipoEventoServicio.Get().ToList();
             
-            ViewBag.ListaEmpresa = _empresaServicio.Obtener();
-
             //*************************************************************************//
-
-            _paisServicio.InsertarPorDefecto();
-
-            ViewBag.ListaPais = _paisServicio.Obtener();
-
-            _provinciaServicio.InsertarPorDefecto();
-
-            ViewBag.ListaProvincia = _provinciaServicio.Obtener();
 
             return View();
         }
 
         [HttpPost]
-        public ActionResult Crear(EventoDto eventoDto)
+        public ActionResult Crear(EventoViewDto eventoViewDto)
         {
             if (ModelState.IsValid)
             {
