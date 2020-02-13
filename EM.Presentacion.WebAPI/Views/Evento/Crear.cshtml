@@ -48,7 +48,7 @@
                         </label>
                         <div class="form-holder">
 
-                            @Html.DropDownList("TipoEventoId", new SelectList(ViewBag.ListaTipoEvento, "Id", "Descripcion"), "Seleccionar Campo")
+                            @Html.DropDownList("TipoEventoId", new SelectList(ViewBag.ListaTipoEvento, "Id", "Descripcion"), "Seleccionar Campo" , new { @class="form-control"})
                             <i class="zmdi zmdi-caret-down"></i>
                         </div>
                     </div>
@@ -124,7 +124,7 @@
                         </label>
                         <div class="form-holder">
 
-                            @Html.DropDownList("PaisId", new SelectList(ViewBag.ListaPais, "Id", "Descripcion"), "Seleccionar Campo")
+                            @Html.DropDownList("PaisId", new SelectList(ViewBag.ListaPais, "Id", "Descripcion"), "Seleccionar Campo", new { @class="form-control"})
                             <i class="zmdi zmdi-caret-down"></i>
                         </div>
                     </div>
@@ -134,7 +134,7 @@
                         </label>
                         <div class="form-holder">
 
-                            @Html.DropDownList("ProvinciaId", new SelectList(ViewBag.ListaProvincia, "Id", "Descripcion"), "Seleccionar Campo")
+                            @Html.DropDownList("ProvinciaId", new SelectList(ViewBag.ListaProvincia, "Id", "Descripcion"), "Seleccionar Campo", new { @class="form-control"})
                             <i class="zmdi zmdi-caret-down"></i>
                         </div>
                     </div>

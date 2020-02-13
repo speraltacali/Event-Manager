@@ -86,6 +86,7 @@ namespace EM.Servicio.CondicionIva
             return _condicionIvaRepositorio.GetAll()
                 .Select(x => new CondicionIvaDto()
                 {
+                    Id =x.Id,
                     Codigo = x.Codigo,
                     Descripcion = x.Descripcion,
                     Eliminado = x.Eliminado

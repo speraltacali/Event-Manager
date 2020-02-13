@@ -35,7 +35,8 @@ namespace EM.Presentacion.WebAPI.Controllers
         {
             if(ModelState.IsValid)
             {
-
+                _empresaServicio.Insertar(empresa);
+                return View();
             }
 
             return View();

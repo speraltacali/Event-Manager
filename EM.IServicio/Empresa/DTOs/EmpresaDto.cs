@@ -24,6 +24,6 @@ namespace EM.IServicio.Empresa.DTOs
 
         //==============================================================================//
 
-        public virtual long CondicionIvaId { get; set; }
+        public  long CondicionIvaId { get; set; }
     }
 }
