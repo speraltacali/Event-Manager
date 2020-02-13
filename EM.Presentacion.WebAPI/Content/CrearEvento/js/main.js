@@ -27,8 +27,8 @@ $(function(){
             return true; 
         },
         labels: {
-            finish: "Finalizar",
-            next: "Next",
+            //finish: "Finalizar",
+            next: "Siguiente",
             previous: "Anterior"
         }
     });

@@ -17,7 +17,7 @@
         <div class="image-holder">
             <img src="~/Content/CrearEvento/images/form-wizard.png" alt="">
         </div>
-        <form action="">
+        <form asp-action="Crear" asp-controller="Evento" method="post" enctype="multipart/form-data">
             <div id="wizard">
                 <!-- SECTION 1 -->
                 <h4></h4>
@@ -210,6 +210,7 @@
                             Atencion si el evento es GRATUITO ingrese como valor de la ENTRADA $ 0
                         </p>
                     </div>
+
                     <br />
                 </section>
 
@@ -252,6 +253,12 @@
                             <span class="heading">Atencion:</span>
                             Antes De Finalizar Revise SI Todos Los DATOS SON CORRECTOS.
                         </p>
+                    </div>
+
+                    <div class="form-holder">
+                        <button class="btn btn-outline-success" style="width:150px;height:50px;">
+                            Finalizar
+                        </button>
                     </div>
 
                 </section>

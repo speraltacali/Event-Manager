@@ -274,7 +274,7 @@ function destroy(wizard, options)
  * @method finishStep
  * @param wizard {Object} The jQuery wizard object
  * @param state {Object} The state container of the current wizard
- **/
+ **//*
 function finishStep(wizard, state)
 {
     var currentStep = wizard.find(".steps li").eq(state.currentIndex);
@@ -288,7 +288,7 @@ function finishStep(wizard, state)
     {
         currentStep.addClass("error");
     }
-}
+}*/
 
 /**
  * Gets or creates if not exist an unique event namespace for the given wizard instance.
@@ -792,10 +792,10 @@ function paginationClickHandler(event)
         case "cancel":
             cancel(wizard);
             break;
-
+        /*
         case "finish":
             finishStep(wizard, state);
-            break;
+            break;*/
 
         case "next":
             goToNextStep(wizard, options, state);
@@ -910,8 +910,8 @@ function registerEvents(wizard, options)
 
     wizard.bind("canceled" + eventNamespace, options.onCanceled);
     wizard.bind("contentLoaded" + eventNamespace, options.onContentLoaded);
-    wizard.bind("finishing" + eventNamespace, options.onFinishing);
-    wizard.bind("finished" + eventNamespace, options.onFinished);
+    //wizard.bind("finishing" + eventNamespace, options.onFinishing);
+    //wizard.bind("finished" + eventNamespace, options.onFinished);
     wizard.bind("init" + eventNamespace, options.onInit);
     wizard.bind("stepChanging" + eventNamespace, options.onStepChanging);
     wizard.bind("stepChanged" + eventNamespace, options.onStepChanged);
@@ -1064,12 +1064,12 @@ function renderPagination(wizard, options, state)
         }
 
         buttons += buttonTemplate.format("next", options.labels.next);
-
+        
         if (options.enableFinishButton)
         {
-            buttons += buttonTemplate.format("finish", options.labels.finish);
+            //buttons += buttonTemplate.format("finish", options.labels.finish);
         }
-
+        
         if (options.enableCancelButton)
         {
             buttons += buttonTemplate.format("cancel", options.labels.cancel);
