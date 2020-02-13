@@ -22,7 +22,6 @@ namespace EM.Servicio.Evento
                 .Select(x => new EventoDto()
                 {
                     Id = x.Id,
-                    EmpresaId = x.EmpresaId,
                     Titulo = x.Titulo,
                     Descripcion = x.Descripcion,
                     Mail = x.Mail,
@@ -34,12 +33,11 @@ namespace EM.Servicio.Evento
         public IEnumerable<EventoDto> Obtener(string cadenaBuscar)
         {
             return _eventoRepositorio.GetByFilter(x=>x.Descripcion.Contains(cadenaBuscar)
-            || x.TiposEventos.Descripcion.Contains(cadenaBuscar) || x.Empresa.RazonSocial.Contains(cadenaBuscar)
+            || x.TiposEventos.Descripcion.Contains(cadenaBuscar)
             || x.Titulo.Contains(cadenaBuscar))
                 .Select(x => new EventoDto()
                 {
                     Id = x.Id,
-                    EmpresaId = x.EmpresaId,
                     Titulo = x.Titulo,
                     Descripcion = x.Descripcion,
                     Mail = x.Mail,
@@ -57,7 +55,6 @@ namespace EM.Servicio.Evento
             return new EventoDto()
             {
                 Id = evento.Id,
-                EmpresaId = evento.EmpresaId,
                 Titulo = evento.Titulo,
                 Descripcion = evento.Descripcion,
                 Mail = evento.Mail,
@@ -71,7 +68,6 @@ namespace EM.Servicio.Evento
             var evento = new Dominio.Entity.Entidades.Evento()
             {
                 Id = dto.Id,
-                EmpresaId = dto.EmpresaId,
                 Titulo = dto.Titulo,
                 Descripcion = dto.Descripcion,
                 Mail = dto.Mail,
@@ -89,7 +85,6 @@ namespace EM.Servicio.Evento
 
             if (evento == null) throw new Exception("No se encontro el registro solicitado.");
 
-            evento.EmpresaId = dto.EmpresaId;
             evento.Titulo = dto.Titulo;
             evento.Descripcion = dto.Descripcion;
             evento.Mail = dto.Mail;
@@ -116,7 +111,6 @@ namespace EM.Servicio.Evento
             var eventos = _eventoRepositorio.GetByFilter(x => x.TipoEventoId == tipoEventoId).Select(x => new EventoDto
             {
                 Id = x.Id,
-                EmpresaId = x.EmpresaId,
                 Titulo = x.Titulo,
                 Descripcion = x.Descripcion,
                 Mail = x.Mail,
