@@ -95,7 +95,6 @@
     <Compile Include="FormaPago\IFormaPagoServicio.cs" />
     <Compile Include="Gastronomia\DTOs\GastronomiaDto.cs" />
     <Compile Include="Gastronomia\IGastronomiaServicio.cs" />
-    <Compile Include="Helpers\Foto\IFormFile.cs" />
     <Compile Include="Helpers\Foto\Imagen.cs" />
     <Compile Include="InscripcionCuenta\DTOs\InscripcionCuentaDto.cs" />
     <Compile Include="InscripcionCuenta\IInscripcionCuentaServicio.cs" />

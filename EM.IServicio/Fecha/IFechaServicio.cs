@@ -6,18 +6,18 @@ namespace EM.IServicio.Fecha
 {
     public interface IFechaServicio
     {
-        IEnumerable<FechaDto> Get();
+        IEnumerable<FechaDto> Obtener();
 
-        IEnumerable<FechaDto> GetByFilter(DateTime fecha);
+        IEnumerable<FechaDto> ObtenerPorFiltro(DateTime fecha);
 
-        Dominio.Entity.Entidades.Fecha GetById(long id);
+        Dominio.Entity.Entidades.Fecha ObtenerPorId(long id);
 
-        void Insert(FechaDto dto);
+        void Insertar(FechaDto dto);
 
-        void Update(FechaDto dto);
+        void Modificar(FechaDto dto);
 
-        void Delete(long id);
+        void Eliminar(long id);
 
-        void Save();
+        void Guardar();
     }
 }

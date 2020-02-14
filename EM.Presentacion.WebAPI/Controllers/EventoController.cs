@@ -9,6 +9,7 @@ using EM.Infraestructura.Repositorio.Pais;
 using EM.IServicio.Empresa;
 using EM.IServicio.Evento;
 using EM.IServicio.Evento.DTOs;
+using EM.IServicio.Fecha;
 using EM.IServicio.Pais;
 using EM.IServicio.Provincia;
 using EM.IServicio.TipoEvento;
@@ -23,10 +24,8 @@ namespace EM.Presentacion.WebAPI.Controllers
     public class EventoController : Controller
     {
         private IEventoServicio _eventoServicio = new EventoServicio();
-        private IEmpresaServicio _empresaServicio = new EmpresaServicio();
         private ITipoEventoServicio _tipoEventoServicio = new TipoEventoServicio();
-        private IPaisServicio _paisServicio = new PaisServicio();
-        private IProvinciaServicio _provinciaServicio = new ProvinciaServicio();
+        //private IFechaServicio _fechaServicio 
 
 
         // GET: Evento

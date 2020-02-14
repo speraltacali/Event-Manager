@@ -48,6 +48,7 @@
     <Compile Include="Entrada\EntradaServicio.cs" />
     <Compile Include="EventoLugar\EventoLugarServicio.cs" />
     <Compile Include="Evento\EventoServicio.cs" />
+    <Compile Include="Fecha\FechaServicio.cs" />
     <Compile Include="FormaPago\FormaPagoServicio.cs" />
     <Compile Include="Gastronomia\GastronomiaServicio.cs" />
     <Compile Include="Localidad\LocalidadServicio.cs" />
@@ -107,5 +108,6 @@
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
