@@ -6,9 +6,13 @@ namespace EM.Dominio.Entity.MetaData
     public interface IFecha
     {
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        DateTime FechaInicio { get; set; }
+        DateTime FechaEvento { get; set; }
+
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        DateTime FechaCierre { get; set; }
+        DateTime HoraInicio { get; set; }
+
+        [Required(ErrorMessage = "El campo {0} es obligatorio")]
+        DateTime HoraCierre { get; set; }
     }
 }

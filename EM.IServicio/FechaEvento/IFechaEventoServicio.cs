@@ -1,22 +1,23 @@
-﻿using EM.IServicio.FechaEvento.DTOs;
+﻿using System;
+using EM.IServicio.FechaEvento.DTOs;
 using System.Collections.Generic;
 
 namespace EM.IServicio.FechaEvento
 {
     public interface IFechaEventoServicio
     {
-        IEnumerable<FechaEventoDto> Get();
+        IEnumerable<FechaEventoDto> Obtener();
 
-        IEnumerable<FechaEventoDto> GetByFilter(long eventoId);
+        IEnumerable<FechaEventoDto> ObtenerPorFiltro(DateTime fecha);
 
-        Dominio.Entity.Entidades.FechaEvento GetById(long id);
+        FechaEventoDto ObtenerPorId(long id);
 
-        void Insert(FechaEventoDto dto);
+        FechaEventoDto Insertar(FechaEventoDto dto);
 
-        void Update(FechaEventoDto dto);
+        FechaEventoDto Modificar(FechaEventoDto dto);
 
-        void Delete(long id);
+        void Eliminar(long id);
 
-        void Save();
+        void Guardar();
     }
 }

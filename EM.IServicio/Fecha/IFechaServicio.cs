@@ -12,9 +12,9 @@ namespace EM.IServicio.Fecha
 
         Dominio.Entity.Entidades.Fecha ObtenerPorId(long id);
 
-        void Insertar(FechaDto dto);
+        FechaDto Insertar(FechaDto dto);
 
-        void Modificar(FechaDto dto);
+        FechaDto Modificar(FechaDto dto);
 
         void Eliminar(long id);
 

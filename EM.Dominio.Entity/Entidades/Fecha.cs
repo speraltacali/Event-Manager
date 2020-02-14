@@ -11,9 +11,11 @@ namespace EM.Dominio.Entity.Entidades
     [MetadataType(typeof(IFecha))]
     public class Fecha : EntityBase
     {
-        public DateTime FechaInicio { get; set; }
+        public DateTime FechaEvento { get; set; }
 
-        public DateTime FechaCierre { get; set; }
+        public DateTime HoraInicio { get; set; }
+
+        public DateTime HoraCierre { get; set; }
 
         public virtual ICollection<FechaEvento> FechasEventos { get; set; }
     }

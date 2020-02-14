@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EM.Dominio.Repositorio.Entrada;
 using EM.Infraestructura.Context;
+using EM.Infraestructura.Repositorio.Entrada;
 using EM.IServicio.Entrada;
 using EM.IServicio.Entrada.DTOs;
 
@@ -13,12 +14,8 @@ namespace EM.Servicio.Entrada
 {
     public class EntradaServicio : IEntradaServicio
     {
-        private readonly IEntradaRepositorio _entradaRepositorio;
+        private readonly IEntradaRepositorio _entradaRepositorio = new EntradaRepositorio();
 
-        public EntradaServicio(IEntradaRepositorio entradaRepositorio)
-        {
-            _entradaRepositorio = entradaRepositorio;
-        }
 
         public IEnumerable<EntradaDto> ObtenerTodo()
         {
@@ -105,7 +102,7 @@ namespace EM.Servicio.Entrada
 
         }
 
-        public void Insertar(EntradaDto dto)
+        public EntradaDto Insertar(EntradaDto dto)
         {
             var entrada = new Dominio.Entity.Entidades.Entrada()
             {
@@ -118,9 +115,12 @@ namespace EM.Servicio.Entrada
 
             _entradaRepositorio.Add(entrada);
             Guardar();
+
+            dto.Id = entrada.Id;
+            return dto;
         }
 
-        public void Modificar(EntradaDto dto)
+        public EntradaDto Modificar(EntradaDto dto)
         {
             var entrada = _entradaRepositorio.GetById(dto.Id);
 
@@ -134,6 +134,9 @@ namespace EM.Servicio.Entrada
 
             _entradaRepositorio.Update(entrada);
             Guardar();
+
+            dto.Id = entrada.Id;
+            return dto;
         }
 
         public void Eliminar(long id)

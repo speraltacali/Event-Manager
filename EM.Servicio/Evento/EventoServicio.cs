@@ -26,6 +26,12 @@ namespace EM.Servicio.Evento
                     Descripcion = x.Descripcion,
                     Mail = x.Mail,
                     TipoEventoId = x.TipoEventoId,
+                    Orante = x.Orante,
+                    Organizacion = x.Organizacion,
+                    Latitud = x.Latitud,
+                    Longitud = x.Longitud,
+                    Domicilio = x.Domicilio,
+                    Telefono = x.Telefono,
                     Imagen = x.Imagen
                 }).ToList();
         }
@@ -42,6 +48,12 @@ namespace EM.Servicio.Evento
                     Descripcion = x.Descripcion,
                     Mail = x.Mail,
                     TipoEventoId = x.TipoEventoId,
+                    Orante = x.Orante,
+                    Organizacion = x.Organizacion,
+                    Latitud = x.Latitud,
+                    Longitud = x.Longitud,
+                    Domicilio = x.Domicilio,
+                    Telefono = x.Telefono,
                     Imagen = x.Imagen
                 }).ToList();
         }
@@ -56,6 +68,12 @@ namespace EM.Servicio.Evento
                     Descripcion = x.Descripcion,
                     Mail = x.Mail,
                     TipoEventoId = x.TipoEventoId,
+                    Orante = x.Orante,
+                    Organizacion = x.Organizacion,
+                    Latitud = x.Latitud,
+                    Longitud = x.Longitud,
+                    Domicilio = x.Domicilio,
+                    Telefono = x.Telefono,
                     Imagen = x.Imagen
                 }).ToList();
 
@@ -77,11 +95,17 @@ namespace EM.Servicio.Evento
                 Descripcion = evento.Descripcion,
                 Mail = evento.Mail,
                 TipoEventoId = evento.TipoEventoId,
+                Orante = evento.Orante,
+                Organizacion = evento.Organizacion,
+                Latitud = evento.Latitud,
+                Longitud = evento.Longitud,
+                Domicilio = evento.Domicilio,
+                Telefono = evento.Telefono,
                 Imagen = evento.Imagen
             };
         }
 
-        public void Insertar(EventoDto dto)
+        public EventoDto Insertar(EventoDto dto)
         {
             var evento = new Dominio.Entity.Entidades.Evento()
             {
@@ -90,14 +114,23 @@ namespace EM.Servicio.Evento
                 Descripcion = dto.Descripcion,
                 Mail = dto.Mail,
                 TipoEventoId = dto.TipoEventoId,
+                Orante = dto.Orante,
+                Organizacion = dto.Organizacion,
+                Latitud = dto.Latitud,
+                Longitud = dto.Longitud,
+                Domicilio = dto.Domicilio,
+                Telefono = dto.Telefono,
                 Imagen = dto.Imagen
             };
 
             _eventoRepositorio.Add(evento);
             Guardar();
+
+            dto.Id = evento.Id;
+            return dto;
         }
 
-        public void Modificar(EventoDto dto)
+        public EventoDto Modificar(EventoDto dto)
         {
             var evento = _eventoRepositorio.GetById(dto.Id);
 
@@ -111,6 +144,9 @@ namespace EM.Servicio.Evento
 
             _eventoRepositorio.Update(evento);
             Guardar();
+
+            dto.Id = evento.Id;
+            return dto;
         }
 
         public void Eliminar(long id)
@@ -133,6 +169,12 @@ namespace EM.Servicio.Evento
                 Descripcion = x.Descripcion,
                 Mail = x.Mail,
                 TipoEventoId = x.TipoEventoId,
+                Orante = x.Orante,
+                Organizacion = x.Organizacion,
+                Latitud = x.Latitud,
+                Longitud = x.Longitud,
+                Domicilio = x.Domicilio,
+                Telefono = x.Telefono,
                 Imagen = x.Imagen
 
             }).ToList();

@@ -1,24 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using EM.Dominio.Entity.MetaData;
-using EM.Dominio.Repositorio.Pais;
-using EM.Infraestructura.Repositorio.Pais;
-using EM.IServicio.Empresa;
+using EM.IServicio.Entrada;
 using EM.IServicio.Entrada.DTOs;
 using EM.IServicio.Evento;
 using EM.IServicio.Evento.DTOs;
+using EM.IServicio.Fecha;
 using EM.IServicio.Fecha.DTOs;
-using EM.IServicio.Lugar.DTOs;
-using EM.IServicio.Pais;
-using EM.IServicio.Provincia;
+using EM.IServicio.FechaEvento;
+using EM.IServicio.FechaEvento.DTOs;
 using EM.IServicio.TipoEvento;
-using EM.Servicio.Empresa;
+using EM.Servicio.Entrada;
 using EM.Servicio.Evento;
-using EM.Servicio.Pais;
-using EM.Servicio.Provincia;
+using EM.Servicio.Fecha;
+using EM.Servicio.FechaEvento;
 using EM.Servicio.TipoEvento;
 
 namespace EM.Presentacion.WebAPI.Controllers
@@ -26,11 +21,10 @@ namespace EM.Presentacion.WebAPI.Controllers
     public class EventoController : Controller
     {
         private IEventoServicio _eventoServicio = new EventoServicio();
-        private IEmpresaServicio _empresaServicio = new EmpresaServicio();
         private ITipoEventoServicio _tipoEventoServicio = new TipoEventoServicio();
-        private IPaisServicio _paisServicio = new PaisServicio();
-        private IProvinciaServicio _provinciaServicio = new ProvinciaServicio();
-
+        private IFechaServicio _fechaServicio = new FechaServicio();
+        private IFechaEventoServicio _fechaEventoServicio = new FechaEventoServicio();
+        private IEntradaServicio _entradaServicio = new EntradaServicio();
 
         // GET: Evento
         public ActionResult Crear()
@@ -47,6 +41,8 @@ namespace EM.Presentacion.WebAPI.Controllers
         [HttpPost]
         public ActionResult Crear(EventoViewDto eventoViewDto)
         {
+            ViewBag.ListaTipoEvento = _tipoEventoServicio.Get().ToList();
+
             if (ModelState.IsValid)
             {
 
@@ -58,32 +54,55 @@ namespace EM.Presentacion.WebAPI.Controllers
                     Latitud = eventoViewDto.Latitud,
                     Longitud = eventoViewDto.Longitud,
                     TipoEventoId = eventoViewDto.TipoEventoId,
-
+                    Orante = eventoViewDto.Orante,
+                    Organizacion = eventoViewDto.Organizacion,
+                    Domicilio = eventoViewDto.DomicilioCompleto,
+                    Telefono = eventoViewDto.Telefono,
                 };
 
-                var lugar = new LugarDto
-                {
-                  Descripcion = eventoViewDto.DomicilioCompleto
-                };
+                var EventoObj = _eventoServicio.Insertar(evento);
+
+                //*************************************************************//
 
                 var fecha = new FechaDto
                 {
-                    FechaInicio = eventoViewDto.FechaEvento//corregir
+                    FechaEvento = eventoViewDto.FechaEvento,
+                    HoraInicio = eventoViewDto.HoraInicio,
+                    HoraCierre = eventoViewDto.HoraFin
                 };
+
+                var FechaObj = _fechaServicio.Insertar(fecha);
+
+                //*************************************************************//
+
+                var fechaEvento = new FechaEventoDto
+                {
+                    EventosId = EventoObj.Id,
+                    FechaId = FechaObj.Id
+                };
+
+                _fechaEventoServicio.Insertar(fechaEvento);
+
+                //*************************************************************//
 
                 var entrada = new EntradaDto
                 {
-                    Monto = eventoViewDto.Precio//corregir
+                    Monto = eventoViewDto.Precio,
+                    FechaDesde = DateTime.Now,
+                    FechaHasta = DateTime.Now,
+                    EventoId = EventoObj.Id,
+                    Cantidad = 1
                 };
 
-                _eventoServicio.Insertar(evento);
+                _entradaServicio.Insertar(entrada);
 
-                //devolver el evento creado
+                //*************************************************************//
 
                 var traerEvento = _eventoServicio.ObtenerPorTitulo(evento.Titulo);
 
                 var TraerEvento = new EventoViewDto
                 {
+                    Id = EventoObj.Id,
                     Titulo = traerEvento.Titulo,
                     Descripcion = traerEvento.Descripcion,
                     Mail = traerEvento.Mail,
@@ -102,11 +121,13 @@ namespace EM.Presentacion.WebAPI.Controllers
                     //Imagen
                 };
 
-                return ViewEvento(TraerEvento);
+                return ViewEvento(eventoViewDto);
 
             }
-
-            return View();
+            else
+            {
+                return ViewEvento(eventoViewDto);
+            }
         }
 
         public ActionResult ViewEvento()
@@ -114,6 +135,7 @@ namespace EM.Presentacion.WebAPI.Controllers
             return View();
         }
 
+        [HttpPost]
         public ActionResult ViewEvento(EventoViewDto evento)
         {
             return View();

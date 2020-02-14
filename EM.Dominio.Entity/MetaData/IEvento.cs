@@ -26,7 +26,7 @@ namespace EM.Dominio.Entity.MetaData
         [Index("Index_Evento_Mail", IsUnique = true)]
         string Mail { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es obligatorio")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es obligatorio")]
         byte[] Imagen { get; set; }
     }
 }

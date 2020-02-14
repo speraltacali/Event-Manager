@@ -11,9 +11,9 @@ namespace EM.IServicio.Entrada
 
         EntradaDto ObtenerPotId(long id);
 
-        void Insertar(EntradaDto dto);
+        EntradaDto Insertar(EntradaDto dto);
 
-        void Modificar(EntradaDto dto);
+        EntradaDto Modificar(EntradaDto dto);
 
         void Eliminar(long id);
 

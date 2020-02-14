@@ -48,6 +48,7 @@
     <Compile Include="Entrada\EntradaServicio.cs" />
     <Compile Include="EventoLugar\EventoLugarServicio.cs" />
     <Compile Include="Evento\EventoServicio.cs" />
+    <Compile Include="FechaEvento\FechaEventoServicio.cs" />
     <Compile Include="Fecha\FechaServicio.cs" />
     <Compile Include="FormaPago\FormaPagoServicio.cs" />
     <Compile Include="Gastronomia\GastronomiaServicio.cs" />
