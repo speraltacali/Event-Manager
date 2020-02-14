@@ -9,6 +9,8 @@ namespace EM.IServicio.Entrada
 
         IEnumerable<EntradaDto> Obtener(string cadenaBuscar);
 
+        EntradaDto ObtenerPorIdEvento(long eventoId);
+
         EntradaDto ObtenerPotId(long id);
 
         EntradaDto Insertar(EntradaDto dto);

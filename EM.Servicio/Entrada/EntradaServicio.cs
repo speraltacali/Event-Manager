@@ -46,6 +46,25 @@ namespace EM.Servicio.Entrada
                 }).ToList();
         }
 
+        public EntradaDto ObtenerPorIdEvento(long eventoId)
+        {
+            var entrada = _entradaRepositorio.GetByFilter(x => x.EventoId == eventoId)
+                .Select(x => new EntradaDto()
+                {
+                    Id = x.Id,
+                    Monto = x.Monto,
+                    FechaDesde = x.FechaDesde,
+                    FechaHasta = x.FechaHasta,
+                    Cantidad = x.Cantidad,
+                    EventoId = x.EventoId,
+                });
+
+            var lista = entrada.FirstOrDefault(x => x.EventoId == eventoId);
+
+            return lista;
+
+        }
+
         public EntradaDto ObtenerPotId(long id)
         {
             var entrada = _entradaRepositorio.GetById(id);

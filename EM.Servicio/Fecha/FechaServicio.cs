@@ -53,9 +53,20 @@ namespace EM.Servicio.Fecha
             throw new NotImplementedException();
         }
 
-        public Dominio.Entity.Entidades.Fecha ObtenerPorId(long id)
+        public FechaDto ObtenerPorId(long id)
         {
-            throw new NotImplementedException();
+            var fecha = _fechaRepositorio.GetById(id);
+
+            var aux = new FechaDto
+            {
+                FechaEvento = fecha.FechaEvento,
+                HoraCierre = fecha.HoraCierre,
+                HoraInicio = fecha.HoraInicio,
+                Id = fecha.Id
+            };
+
+            return aux;
+
         }
     }
 }

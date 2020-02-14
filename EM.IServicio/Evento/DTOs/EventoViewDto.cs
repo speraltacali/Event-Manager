@@ -18,6 +18,10 @@ namespace EM.IServicio.Evento.DTOs
 
         public string Latitud { get; set; }
 
+        //public int Lat => Convert.ToInt32(Latitud);
+
+        //public int Lng => Convert.ToInt32(Longitud);
+
         public string Longitud { get; set; }
 
         public long TipoEventoId { get; set; }
@@ -31,6 +35,8 @@ namespace EM.IServicio.Evento.DTOs
         public string Telefono { get; set; }
 
         public decimal Precio { get; set; }
+
+        public long EntradaId { get; set; }
 
         public DateTime FechaEvento { get; set; }
 

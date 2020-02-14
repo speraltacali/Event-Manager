@@ -12,6 +12,8 @@ namespace EM.IServicio.FechaEvento
 
         FechaEventoDto ObtenerPorId(long id);
 
+        FechaEventoDto ObtenerPorIdEvento(long idEvento);
+
         FechaEventoDto Insertar(FechaEventoDto dto);
 
         FechaEventoDto Modificar(FechaEventoDto dto);

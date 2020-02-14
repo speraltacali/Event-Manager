@@ -10,7 +10,7 @@ namespace EM.IServicio.Fecha
 
         IEnumerable<FechaDto> ObtenerPorFiltro(DateTime fecha);
 
-        Dominio.Entity.Entidades.Fecha ObtenerPorId(long id);
+        FechaDto ObtenerPorId(long id);
 
         FechaDto Insertar(FechaDto dto);
 

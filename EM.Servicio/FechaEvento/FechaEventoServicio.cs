@@ -40,6 +40,20 @@ namespace EM.Servicio.FechaEvento
             return dto;
         }
 
+        public FechaEventoDto ObtenerPorIdEvento(long idEvento)
+        {
+            var fecha = _fechaEventoRepositorio.GetByFilter(x => x.EventosId == idEvento).Select(x => new FechaEventoDto
+            {
+                EventosId = x.EventosId,
+                FechaId = x.FechaId,
+                Id = x.Id
+            });
+
+            var aux = fecha.FirstOrDefault(x => x.EventosId == idEvento);
+
+            return aux;
+        }
+
         public FechaEventoDto Modificar(FechaEventoDto dto)
         {
             throw new NotImplementedException();
