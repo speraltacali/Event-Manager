@@ -46,6 +46,24 @@ namespace EM.Servicio.Evento
                 }).ToList();
         }
 
+        public EventoDto ObtenerPorTitulo(string cadenaBuscar)
+        {
+            var lista = _eventoRepositorio.GetByFilter(x => x.Titulo.Contains(cadenaBuscar))
+                .Select(x => new EventoDto()
+                {
+                    Id = x.Id,
+                    Titulo = x.Titulo,
+                    Descripcion = x.Descripcion,
+                    Mail = x.Mail,
+                    TipoEventoId = x.TipoEventoId,
+                    Imagen = x.Imagen
+                }).ToList();
+
+            var listaResult = lista.FirstOrDefault(x => x.Titulo == cadenaBuscar);
+
+            return listaResult;
+        }
+
         public EventoDto ObtenerPorId(long id)
         {
             var evento = _eventoRepositorio.GetById(id);
