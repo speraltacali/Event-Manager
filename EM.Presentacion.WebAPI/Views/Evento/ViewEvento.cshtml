@@ -1,4 +1,4 @@
-﻿
+﻿@model EM.IServicio.Evento.DTOs.EventoViewDto
 @{
     ViewBag.Title = "ViewEvento";
 }
@@ -16,14 +16,14 @@
     <div class="polaroid">
         <img src="https://www.hotelsansebastian.com.mx/img/slide-eventos-3b.jpg" alt="5 Terre" style="width:70%" class="imgPortada">
         <div class="container">
-            <h3>Cinque Terre</h3>
+            <h3>@Model.Titulo</h3>
 
             <div class="col-lg-12">
-                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                <p>@Model.Descripcion</p>
 
                 <br />
 
-                <p><a class="btn btn-outline-primary" href="#" role="button">Conseguir Entrada &raquo;</a></p>
+                <p><a class="btn btn-outline-primary" href="#" role="button">Conseguir Entrada @Model.Precio &raquo;</a></p>
             </div><!-- /.col-lg-4 -->
 
             <br />
@@ -34,7 +34,7 @@
 
                     <h5>Horario del Evento:</h5>
 
-                    <p align="center">Desde: 10:30 am | Hasta: 12:00 pm</p>
+                    <p align="center">@Model.FechaEvento Desde: @Model.HoraInicio am | Hasta: @Model.HoraFin pm</p>
 
                 </div>
 
@@ -43,7 +43,7 @@
 
                     <h5>Quien Dara La Charla:</h5>
 
-                    <p align="center">Flores Jose Andres</p>
+                    <p align="center">@Model.Orante</p>
 
                 </div>
 
@@ -57,7 +57,7 @@
 
             <section class="container">
 
-                <h5>Lugar del Evento:</h5>
+                <h5>Lugar del Evento: @Model.DomicilioCompleto</h5>
 
                 <div id="map">
                 </div>
@@ -77,14 +77,14 @@
                         var options =
                         {
                             zoom: 18,
-                            center: { lat: 42.3601, lng: -71.0589 }
+                            center: { lat: @Model.Latitud , lng: @Model.Longitud }//42.3601 -71.0589
                         }
 
 
                         var map = new google.maps.Map(document.getElementById('map'), options);
 
                         var marker = new google.maps.Marker({
-                            position: { lat: 42.3601, lng: -71.0589 },
+                            position: { lat: @Model.Latitud, lng: @Model.Longitud },
                             map: map,
                             icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
                         })

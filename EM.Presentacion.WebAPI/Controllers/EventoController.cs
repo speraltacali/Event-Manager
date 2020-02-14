@@ -7,9 +7,11 @@ using EM.Dominio.Entity.MetaData;
 using EM.Dominio.Repositorio.Pais;
 using EM.Infraestructura.Repositorio.Pais;
 using EM.IServicio.Empresa;
+using EM.IServicio.Entrada.DTOs;
 using EM.IServicio.Evento;
 using EM.IServicio.Evento.DTOs;
-using EM.IServicio.Fecha;
+using EM.IServicio.Fecha.DTOs;
+using EM.IServicio.Lugar.DTOs;
 using EM.IServicio.Pais;
 using EM.IServicio.Provincia;
 using EM.IServicio.TipoEvento;
@@ -24,8 +26,10 @@ namespace EM.Presentacion.WebAPI.Controllers
     public class EventoController : Controller
     {
         private IEventoServicio _eventoServicio = new EventoServicio();
+        private IEmpresaServicio _empresaServicio = new EmpresaServicio();
         private ITipoEventoServicio _tipoEventoServicio = new TipoEventoServicio();
-        //private IFechaServicio _fechaServicio 
+        private IPaisServicio _paisServicio = new PaisServicio();
+        private IProvinciaServicio _provinciaServicio = new ProvinciaServicio();
 
 
         // GET: Evento
@@ -46,7 +50,59 @@ namespace EM.Presentacion.WebAPI.Controllers
             if (ModelState.IsValid)
             {
 
-                
+                var evento = new EventoDto
+                {
+                    Titulo = eventoViewDto.Titulo,
+                    Descripcion = eventoViewDto.Descripcion,
+                    Mail = eventoViewDto.Mail,
+                    Latitud = eventoViewDto.Latitud,
+                    Longitud = eventoViewDto.Longitud,
+                    TipoEventoId = eventoViewDto.TipoEventoId,
+
+                };
+
+                var lugar = new LugarDto
+                {
+                  Descripcion = eventoViewDto.DomicilioCompleto
+                };
+
+                var fecha = new FechaDto
+                {
+                    FechaInicio = eventoViewDto.FechaEvento//corregir
+                };
+
+                var entrada = new EntradaDto
+                {
+                    Monto = eventoViewDto.Precio//corregir
+                };
+
+                _eventoServicio.Insertar(evento);
+
+                //devolver el evento creado
+
+                var traerEvento = _eventoServicio.ObtenerPorTitulo(evento.Titulo);
+
+                var TraerEvento = new EventoViewDto
+                {
+                    Titulo = traerEvento.Titulo,
+                    Descripcion = traerEvento.Descripcion,
+                    Mail = traerEvento.Mail,
+                    Latitud = traerEvento.Latitud,
+                    Longitud = traerEvento.Longitud,
+                    TipoEventoId = traerEvento.TipoEventoId,
+                    Calle = eventoViewDto.CalleNumero,
+                    CalleNumero = eventoViewDto.CalleNumero,
+                    FechaEvento = eventoViewDto.FechaEvento,
+                    Telefono = eventoViewDto.Telefono,
+                    Organizacion = eventoViewDto.Organizacion,
+                    Precio = eventoViewDto.Precio,
+                    Orante = eventoViewDto.Orante,
+                    HoraFin = eventoViewDto.HoraFin,
+                    HoraInicio = eventoViewDto.HoraInicio,
+                    //Imagen
+                };
+
+                return ViewEvento(TraerEvento);
 
             }
 
@@ -54,6 +110,11 @@ namespace EM.Presentacion.WebAPI.Controllers
         }
 
         public ActionResult ViewEvento()
+        {
+            return View();
+        }
+
+        public ActionResult ViewEvento(EventoViewDto evento)
         {
             return View();
         }

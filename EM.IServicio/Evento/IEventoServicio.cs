@@ -11,6 +11,8 @@ namespace EM.IServicio.Evento
 
         EventoDto ObtenerPorId(long id);
 
+        EventoDto ObtenerPorTitulo(string cadenaBuscar);
+
         void Insertar(EventoDto dto);
 
         void Modificar(EventoDto dto);
