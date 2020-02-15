@@ -41,18 +41,18 @@ namespace EM.Presentacion.WebAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Crear(EventoViewDto eventoViewDto , HttpPostedFileBase Imagen)
+        public ActionResult Crear(EventoViewDto eventoViewDto)
         {
             ViewBag.ListaTipoEvento = _tipoEventoServicio.Get().ToList();
 
             if (ModelState.IsValid)
             {
 
-                HttpPostedFileBase FileBase = Request.Files[0];
+                //HttpPostedFileBase FileBase = Request.Files[0];
 
-                WebImage image = new WebImage(FileBase.InputStream);
+                //WebImage image = new WebImage(FileBase.InputStream);
 
-                eventoViewDto.Imagen = image.GetBytes();
+                //eventoViewDto.Imagen = image.GetBytes();
 
                 var evento = new EventoDto
                 {
