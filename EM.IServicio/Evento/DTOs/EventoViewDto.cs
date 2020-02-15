@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.IO;
 using EM.Servicio.Base.DtoBase;
 using Microsoft.AspNetCore.Http;
 
@@ -27,6 +29,8 @@ namespace EM.IServicio.Evento.DTOs
         public long TipoEventoId { get; set; }
 
         public IFormFile Imagen { get; set; }
+
+        public IFormFileCollection Imagenes { get; set; }
 
         public string Calle { get; set; }
 

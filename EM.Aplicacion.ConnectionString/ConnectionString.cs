@@ -4,7 +4,7 @@
     {
         private const string DataBase = "EventManagerDB";
 
-        private const string Server = @"DESKTOP-NDJOGL2\SQLEXPRESS";
+        private const string Server = @"DESKTOP-NK0OJF1";
 
         private const string User = "sa";
 
