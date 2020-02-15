@@ -124,12 +124,6 @@ namespace EM.Presentacion.WebAPI.Controllers
 
             var fechaPrincipal = _fechaServicio.ObtenerPorId(auxfecha.FechaId);
 
-            decimal lat2;
-            decimal lng2;
-
-            var lat = decimal.TryParse(evento.Latitud, out lat2);
-            var lng = decimal.TryParse(evento.Longitud, out lng2);
-
             var eventoView = new EventoViewDto
             {
                 Titulo = evento.Titulo,
@@ -147,9 +141,8 @@ namespace EM.Presentacion.WebAPI.Controllers
                 HoraFin = fechaPrincipal.HoraCierre,
                 HoraInicio = fechaPrincipal.HoraInicio,
                 Id = evento.Id,
-                Lat = lat2,
-                Lng = lng2,
-
+                Longitud = evento.Longitud,
+                Latitud = evento.Latitud
             };
 
             return View(eventoView);

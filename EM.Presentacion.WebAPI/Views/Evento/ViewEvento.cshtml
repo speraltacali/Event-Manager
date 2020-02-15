@@ -16,16 +16,30 @@
         <div class="polaroid">
             <img src="https://www.hotelsansebastian.com.mx/img/slide-eventos-3b.jpg" alt="5 Terre" style="width:70%" class="imgPortada">
             <div class="container">
-                <h3><u>@if (Model != null){@Model.Titulo}</u></h3>
+                <h3>
+                    <u>
+                        @if (Model != null)
+                        {@Model.Titulo}
+                    </u>
+                </h3>
 
                 <div class="col-lg-12">
-                    <p>@if (Model != null)
-                    {@Model.Descripcion}</p>
-                    <h6>Numero Contacto: @if (Model != null){@Model.Telefono}</h6>
+                    <p>
+                        @if (Model != null)
+                        {@Model.Descripcion}
+                    </p>
+                    <h6>
+                        Numero Contacto: @if (Model != null)
+                        {@Model.Telefono}
+                    </h6>
                     <br />
 
-                    <p><a class="btn btn-outline-primary" href="#" role="button">Conseguir Entrada $@if (Model != null)
-                    {@Model.Precio} &raquo;</a></p>
+                    <p>
+                        <a class="btn btn-outline-primary" href="#" role="button">
+                            Conseguir Entrada $@if (Model != null)
+                            {@Model.Precio} &raquo;
+                        </a>
+                    </p>
                 </div><!-- /.col-lg-4 -->
 
                 <br />
@@ -40,8 +54,8 @@
                         </h5>
 
                         <p align="center">
-                            Desde:@if (Model != null)
-                            {@Model.HoraInicio.ToShortTimeString()} am | Hasta:@if (Model != null)
+                            Desde: @if (Model != null)
+                            {@Model.HoraInicio.ToShortTimeString()} am | Hasta: @if (Model != null)
                             {@Model.HoraFin.ToShortTimeString()} pm
                         </p>
 
@@ -52,8 +66,10 @@
 
                         <h5>Quien Dara La Charla:</h5>
 
-                        <p align="center">@if (Model != null)
-                        {@Model.Orante}</p>
+                        <p align="center">
+                            | @if (Model != null)
+                            {@Model.Orante} |
+                        </p>
 
                     </div>
 
@@ -67,11 +83,14 @@
 
                 <section class="container">
                     <br />
-                    <h5>Lugar del Evento: @if (Model != null)
-                    {@Model.CalleNumero}</h5>
+                    <h5>
+                        Lugar del Evento: @if (Model != null)
+                        {@Model.CalleNumero}
+                    </h5>
 
                     <div id="map">
                     </div>
+
 
                     <style>
                         #map {
@@ -84,25 +103,23 @@
 
                     function initMap()
                     {
-                        var Latitud = @Model.Lat;
-                        var Longitud = @Model.Lng;
-
                         var options =
                         {
                             zoom: 18,
-                            center: { lat:Latitud, lng:Longitud}//42.3601 -71.0589
+                            center: { lat:@Model.Latitud, lng:@Model.Longitud}
                         }
 
 
                         var map = new google.maps.Map(document.getElementById('map'), options);
 
                         var marker = new google.maps.Marker({
-                            position: { lat:Latitud, lng:Longitud},
+                            position: { lat:@Model.Latitud, lng:@Model.Longitud},
                             map: map,
                             icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
                         })
 
-                    }
+                        }
+                        initMap();
                     </script>
 
                 </section>

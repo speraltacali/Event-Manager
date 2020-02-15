@@ -18,10 +18,6 @@ namespace EM.IServicio.Evento.DTOs
 
         public string Latitud { get; set; }
 
-        public decimal Lat { get; set; }
-
-        public decimal Lng { get; set; }
-
         public string Longitud { get; set; }
 
         public long TipoEventoId { get; set; }
