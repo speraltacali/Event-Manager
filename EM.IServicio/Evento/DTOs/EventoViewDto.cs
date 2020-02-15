@@ -24,9 +24,7 @@ namespace EM.IServicio.Evento.DTOs
 
         public long TipoEventoId { get; set; }
 
-        public IFormFile Imagen { get; set; }
-
-        public IFormFileCollection Imagenes { get; set; }
+        public byte[] Imagen { get; set; }
 
         public string Calle { get; set; }
 

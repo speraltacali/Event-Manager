@@ -50,7 +50,9 @@ namespace EM.Presentacion.WebAPI.Controllers
 
                 HttpPostedFileBase FileBase = Request.Files[0];
 
-                WebImage image = new WebImage();
+                WebImage image = new WebImage(FileBase.InputStream);
+
+                eventoViewDto.Imagen = image.GetBytes();
 
                 var evento = new EventoDto
                 {
@@ -64,6 +66,7 @@ namespace EM.Presentacion.WebAPI.Controllers
                     Organizacion = eventoViewDto.Organizacion,
                     Domicilio = eventoViewDto.DomicilioCompleto,
                     Telefono = eventoViewDto.Telefono,
+                    Imagen = eventoViewDto.Imagen
                 };
 
                 var EventoObj = _eventoServicio.Insertar(evento);
