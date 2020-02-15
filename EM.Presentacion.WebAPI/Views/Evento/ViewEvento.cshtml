@@ -83,21 +83,23 @@
                     </style>
 
                     <script>
-                        
+
                     function initMap()
                     {
+                        var Latitud = @Model.Lat;
+                        var Longitud = @Model.Lng;
 
                         var options =
                         {
                             zoom: 18,
-                            center: { lat: @Model.Lat , lng: @Model.Lng}//42.3601 -71.0589
+                            center: { lat:Latitud, lng:Longitud}//42.3601 -71.0589
                         }
 
 
                         var map = new google.maps.Map(document.getElementById('map'), options);
 
                         var marker = new google.maps.Marker({
-                            position: { lat: @Model.Lat, lng:  @Model.Lng},
+                            position: { lat:Latitud, lng:Longitud},
                             map: map,
                             icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
                         })
