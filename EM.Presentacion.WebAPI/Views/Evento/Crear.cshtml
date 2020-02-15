@@ -17,19 +17,19 @@
         <div class="image-holder">
             <img src="~/Content/CrearEvento/images/form-wizard.png" alt="">
         </div>
-        <form asp-action="Crear" asp-controller="Evento" method="post" enctype="multipart/form-data">
+        <form action="Crear" asp-controller="Evento" method="post" enctype="multipart/form-data">
             <div id="wizard">
                 <!-- SECTION 1 -->
                 <h4></h4>
                 <section>
                     <div class="form-row form-group">
-                        <div class="form-holder">
+                        <div class="form-row">
                             <label for="">
                                 Nombre del Evento *
                             </label>
                             <input type="text" class="form-control" name="Titulo">
                         </div>
-                        <div class="form-holder">
+                        <div class="form-row">
                             <label for="">
                                 Quien dara la Charla? *
                             </label>
@@ -144,20 +144,20 @@
                         <input name="Calle" type="text" class="form-control" placeholder="Calle" style="margin-bottom: 20px">
                         <input name="CalleNumero" type="text" class="form-control" placeholder="Numero">
                     </div>
-                    <div class="form-row form-group">
-                        <div class="form-holder">
+
+                        <div class="form-row">
                             <label for="">
                                 Telefono *
                             </label>
                             <input name="Telefono" type="text" class="form-control">
                         </div>
-                        <div class="form-holder">
+                        <div class="form-row">
                             <label for="">
                                 Email *
                             </label>
                             <input type="text" class="form-control" name="Mail">
                         </div>
-                    </div>
+                    
                     <br />
                 </section>
 
@@ -208,7 +208,7 @@
                         <label class="active">
                             Agregue una Imagen para el Evento:
                         </label>
-                        <input type="file" name="Imagen" id="Imagen" onchange="fileCheck(this);" />
+                        <input type="file" name="Imagen" id="Imagen" accept="image/*" value="" />
 
                     </div>
 
@@ -241,7 +241,7 @@
                             Antes De Finalizar Revise SI Todos Los DATOS SON CORRECTOS.
                         </p>
                     </div>
-
+                    
                     <div class="form-holder">
                         <button class="btn btn-outline-success" style="width:150px;height:50px;">
                             Finalizar

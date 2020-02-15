@@ -41,16 +41,14 @@ namespace EM.Presentacion.WebAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Crear(EventoViewDto eventoViewDto , HttpPostedFileBase Imagen)
+        public ActionResult Crear(EventoViewDto eventoViewDto, FormCollection formCollection)
         {
+            var image = formCollection["Imagen"];
+
             ViewBag.ListaTipoEvento = _tipoEventoServicio.Get().ToList();
 
             if (ModelState.IsValid)
             {
-
-                HttpPostedFileBase FileBase = Request.Files[0];
-
-                WebImage image = new WebImage();
 
                 var evento = new EventoDto
                 {
@@ -109,7 +107,7 @@ namespace EM.Presentacion.WebAPI.Controllers
             }
             else
             {
-                return ViewEvento();
+                return RedirectToAction("Index", "Home");
             }
         }
 
