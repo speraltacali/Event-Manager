@@ -208,9 +208,10 @@
                         <label class="active">
                             Agregue una Imagen para el Evento:
                         </label>
-                        <input name="Imagen" asp-for="Imagen" type="file" />
+                        <input type="file" name="Imagen" id="Imagen" onchange="fileCheck(this);" />
 
                     </div>
+
                     <br />
                     <div class="form-holder">
                         <label>

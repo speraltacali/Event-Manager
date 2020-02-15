@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using EM.IServicio.Entrada;
 using EM.IServicio.Entrada.DTOs;
@@ -39,12 +41,16 @@ namespace EM.Presentacion.WebAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Crear(EventoViewDto eventoViewDto)
+        public ActionResult Crear(EventoViewDto eventoViewDto , HttpPostedFileBase Imagen)
         {
             ViewBag.ListaTipoEvento = _tipoEventoServicio.Get().ToList();
 
             if (ModelState.IsValid)
             {
+
+                HttpPostedFileBase FileBase = Request.Files[0];
+
+                WebImage image = new WebImage();
 
                 var evento = new EventoDto
                 {
