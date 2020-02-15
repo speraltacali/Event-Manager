@@ -98,7 +98,7 @@ namespace EM.Presentacion.WebAPI.Controllers
 
                 //*************************************************************//
 
-                return ViewEvento(EventoObj.Id);
+                return RedirectToAction("Index", "Home");
 
             }
             else
