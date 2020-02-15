@@ -18,9 +18,9 @@ namespace EM.IServicio.Evento.DTOs
 
         public string Latitud { get; set; }
 
-        //public int Lat => Convert.ToInt32(Latitud);
+        public decimal Lat { get; set; }
 
-        //public int Lng => Convert.ToInt32(Longitud);
+        public decimal Lng { get; set; }
 
         public string Longitud { get; set; }
 

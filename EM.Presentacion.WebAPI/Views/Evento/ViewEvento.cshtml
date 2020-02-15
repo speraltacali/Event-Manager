@@ -16,16 +16,15 @@
         <div class="polaroid">
             <img src="https://www.hotelsansebastian.com.mx/img/slide-eventos-3b.jpg" alt="5 Terre" style="width:70%" class="imgPortada">
             <div class="container">
-                <h3>@if (Model != null)
-                {@Model.Titulo}</h3>
+                <h3><u>@if (Model != null){@Model.Titulo}</u></h3>
 
                 <div class="col-lg-12">
                     <p>@if (Model != null)
                     {@Model.Descripcion}</p>
-
+                    <h6>Numero Contacto: @if (Model != null){@Model.Telefono}</h6>
                     <br />
 
-                    <p><a class="btn btn-outline-primary" href="#" role="button">Conseguir Entrada @if (Model != null)
+                    <p><a class="btn btn-outline-primary" href="#" role="button">Conseguir Entrada $@if (Model != null)
                     {@Model.Precio} &raquo;</a></p>
                 </div><!-- /.col-lg-4 -->
 
@@ -35,13 +34,15 @@
 
                     <div class="col-lg-4" style="background-color:antiquewhite; float:left;padding-top:4px;padding-bottom:2px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);">
 
-                        <h5>Horario del Evento:</h5>
+                        <h5>
+                            Horario del Evento: @if (Model != null)
+                            {@Model.FechaEvento.ToShortDateString()}
+                        </h5>
 
                         <p align="center">
-                            @if (Model != null)
-                            {@Model.FechaEvento}Desde:@if (Model != null)
-                            {@Model.HoraInicio} am | Hasta:@if (Model != null)
-                            {@Model.HoraFin} pm
+                            Desde:@if (Model != null)
+                            {@Model.HoraInicio.ToShortTimeString()} am | Hasta:@if (Model != null)
+                            {@Model.HoraFin.ToShortTimeString()} pm
                         </p>
 
                     </div>
@@ -65,9 +66,9 @@
 
 
                 <section class="container">
-
+                    <br />
                     <h5>Lugar del Evento: @if (Model != null)
-                    {@Model.DomicilioCompleto}</h5>
+                    {@Model.CalleNumero}</h5>
 
                     <div id="map">
                     </div>
@@ -80,21 +81,21 @@
                     </style>
 
                     <script>
-
+                        
                     function initMap()
                     {
 
                         var options =
                         {
                             zoom: 18,
-                            center: { lat: @if (Model != null) {@Model.Latitud} , lng: @if (Model != null) {@Model.Longitud} }//42.3601 -71.0589
+                            center: { lat: @Model.Lat , lng: @Model.Lng}//42.3601 -71.0589
                         }
 
 
                         var map = new google.maps.Map(document.getElementById('map'), options);
 
                         var marker = new google.maps.Marker({
-                            position: { lat: @if (Model != null) {@Model.Latitud}, lng: @if (Model != null) {@Model.Longitud} },
+                            position: { lat: @Model.Lat, lng:  @Model.Lng},
                             map: map,
                             icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
                         })
