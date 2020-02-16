@@ -4,9 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using EM.Dominio.Entity.Entidades;
+using EM.IServicio.Evento;
 using EM.IServicio.Pais;
 using EM.Repositorio;
 using EM.Repositorio.Base;
+using EM.Servicio.Evento;
 using EM.Servicio.Pais;
 
 namespace EM.Presentacion.WebAPI.Controllers
@@ -14,6 +16,8 @@ namespace EM.Presentacion.WebAPI.Controllers
     public class HomeController : Controller
     {
         private IRepositorio<Pais> _repositorio = new Repositorio<Pais>();
+
+        private IEventoServicio _eventoServicio = new EventoServicio();
 
         public ActionResult Index()
         {
@@ -23,6 +27,7 @@ namespace EM.Presentacion.WebAPI.Controllers
             {
                 Descripcion = "Argentina"
             });
+
             return View();
         }
 
@@ -31,6 +36,15 @@ namespace EM.Presentacion.WebAPI.Controllers
             ViewBag.Title = "Eventos";
 
             return View();
+        }
+
+        public ActionResult GetImage(int id)
+        {
+            // fetch image data from database
+
+            var evento = _eventoServicio.ObtenerPorId(id);
+
+            return File(evento.Imagen, "image/jpg");
         }
 
     }
