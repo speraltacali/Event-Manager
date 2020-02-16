@@ -117,26 +117,6 @@
 
                     </div>
 
-                    @*<div class="form-row">
-                        <label for="">
-                            Pais *
-                        </label>
-                        <div class="form-holder">
-
-                            @Html.DropDownList("PaisId", new SelectList(ViewBag.ListaPais, "Id", "Descripcion"), "Seleccionar Campo", new { @class = "form-control" })
-                            <i class="zmdi zmdi-caret-down"></i>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <label for="">
-                            Provincia *
-                        </label>
-                        <div class="form-holder">
-
-                            @Html.DropDownList("ProvinciaId", new SelectList(ViewBag.ListaProvincia, "Id", "Descripcion"), "Seleccionar Campo", new { @class = "form-control" })
-                            <i class="zmdi zmdi-caret-down"></i>
-                        </div>
-                    </div>*@
                     <div class="form-row">
                         <label for="">
                             Direccion *
@@ -208,7 +188,8 @@
                         <label class="active">
                             Agregue una Imagen para el Evento:
                         </label>
-                        <input type="file" name="Imagen" id="Imagen" accept="image/*" value="" />
+                        <input type="file" name="pepe" id="Imagen" accept="image/*" value="" />
+                        @Html.TextBox("img", null, new { type = "file" })
 
                     </div>
 

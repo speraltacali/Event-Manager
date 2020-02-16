@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Helpers;
@@ -41,9 +42,14 @@ namespace EM.Presentacion.WebAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Crear(EventoViewDto eventoViewDto, FormCollection formCollection)
+        public ActionResult Crear(EventoViewDto eventoViewDto, HttpPostedFileBase img)
         {
-            var image = formCollection["Imagen"];
+
+            using (var reader = new BinaryReader(img.InputStream))
+            {
+                eventoViewDto.Imagen = reader.ReadBytes(img.ContentLength);
+            }
+
 
             ViewBag.ListaTipoEvento = _tipoEventoServicio.Get().ToList();
 
@@ -62,6 +68,7 @@ namespace EM.Presentacion.WebAPI.Controllers
                     Organizacion = eventoViewDto.Organizacion,
                     Domicilio = eventoViewDto.DomicilioCompleto,
                     Telefono = eventoViewDto.Telefono,
+                    Imagen = eventoViewDto.Imagen
                 };
 
                 var EventoObj = _eventoServicio.Insertar(evento);

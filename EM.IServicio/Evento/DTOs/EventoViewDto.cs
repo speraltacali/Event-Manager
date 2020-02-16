@@ -26,6 +26,7 @@ namespace EM.IServicio.Evento.DTOs
 
         public byte[] Imagen { get; set; }
 
+
         public string Calle { get; set; }
 
         public string CalleNumero { get; set; }
