@@ -12,6 +12,7 @@ using EM.IServicio.Fecha;
 using EM.IServicio.Fecha.DTOs;
 using EM.IServicio.FechaEvento;
 using EM.IServicio.FechaEvento.DTOs;
+using EM.IServicio.Helpers.Foto;
 using EM.IServicio.TipoEvento;
 using EM.Servicio.Entrada;
 using EM.Servicio.Evento;
@@ -109,7 +110,7 @@ namespace EM.Presentacion.WebAPI.Controllers
 
                 //*************************************************************//
 
-                return RedirectToAction("Index", "Home");
+                return ViewEvento(EventoObj.Id);
 
             }
             else
@@ -118,10 +119,6 @@ namespace EM.Presentacion.WebAPI.Controllers
             }
         }
 
-        public ActionResult ViewEvento()
-        {
-            return View();
-        }
 
         [HttpGet]
         public ActionResult ViewEvento(long id)
@@ -137,6 +134,7 @@ namespace EM.Presentacion.WebAPI.Controllers
 
             var eventoView = new EventoViewDto
             {
+
                 Titulo = evento.Titulo,
                 Descripcion = evento.Descripcion,
                 Mail = evento.Mail,
@@ -151,12 +149,23 @@ namespace EM.Presentacion.WebAPI.Controllers
                 FechaEvento = fechaPrincipal.FechaEvento.Date,
                 HoraFin = fechaPrincipal.HoraCierre,
                 HoraInicio = fechaPrincipal.HoraInicio,
-                Id = evento.Id,
+                Id = evento.Id, 
                 Longitud = evento.Longitud,
-                Latitud = evento.Latitud
+                Latitud = evento.Latitud,
+                Imagen = evento.Imagen
             };
 
+
             return View(eventoView);
+        }
+
+        public ActionResult GetImage(int id)
+        {
+            // fetch image data from database
+
+            var evento = _eventoServicio.ObtenerPorId(id);
+
+            return File(evento.Imagen, "image/jpg");
         }
 
     }

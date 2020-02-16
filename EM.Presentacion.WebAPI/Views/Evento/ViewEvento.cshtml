@@ -1,7 +1,11 @@
-﻿@model EM.IServicio.Evento.DTOs.EventoViewDto
+﻿@using EM.IServicio.Helpers.Foto
+@model EM.IServicio.Evento.DTOs.EventoViewDto
 @{
     ViewBag.Title = "ViewEvento";
 
+    var imagen = Imagen.Convertir_Bytes_Imagen(Model.Imagen);
+
+    
     
 }
 
@@ -16,7 +20,8 @@
 <div class="container">
     <form asp-action="ViewEvento" asp-controller="Evento" method="get">
         <div class="polaroid">
-            <img src="https://www.hotelsansebastian.com.mx/img/slide-eventos-3b.jpg" alt="5 Terre" style="width:70%" class="imgPortada">
+            @*<img resource="@imagen" alt="5 Terre" style="width:70%" class="imgPortada">*@
+            <img src="@Url.Action("GetImage", new { id = Model.Id })" />
             <div class="container">
                 <h3>
                     <u>
