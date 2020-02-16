@@ -233,6 +233,9 @@
     <Content Include="Content\CrearEvento\js\jquery.steps.js" />
     <Content Include="Content\CrearEvento\js\main.js" />
     <Content Include="Content\Grilla\Grilla.css" />
+    <Content Include="Content\ImageHome\entrada.png" />
+    <Content Include="Content\ImageHome\localizacion.png" />
+    <Content Include="Content\ImageHome\loginuser.png" />
     <Content Include="Content\ImgEvento\ImagenPortada.css" />
     <Content Include="Content\Login\css\main.css" />
     <Content Include="Content\Login\css\user.css" />
