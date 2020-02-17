@@ -44,9 +44,14 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="~/Usuario/Login">Iniciar Sesion</a>
                             <a class="dropdown-item" href="~/Usuario/Create">Crear Cuenta</a>
-                            <a class="dropdown-item" href="#">Mi Perfil</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Eventos</a>
+                            
+                            @if (TempData["Session"] != null)
+                            {
+                                <a class="dropdown-item" href="#">Mi Perfil</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Eventos</a>
+                            }
+
                         </div>
                     </li>
                     <li class="nav-item dropdown">

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using EM.IServicio.Helpers.Usuario;
 using EM.IServicio.Persona;
 using EM.IServicio.Persona.DTOs;
 using EM.IServicio.Usuario;
@@ -20,7 +18,31 @@ namespace EM.Presentacion.WebAPI.Controllers
         // GET: Usuario
         public ActionResult Login()
         {
-            return View();
+            if (Session["Usuario"] != null)
+            {
+                Session.Remove("Usuario");
+                return View();
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Login(UsuarioDto user)
+            {
+            if(_usuarioServicio.ValidarAcceso(user.User , user.Password))
+            {
+                Session["Usuario"] = SessionActiva.ApyNom;
+                TempData["Session"] = Session["Usuario"];
+                return RedirectToAction("Perfil", "Persona");
+            }
+            else
+            {
+                ViewBag.ErrorUser = "Usuario o contraseña incorrectos , reintentar";
+                return View();
+            }
         }
 
 

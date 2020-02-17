@@ -17,6 +17,8 @@ namespace EM.IServicio.Usuario
 
         void Eliminar(long id);
 
+        bool ValidarAcceso(string user, string pass);
+
         void Guardar();
     }
 }

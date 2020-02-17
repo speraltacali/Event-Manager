@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EM.Dominio.Repositorio.Usuario;
 using EM.Infraestructura.Repositorio.Usuario;
+using EM.IServicio.Helpers.Usuario;
 using EM.IServicio.Usuario;
 using EM.IServicio.Usuario.DTOs;
 
@@ -114,26 +115,32 @@ namespace EM.Servicio.Usuario
         //       ******************************************  LOGIN  ********************************************
         //***********************************************************************************************************************
 
-        public UsuarioDto ValidarAcceso(string user , string pass)
+        public bool ValidarAcceso(string user , string pass)
         {
-            var Usuario = _usuarioRepositorio.GetAll().FirstOrDefault(x => x.Password == pass && x.User == user);
+            var Validar = _usuarioRepositorio.GetAll().Any();
 
-            if (Usuario != null)
+            if (Validar)
             {
-                return new UsuarioDto()
+                var Usuario = _usuarioRepositorio.GetAll().FirstOrDefault(x => x.User == user && x.Password == pass);
+
+                if (Usuario != null)
                 {
-                    Id = Usuario.Id,
-                    User = Usuario.User,
-                    Password = Usuario.Password,
-                    Mail = Usuario.Mail,
-                    FechaCreacion = Usuario.FechaCreacion,
-                    PersonaId = Usuario.PersonaId
-                };
+                    SessionActiva.Id = Usuario.Id;
+                    SessionActiva.ApyNom = Usuario.Persona.Apellido + " , " + Usuario.Persona.Nombre;
+
+                    return true;
+                }
+
+                else
+                {
+                    return false;
+                }
+
             }
 
             else
             {
-                return null;
+                return false;
             }
 
         }
