@@ -8,7 +8,9 @@ namespace EM.IServicio.Helpers.Usuario
 {
     public static class SessionActiva
     {
-        public static long Id { get; set; }
+        public static long UsuarioId { get; set; }
+
+        public static long PersonaId { get; set; }
 
         public static string ApyNom { get; set; }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using EM.IServicio.Helpers.Usuario;
 using EM.IServicio.Persona;
 using EM.IServicio.Persona.DTOs;
 using EM.Servicio.Persona;
@@ -32,7 +33,8 @@ namespace EM.Presentacion.WebAPI.Controllers
 
         public ActionResult Perfil()
         {
-            return View();
+            var Persona = _personaServicio.ObtenerPorId(SessionActiva.PersonaId);
+            return View(Persona);
         }
 
         [HttpPost]

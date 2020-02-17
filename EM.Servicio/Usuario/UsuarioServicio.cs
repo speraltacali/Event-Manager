@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using EM.Dominio.Repositorio.Persona;
 using EM.Dominio.Repositorio.Usuario;
+using EM.Infraestructura.Repositorio.Persona;
 using EM.Infraestructura.Repositorio.Usuario;
 using EM.IServicio.Helpers.Usuario;
 using EM.IServicio.Usuario;
@@ -14,6 +14,8 @@ namespace EM.Servicio.Usuario
     public class UsuarioServicio : IUsuarioServicio
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio = new UsuarioRepositorio();
+        private readonly  IPersonaRepositorio _personaRepositorio = new PersonaRepositorio();
+
 
         public IEnumerable<UsuarioDto> ObtenerTodo()
         {
@@ -125,8 +127,11 @@ namespace EM.Servicio.Usuario
 
                 if (Usuario != null)
                 {
-                    SessionActiva.Id = Usuario.Id;
-                    SessionActiva.ApyNom = Usuario.Persona.Apellido + " , " + Usuario.Persona.Nombre;
+                    var Persona = _personaRepositorio.GetById(Usuario.PersonaId);
+
+                    SessionActiva.UsuarioId = Usuario.Id;
+                    SessionActiva.PersonaId = Usuario.PersonaId;
+                    SessionActiva.ApyNom = Persona.Apellido + " , " + Persona.Nombre;
 
                     return true;
                 }
