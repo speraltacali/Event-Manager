@@ -168,5 +168,12 @@ namespace EM.Presentacion.WebAPI.Controllers
             return File(evento.Imagen, "image/jpg");
         }
 
+        public ActionResult PagarEntrada()
+        {
+
+            return View();
+
+        }
+
     }
 }
