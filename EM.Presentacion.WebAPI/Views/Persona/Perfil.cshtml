@@ -27,20 +27,21 @@
                 </div>
                 <div class="col-md-6 details">
                     <blockquote>
-                        <h5>Fiona Gallagher</h5>
-                        <small><cite title="Source Title">Chicago, United States of America  <i class="icon-map-marker"></i></cite></small>
+                        <h5>@Model.Apellido @Model.Nombre</h5>
+                        <small><cite title="Source Title">Argentina<i class="icon-map-marker"></i></cite></small>
                     </blockquote>
                     <p>
-                        fionagallager@shameless.com <br>
-                        www.bootsnipp.com <br>
-                        June 18, 1990
+                        Celular: @Model.Telefono <br />
+                        Nacimiento: @Model.FechaNacimiento.ToShortDateString()<br />
+                        @Model.Mail
+                        <br>
                     </p>
                 </div>
             </div>
         </div>
 
         <div class="col-md-12" style="text-align:right">
-            <button type="button" class="btn btn-success">Modificar Datos</button>  <button type="button" class="btn btn-info">Crear Evento</button>
+            <button type="button" class="btn btn-success">Modificar Datos</button>  <a class="btn btn-info" href="~/Evento/Crear">Crear Evento</a>
         </div>
         <br />
         <br /><br />
@@ -61,9 +62,9 @@
                                 <table class="table" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Project Name</th>
-                                            <th>Descripcion</th>
-                                            <th>Awards</th>
+                                            <th>Nombre Evento</th>
+                                            <th>Tipo de Evento</th>
+                                            <th>Fecha Del Evento</th>
                                             <th>Opciones</th>
                                         </tr>
                                     </thead>
@@ -95,7 +96,7 @@
                                         <tr>
                                             <th>Nombre Entrada</th>
                                             <th>Descripcion</th>
-                                            <th>Time</th>
+                                            <th>Fecha</th>
                                             <th>Opciones</th>
                                         </tr>
                                     </thead>
