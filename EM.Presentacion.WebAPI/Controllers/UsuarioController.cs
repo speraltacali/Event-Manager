@@ -54,30 +54,39 @@ namespace EM.Presentacion.WebAPI.Controllers
         [HttpPost]
         public ActionResult Create(PersonaDto Persona, UsuarioDto Usuario)
         {
-            if (ModelState.IsValid)
+            if (Session["Usuario"] == null)
             {
-                if (Usuario.Password == Usuario.PasswordRep)
+                if (ModelState.IsValid)
                 {
-                    //Verificar por el momento el insert en DB
+                    if (Usuario.Password == Usuario.PasswordRep)
+                    {
+                        //Verificar por el momento el insert en DB
 
-                    var persona =_personaServicio.Insertar(Persona);
-                    Usuario.PersonaId = persona.Id;
-                    Usuario.FechaCreacion = DateTime.Now;
-                    _usuarioServicio.Insertar(Usuario);
+                        var persona = _personaServicio.Insertar(Persona);
+                        Usuario.PersonaId = persona.Id;
+                        Usuario.FechaCreacion = DateTime.Now;
+                        _usuarioServicio.Insertar(Usuario);
 
-                    return RedirectToAction("Login", "Usuario");
+                        return RedirectToAction("Login", "Usuario");
+                    }
+                    else
+                    {
+                        //expecion no funciona
+
+                        ViewBag.Error = "Repita la contraseña de manera correcta";
+                        return View();
+                    }
+
                 }
                 else
                 {
-                    //expecion no funciona
-
-                    ViewBag.Error = "Repita la contraseña de manera correcta";
                     return View();
                 }
-
             }
-
-            return RedirectToAction("Index", "Home");
+            else
+            {
+                return RedirectToAction("Perfil", "Persona");
+            }
         }
     }
 }

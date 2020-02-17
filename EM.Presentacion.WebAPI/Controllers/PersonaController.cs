@@ -26,15 +26,23 @@ namespace EM.Presentacion.WebAPI.Controllers
             return View(persona);
         }
 
-        public ActionResult Create()
-        {
-            return View();
-        }
 
         public ActionResult Perfil()
         {
-            var Persona = _personaServicio.ObtenerPorId(SessionActiva.PersonaId);
-            return View(Persona);
+            if(Session["Usuario"]!=)
+            {
+                var Persona = _personaServicio.ObtenerPorId(SessionActiva.PersonaId);
+                return View(Persona);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Usuario");
+            }
+        }
+
+        public ActionResult Create()
+        {
+            return View();
         }
 
         [HttpPost]
