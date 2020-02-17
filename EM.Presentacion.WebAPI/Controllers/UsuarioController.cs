@@ -30,9 +30,9 @@ namespace EM.Presentacion.WebAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(UsuarioDto user)
+        public ActionResult Login(UsuarioDto Usuario)
             {
-            if(_usuarioServicio.ValidarAcceso(user.User , user.Password))
+            if(_usuarioServicio.ValidarAcceso(Usuario.User , Usuario.Password))
             {
                 Session["Usuario"] = SessionActiva.ApyNom;
                 TempData["Session"] = Session["Usuario"];
@@ -64,6 +64,8 @@ namespace EM.Presentacion.WebAPI.Controllers
                     Usuario.PersonaId = persona.Id;
                     Usuario.FechaCreacion = DateTime.Now;
                     _usuarioServicio.Insertar(Usuario);
+
+                    return RedirectToAction("Login", "Usuario");
                 }
                 else
                 {
