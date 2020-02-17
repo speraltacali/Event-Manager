@@ -96,6 +96,7 @@
     <Compile Include="Gastronomia\DTOs\GastronomiaDto.cs" />
     <Compile Include="Gastronomia\IGastronomiaServicio.cs" />
     <Compile Include="Helpers\Foto\Imagen.cs" />
+    <Compile Include="Helpers\Usuario\SessionActiva.cs" />
     <Compile Include="InscripcionCuenta\DTOs\InscripcionCuentaDto.cs" />
     <Compile Include="InscripcionCuenta\IInscripcionCuentaServicio.cs" />
     <Compile Include="Localidad\DTOs\LocalidadDto.cs" />
@@ -142,5 +143,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
