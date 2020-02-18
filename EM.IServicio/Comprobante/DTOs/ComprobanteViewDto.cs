@@ -11,7 +11,7 @@ namespace EM.IServicio.Comprobante.DTOs
     {
         public long Numero { get; set; }
 
-        public string Fecha { get; set; }
+        public DateTime Fecha { get; set; }
 
         public decimal SubTotal { get; set; }
 

@@ -288,6 +288,9 @@ namespace EM.Presentacion.WebAPI.Controllers
                     Imagen = evento.Imagen
                 };
 
+                SessionActiva.Monto = eventoView.Precio;
+                SessionActiva.EventoId = eventoView.Id;
+
                 return View(eventoView);
             }
             else
@@ -301,7 +304,12 @@ namespace EM.Presentacion.WebAPI.Controllers
         {
             try
             {
-
+                dto.Numero = 
+                dto.Fecha = DateTime.Now;
+                dto.SubTotal = SessionActiva.Monto;
+                dto.Total = SessionActiva.Monto;
+                dto.UsuarioId = SessionActiva.UsuarioId;
+                dto.EventoId = SessionActiva.EventoId;
             }
             catch (Exception e)
             {

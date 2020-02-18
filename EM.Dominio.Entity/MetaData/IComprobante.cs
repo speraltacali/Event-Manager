@@ -19,7 +19,6 @@ namespace EM.Dominio.Entity.MetaData
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         decimal Total { get; set; }
 
-        [Required(ErrorMessage = "El campo {0} es obligatorio")]
         decimal Descuento { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
