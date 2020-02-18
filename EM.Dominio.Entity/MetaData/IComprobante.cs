@@ -23,9 +23,9 @@ namespace EM.Dominio.Entity.MetaData
         decimal Descuento { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        long TipoComprobanteId { get; set; }
+        long EventoId { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        long FormaPagoId { get; set; }
+        long UsuarioId { get; set; }
     }
 }

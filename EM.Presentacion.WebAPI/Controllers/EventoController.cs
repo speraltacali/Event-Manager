@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
+using EM.IServicio.Comprobante.DTOs;
 using EM.IServicio.CreadorEvento;
 using EM.IServicio.CreadorEvento.DTO;
 using EM.IServicio.Entrada;
@@ -296,10 +297,25 @@ namespace EM.Presentacion.WebAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult PagarEvento()
+        public ActionResult PagarEntrada(ComprobanteViewDto dto)
         {
+            try
+            {
+
+            }
+            catch (Exception e)
+            {
+                ViewBag.Error = e;
+                throw;
+            }
+
+
             return View();
         }
+
+
+
+
 
         [HttpGet]
         public ActionResult CreateEntrada(long valor)
@@ -307,16 +323,5 @@ namespace EM.Presentacion.WebAPI.Controllers
             return View();
         }
 
-        public ActionResult BuscarEvento(string search)
-        {
-            if (search == null)
-            {
-                return View();
-            }
-
-            ViewBag.Busqueda = search;
-
-            return View();
-        }
     }
 }

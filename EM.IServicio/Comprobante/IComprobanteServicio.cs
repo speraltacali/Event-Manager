@@ -10,5 +10,9 @@ namespace EM.IServicio.Comprobante
         IEnumerable<ComprobanteDto> Obtener(string cadena);
 
         ComprobanteDto ObtenerPoId(long id);
+
+        ComprobanteDto Insertar(ComprobanteDto dto);
+
+        void Guardar();
     }
 }

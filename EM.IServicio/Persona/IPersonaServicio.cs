@@ -17,6 +17,10 @@ namespace EM.IServicio.Persona
 
         void Eliminar(long id);
 
+        bool ValidarCuil(string cuil);
+
+        bool ValidarMail(string mail);
+
         void Guardar();
 
     }

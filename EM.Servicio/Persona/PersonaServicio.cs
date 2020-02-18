@@ -121,16 +121,11 @@ namespace EM.Servicio.Persona
             _personaRepositorio.Save();
         }
 
-        public void Guardar()
+        public bool ValidarMail(string mail)
         {
-            _personaRepositorio.Save();
-        }
+            var Persona = _personaRepositorio.GetByFilter(x => x.Mail == mail);
 
-        public bool ValidarPersona(string cuil)
-        {
-            var Persona = _personaRepositorio.GetByFilter(x => x.Cuil == cuil);
-
-            if (Persona != null)
+            if (Persona.Count() != 0)
             {
                 return true;
             }
@@ -139,5 +134,25 @@ namespace EM.Servicio.Persona
                 return false;
             }
         }
+
+        public bool ValidarCuil(string cuil)
+        {
+            var Persona = _personaRepositorio.GetByFilter(x => x.Cuil == cuil);
+
+            if (Persona.Count() != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void Guardar()
+        {
+            _personaRepositorio.Save();
+        }
+
     }
 }

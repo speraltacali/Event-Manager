@@ -8,7 +8,7 @@ namespace EM.Dominio.Entity.Entidades
 {
     [Table("Comprobantes")]
     [MetadataType(typeof(IComprobante))]
-    public abstract class Comprobante : EntityBase
+    public class Comprobante : EntityBase
     {
         public long Numero { get; set; }
 
@@ -20,9 +20,9 @@ namespace EM.Dominio.Entity.Entidades
 
         public decimal Descuento { get; set; }
 
-        public long TipoComprobanteId { get; set; }
+        public long EventoId { get; set; }
 
-        public long FormaPagoId { get; set; }
+        public long UsuarioId { get; set; }
 
         //public virtual TipoComprobante TiposComprobantes { get; set; }
 

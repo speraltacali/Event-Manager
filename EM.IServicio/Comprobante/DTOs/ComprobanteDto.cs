@@ -14,8 +14,8 @@ namespace EM.IServicio.Comprobante.DTOs
 
         public decimal Descuento { get; set; }
 
-        public long TipoComprobanteId { get; set; }
+        public long EventoId { get; set; }
 
-        public long FormaPagoId { get; set; }
+        public long UsuarioId { get; set; }
     }
 }

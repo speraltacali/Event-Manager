@@ -21,7 +21,6 @@ namespace EM.Dominio.Entity.MetaData
         string Mail { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es obligatorio")]
-        [Index("Index_Usuario_FechaCreacion", IsUnique = true)]
         DateTime FechaCreacion { get; set; }
 
     }

@@ -1,6 +1,11 @@
-﻿@model EM.IServicio.Evento.DTOs.EventoViewDto
+﻿@using EM.IServicio.Comprobante.DTOs
+@model EM.IServicio.Evento.DTOs.EventoViewDto
 @{
     ViewBag.Title = "PagarEntrada";
+
+
+    var Comprobante = new ComprobanteViewDto();
+
 }
 
 <link rel="stylesheet" type="text/css" href="~/Content/Login/css/util.css">
@@ -21,6 +26,10 @@
                 <h6>Se Utiza Mercado Pago, Para El Cobro De La Entrada</h6>
                 <br />
                 <br />
+                @if (ViewBag.Error != null)
+                {
+                    <div class="alert-danger"> ViewBag.Error</div>
+                }
                 <h4 style="text-align:center; background-color:coral; padding-top:4px;padding-bottom:4px;border-style:groove;">Costo de Entrada $@Model.Precio</h4>
                 <br />
                 <br />
