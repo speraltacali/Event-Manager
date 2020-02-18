@@ -54,6 +54,9 @@
                     <span class="txt1 p-b-11">
                         Nombre
                     </span>
+                    <span class="txt1 p-b-11" style="color:red">
+                        @Html.ValidationMessageFor(x => x.Nombre)
+                    </span>
                     <div class="wrap-input100 validate-input m-b-12" data-validate="Nombre Requerido">
                         <input asp-for="Nombre" class="input100" type="text" name="Nombre">
                         <span class="focus-input100"></span>
@@ -61,6 +64,9 @@
 
                     <span class="txt1 p-b-11">
                         Cuil
+                    </span>
+                    <span class="txt1 p-b-11" style="color:red">
+                        @Html.ValidationMessageFor(x => x.Cuil)
                     </span>
                     <div class="wrap-input100 validate-input m-b-12" data-validate="Cuil Requerido">
                         <input asp-for="Cuil" class="input100" type="text" name="Cuil">
@@ -70,6 +76,9 @@
                     <span class="txt1 p-b-11">
                         Telefono
                     </span>
+                    <span class="txt1 p-b-11" style="color:red">
+                        @Html.ValidationMessageFor(x => x.Telefono)
+                    </span>
                     <div class="wrap-input100 validate-input m-b-12">
                         <input asp-for="Telefono" class="input100" type="text" name="Telefono">
                         <span class="focus-input100"></span>
@@ -78,6 +87,9 @@
                     <span class="txt1 p-b-11">
                         Domicilio
                     </span>
+                    <span class="txt1 p-b-11" style="color:red">
+                        @Html.ValidationMessageFor(x => x.Domicilio)
+                    </span>
                     <div class="wrap-input100 validate-input m-b-12">
                         <input asp-for="Domicilio" class="input100" type="text" name="Domicilio">
                         <span class="focus-input100"></span>
@@ -85,6 +97,9 @@
 
                     <span class="txt1 p-b-11">
                         Fecha De Nacimiento
+                    </span>
+                    <span class="txt1 p-b-11" style="color:red">
+                        @Html.ValidationMessageFor(x => x.FechaNacimiento)
                     </span>
                     <div class="wrap-input100 validate-input m-b-12">
                         <input asp-for="FechaNacimiento" class="input100" type="date" name="FechaNacimiento">
@@ -101,6 +116,9 @@
                     <span class="txt1 p-b-11">
                         Usuario
                     </span>
+                    <span class="txt1 p-b-11" style="color:red">
+                        @Html.ValidationMessage(Usuario.User)
+                    </span>
                     <div class="wrap-input100 validate-input m-b-36" data-validate="Usuario Requerido">
                         <input asp-for="Usuario.User" class="input100" type="text" name="User">
                         <span class="focus-input100"></span>
@@ -109,6 +127,9 @@
                     <span class="txt1 p-b-11">
                         Correo Electronico
                     </span>
+                    <span class="txt1 p-b-11" style="color:red">
+                        @Html.ValidationMessage(Usuario.Mail)
+                    </span>
                     <div class="wrap-input100 validate-input m-b-12" data-validate="Correo Electronico Requerido">
                         <input asp-for="Usuario.Mail" class="input100" type="text" name="Mail">
                         <span class="focus-input100"></span>
@@ -116,6 +137,9 @@
 
                     <span class="txt1 p-b-11">
                         Contraseña
+                    </span>
+                    <span class="txt1 p-b-11" style="color:red">
+                        @Html.ValidationMessage(Usuario.Password)
                     </span>
                     <div class="wrap-input100 validate-input m-b-12" data-validate="Contraseña Requerida">
                         <input asp-for="Usuario.Password" class="input100" type="password" name="Password">
