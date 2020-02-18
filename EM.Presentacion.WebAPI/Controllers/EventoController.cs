@@ -304,7 +304,7 @@ namespace EM.Presentacion.WebAPI.Controllers
         {
             try
             {
-                dto.Numero = 
+                //dto.Numero = 
                 dto.Fecha = DateTime.Now;
                 dto.SubTotal = SessionActiva.Monto;
                 dto.Total = SessionActiva.Monto;
