@@ -1,10 +1,13 @@
 ﻿using EM.Servicio.Base.DtoBase;
 using System;
+using EM.Dominio.Entity.MetaData;
+using System.ComponentModel.DataAnnotations;
 
 namespace EM.IServicio.Persona.DTOs
 {
+    [MetadataType(typeof(IPersona))]
     public class PersonaDto : DtoBase
-    {
+    {   
         public string Apellido { get; set; }
 
         public string Nombre { get; set; }

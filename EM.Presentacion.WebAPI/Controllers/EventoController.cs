@@ -168,11 +168,53 @@ namespace EM.Presentacion.WebAPI.Controllers
             return File(evento.Imagen, "image/jpg");
         }
 
-        public ActionResult PagarEntrada()
+        public ActionResult PagarEntrada(long id)
         {
+            if(Session["Usuario"] != null)
+            {
+                var evento = _eventoServicio.ObtenerPorId(id);
 
+                var entrada = _entradaServicio.ObtenerPorIdEvento(evento.Id);
+
+                var auxfecha = _fechaEventoServicio.ObtenerPorIdEvento(evento.Id);
+
+                var fechaPrincipal = _fechaServicio.ObtenerPorId(auxfecha.FechaId);
+
+                var eventoView = new EventoViewDto
+                {
+
+                    Titulo = evento.Titulo,
+                    Descripcion = evento.Descripcion,
+                    Mail = evento.Mail,
+                    TipoEventoId = evento.TipoEventoId,
+                    Orante = evento.Orante,
+                    Organizacion = evento.Organizacion,
+                    Telefono = evento.Telefono,
+                    Precio = entrada.Monto,
+                    EntradaId = entrada.Id,
+                    Calle = evento.Domicilio,
+                    CalleNumero = evento.Domicilio,
+                    FechaEvento = fechaPrincipal.FechaEvento.Date,
+                    HoraFin = fechaPrincipal.HoraCierre,
+                    HoraInicio = fechaPrincipal.HoraInicio,
+                    Id = evento.Id,
+                    Longitud = evento.Longitud,
+                    Latitud = evento.Latitud,
+                    Imagen = evento.Imagen
+                };
+
+                return View(eventoView);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Usuario");
+            }
+        }
+
+        [HttpGet]
+        public ActionResult CreateEntrada()
+        {
             return View();
-
         }
 
     }

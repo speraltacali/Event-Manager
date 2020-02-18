@@ -29,7 +29,7 @@ namespace EM.Presentacion.WebAPI.Controllers
 
         public ActionResult Perfil()
         {
-            if(Session["Usuario"]!=)
+            if(Session["Usuario"]!=null)
             {
                 var Persona = _personaServicio.ObtenerPorId(SessionActiva.PersonaId);
                 return View(Persona);

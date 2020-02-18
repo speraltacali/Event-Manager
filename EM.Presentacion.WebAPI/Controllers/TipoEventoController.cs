@@ -23,25 +23,40 @@ namespace EM.Presentacion.WebAPI.Controllers
         [HttpGet]
         public ActionResult Index(string cadena)
         {
-            ViewData["Busqueda"] = cadena;
-
-            if (!String.IsNullOrEmpty(cadena))
+            if(Session["Usuario"] != null)
             {
-                var ListaTipos = _tipoEvento.GetByFilter(cadena);
-                return View(ListaTipos);
+                ViewData["Busqueda"] = cadena;
+
+                if (!String.IsNullOrEmpty(cadena))
+                {
+                    var ListaTipos = _tipoEvento.GetByFilter(cadena);
+                    return View(ListaTipos);
+                }
+                else
+                {
+                    var list = _tipoEvento.Get();
+
+                    return View(list);
+                }
             }
             else
             {
-                var list = _tipoEvento.Get();
-
-                return View(list);
+                return RedirectToAction("Login", "Usuario");
             }
         }
 
         public ActionResult NuevoEvento()
         {
-            return View();
+            if (Session["Usuario"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Usuario");
+            }
         }
+    
 
         [HttpPost]
         public ActionResult NuevoEvento(TipoEventoDto tipoEventoDto)

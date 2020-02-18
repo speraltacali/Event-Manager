@@ -48,12 +48,20 @@ namespace EM.Presentacion.WebAPI.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            if (Session["Usuario"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Perfil", "Persona");
+            }
         }
 
         [HttpPost]
         public ActionResult Create(PersonaDto Persona, UsuarioDto Usuario)
         {
+
             if (Session["Usuario"] == null)
             {
                 if (ModelState.IsValid)
@@ -87,6 +95,7 @@ namespace EM.Presentacion.WebAPI.Controllers
             {
                 return RedirectToAction("Perfil", "Persona");
             }
+
         }
     }
 }
