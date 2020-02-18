@@ -298,12 +298,8 @@ namespace EM.Presentacion.WebAPI.Controllers
         [HttpPost]
         public ActionResult PagarEvento()
         {
-
+            return View();
         }
-
-
-
-
 
         [HttpGet]
         public ActionResult CreateEntrada(long valor)
@@ -311,5 +307,16 @@ namespace EM.Presentacion.WebAPI.Controllers
             return View();
         }
 
+        public ActionResult BuscarEvento(string search)
+        {
+            if (search == null)
+            {
+                return View();
+            }
+
+            ViewBag.Busqueda = search;
+
+            return View();
+        }
     }
 }

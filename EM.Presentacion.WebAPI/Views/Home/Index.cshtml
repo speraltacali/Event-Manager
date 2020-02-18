@@ -1,11 +1,9 @@
 ﻿@using EM.IServicio.Evento;
 @using EM.Servicio.Evento;
-
 @{
     ViewBag.Title = "Home Page";
 
     IEventoServicio _eventoServicio = new EventoServicio();
-
 
     var ListaEventos = _eventoServicio.ObtenerTodo();
     string active = "active";
@@ -18,7 +16,7 @@
 
 <main role="main">
 
-    <form asp-action="Index" asp-controller="Home" method="get">
+    <form asp-action="Index" asp-controller="Home" method="get">       
 
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
@@ -107,7 +105,7 @@
             <p class="lead">Solo Tienes que Registrarte, Podras Crear Todos Los Evento Que Quieras. Tambien Podras Inscribirte a Otros Eventos Sin Problema Alguno.</p>
         </div>
         <div class="col-md-5">
-            <img src="~/Content/ImageHome/loginuser.png" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"/>
+            <img src="~/Content/ImageHome/loginuser.png" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" />
         </div>
     </div>
 

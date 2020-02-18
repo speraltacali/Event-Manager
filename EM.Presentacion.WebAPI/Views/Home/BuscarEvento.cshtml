@@ -1,0 +1,52 @@
+﻿@using EM.IServicio.Evento;
+@using EM.Servicio.Evento;
+@{
+    ViewBag.Title = "BuscarEvento";
+
+    IEventoServicio _eventoServicio = new EventoServicio();
+
+    var ListaAuxiliar = _eventoServicio.Obtener(ViewBag.Busqueda);
+
+}
+
+<link rel="stylesheet" type="text/css" href="~/Content/Login/css/util.css">
+<link rel="stylesheet" type="text/css" href="~/Content/Login/css/main.css">
+
+<div class="container">
+    <div class="container-login100">
+        <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
+            <main role="main">
+                <div class="container marketing">
+                    @foreach (var item in ListaAuxiliar)
+                     {
+                        <!-- Three columns of text below the carousel -->
+                        <div class="row">
+
+
+                            <!-- xmlns="http://www.w3.org/2000/svg" -->
+                            <div class="col-lg-10">
+
+                                <!--<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>-->
+                                <img src="@Url.Action("GetImage", new { id = @item.Id })" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" width="280" height="180" />
+                                <h2>@item.Titulo</h2>
+                                <p>@item.Descripcion</p>
+                                <p><a class="btn btn-secondary" href="~/Evento/ViewEvento/@item.Id" role="button">Ver Evento &raquo;</a></p>
+
+                            </div>
+
+                            
+
+                        </div>
+                     }
+                </div><!-- /.row -->
+            </main>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+<script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+
+<script src="/docs/4.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
