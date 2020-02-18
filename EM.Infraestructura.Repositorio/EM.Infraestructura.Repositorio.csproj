@@ -72,6 +72,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provincia\ProvinciaRepositorio.cs" />
     <Compile Include="Sala\SalaRepositorio.cs" />
+    <Compile Include="TarjetaDebito\TarjetaDebitoRepositorio.cs" />
     <Compile Include="TipoComprobante\TipoComprobanteRepositorio.cs" />
     <Compile Include="TipoEvento\TipoEventoRepositorio.cs" />
     <Compile Include="Transporte\TransporteRepositorio.cs" />

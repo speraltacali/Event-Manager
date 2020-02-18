@@ -14,6 +14,8 @@ namespace EM.IServicio.CreadorEvento
 
         IEnumerable<EventoDto> ObtenerPorCreador(long id);
 
+        bool ValidarAlCreador(long User, long Event);
+
         IEnumerable<CreadorEventoDto> Obtener(string cadenaBuscar);
 
         CreadorEventoDto ObtenerPorId(long id);

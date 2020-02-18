@@ -16,7 +16,7 @@ namespace EM.Dominio.Entity.Entidades
 
         public long EmpresaId { get; set; }
 
-        public virtual ICollection<Comprobante> Comprobantes { get; set; }
+        //public virtual ICollection<Comprobante> Comprobantes { get; set; }
 
         public virtual Empresa Empresas { get; set; }
     }

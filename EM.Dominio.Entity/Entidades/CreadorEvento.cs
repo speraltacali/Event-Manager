@@ -8,7 +8,7 @@ using EM.Dominio.Entity.MetaData;
 namespace EM.Dominio.Entity.Entidades
 {
     [Table("CreadorEvento")]
-    [MetadataType(typeof(IEntrada))]
+    [MetadataType(typeof(ICreadorEvento))]
     public class CreadorEvento : EntityBase
     {
         public long EventoId { get; set; }

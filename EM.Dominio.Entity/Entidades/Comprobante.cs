@@ -1,4 +1,5 @@
-﻿using EM.Dominio.Base;
+﻿using System.Collections.Generic;
+using EM.Dominio.Base;
 using EM.Dominio.Entity.MetaData;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -23,8 +24,14 @@ namespace EM.Dominio.Entity.Entidades
 
         public long FormaPagoId { get; set; }
 
-        public virtual TipoComprobante TiposComprobantes { get; set; }
+        //public virtual TipoComprobante TiposComprobantes { get; set; }
 
-        public virtual FormaPago FormasPagos { get; set; }
+        //public virtual FormaPago FormasPagos { get; set; }
+
+        public virtual Usuario Usuario { get; set; }
+
+        public virtual Evento Evento { get; set; }
+
+        public virtual ICollection<TarjetaDebito> TarjetaDebitos { get; set; }
     }
 }

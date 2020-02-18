@@ -135,7 +135,7 @@ namespace EM.Presentacion.WebAPI.Controllers
 
                 //*************************************************************//
 
-                return ViewEvento(EventoObj.Id);
+                return RedirectToAction("ViewEvento" , new {id = EventoObj.Id});
 
             }
             else
@@ -148,79 +148,99 @@ namespace EM.Presentacion.WebAPI.Controllers
         [HttpGet]
         public ActionResult ViewEvento(long id)
         {
-
-            var evento = _eventoServicio.ObtenerPorId(id);
-
-            var entrada = _entradaServicio.ObtenerPorIdEvento(evento.Id);
-
-            var auxfecha = _fechaEventoServicio.ObtenerPorIdEvento(evento.Id);
-
-            var fechaPrincipal = _fechaServicio.ObtenerPorId(auxfecha.FechaId);
-
-            var eventoView = new EventoViewDto
+            if (Session["Usuario"] != null)
             {
+                if (!_creadorEventoServicio.ValidarAlCreador(SessionActiva.UsuarioId,id))
+                {
+                    var evento = _eventoServicio.ObtenerPorId(id);
 
-                Titulo = evento.Titulo,
-                Descripcion = evento.Descripcion,
-                Mail = evento.Mail,
-                TipoEventoId = evento.TipoEventoId,
-                Orante = evento.Orante,
-                Organizacion = evento.Organizacion,
-                Telefono = evento.Telefono,
-                Precio = entrada.Monto,
-                EntradaId = entrada.Id,
-                Calle = evento.Domicilio,
-                CalleNumero = evento.Domicilio,
-                FechaEvento = fechaPrincipal.FechaEvento.Date,
-                HoraFin = fechaPrincipal.HoraCierre,
-                HoraInicio = fechaPrincipal.HoraInicio,
-                Id = evento.Id, 
-                Longitud = evento.Longitud,
-                Latitud = evento.Latitud,
-                Imagen = evento.Imagen
-            };
+                    var entrada = _entradaServicio.ObtenerPorIdEvento(evento.Id);
+
+                    var auxfecha = _fechaEventoServicio.ObtenerPorIdEvento(evento.Id);
+
+                    var fechaPrincipal = _fechaServicio.ObtenerPorId(auxfecha.FechaId);
+
+                    var eventoView = new EventoViewDto
+                    {
+
+                        Titulo = evento.Titulo,
+                        Descripcion = evento.Descripcion,
+                        Mail = evento.Mail,
+                        TipoEventoId = evento.TipoEventoId,
+                        Orante = evento.Orante,
+                        Organizacion = evento.Organizacion,
+                        Telefono = evento.Telefono,
+                        Precio = entrada.Monto,
+                        EntradaId = entrada.Id,
+                        Calle = evento.Domicilio,
+                        CalleNumero = evento.Domicilio,
+                        FechaEvento = fechaPrincipal.FechaEvento.Date,
+                        HoraFin = fechaPrincipal.HoraCierre,
+                        HoraInicio = fechaPrincipal.HoraInicio,
+                        Id = evento.Id,
+                        Longitud = evento.Longitud,
+                        Latitud = evento.Latitud,
+                        Imagen = evento.Imagen
+                    };
 
 
-            return View(eventoView);
+                    return View(eventoView);
+                }
+                else
+                {
+                    return RedirectToAction("PerfilEvento", new{ id = id});
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Usuario");
+            }
         }
 
         [HttpGet]
         public ActionResult PerfilEvento(long id)
         {
-
-            var evento = _eventoServicio.ObtenerPorId(id);
-
-            var entrada = _entradaServicio.ObtenerPorIdEvento(evento.Id);
-
-            var auxfecha = _fechaEventoServicio.ObtenerPorIdEvento(evento.Id);
-
-            var fechaPrincipal = _fechaServicio.ObtenerPorId(auxfecha.FechaId);
-
-            var eventoView = new EventoViewDto
+            if (Session["Usuario"] != null)
             {
 
-                Titulo = evento.Titulo,
-                Descripcion = evento.Descripcion,
-                Mail = evento.Mail,
-                TipoEventoId = evento.TipoEventoId,
-                Orante = evento.Orante,
-                Organizacion = evento.Organizacion,
-                Telefono = evento.Telefono,
-                Precio = entrada.Monto,
-                EntradaId = entrada.Id,
-                Calle = evento.Domicilio,
-                CalleNumero = evento.Domicilio,
-                FechaEvento = fechaPrincipal.FechaEvento.Date,
-                HoraFin = fechaPrincipal.HoraCierre,
-                HoraInicio = fechaPrincipal.HoraInicio,
-                Id = evento.Id,
-                Longitud = evento.Longitud,
-                Latitud = evento.Latitud,
-                Imagen = evento.Imagen
-            };
+                var evento = _eventoServicio.ObtenerPorId(id);
+
+                var entrada = _entradaServicio.ObtenerPorIdEvento(evento.Id);
+
+                var auxfecha = _fechaEventoServicio.ObtenerPorIdEvento(evento.Id);
+
+                var fechaPrincipal = _fechaServicio.ObtenerPorId(auxfecha.FechaId);
+
+                var eventoView = new EventoViewDto
+                {
+
+                    Titulo = evento.Titulo,
+                    Descripcion = evento.Descripcion,
+                    Mail = evento.Mail,
+                    TipoEventoId = evento.TipoEventoId,
+                    Orante = evento.Orante,
+                    Organizacion = evento.Organizacion,
+                    Telefono = evento.Telefono,
+                    Precio = entrada.Monto,
+                    EntradaId = entrada.Id,
+                    Calle = evento.Domicilio,
+                    CalleNumero = evento.Domicilio,
+                    FechaEvento = fechaPrincipal.FechaEvento.Date,
+                    HoraFin = fechaPrincipal.HoraCierre,
+                    HoraInicio = fechaPrincipal.HoraInicio,
+                    Id = evento.Id,
+                    Longitud = evento.Longitud,
+                    Latitud = evento.Latitud,
+                    Imagen = evento.Imagen
+                };
 
 
-            return View(eventoView);
+                return View(eventoView);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Usuario");
+            }
         }
 
         public ActionResult GetImage(int id)
@@ -274,6 +294,16 @@ namespace EM.Presentacion.WebAPI.Controllers
                 return RedirectToAction("Login", "Usuario");
             }
         }
+
+        [HttpPost]
+        public ActionResult PagarEvento()
+        {
+
+        }
+
+
+
+
 
         [HttpGet]
         public ActionResult CreateEntrada(long valor)

@@ -30,6 +30,9 @@ namespace EM.Dominio.Entity.Entidades
         public virtual Persona Persona { get; set; }
 
         public virtual IEnumerable<CreadorEvento> CreadorEventos { get; set; }
+
+        public virtual ICollection<Comprobante> Comprobantes { get; set; }
+
         //public virtual Ocupacion Ocupacion{ get; set; }
 
     }

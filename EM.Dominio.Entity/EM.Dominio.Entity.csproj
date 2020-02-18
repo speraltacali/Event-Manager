@@ -72,6 +72,7 @@
     <Compile Include="Entidades\PersonaEvento.cs" />
     <Compile Include="Entidades\Provincia.cs" />
     <Compile Include="Entidades\Sala.cs" />
+    <Compile Include="Entidades\TarjetaDebito.cs" />
     <Compile Include="Entidades\TipoComprobante.cs" />
     <Compile Include="Entidades\TipoEvento.cs" />
     <Compile Include="Entidades\Transporte.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="MetaData\ILocalidad.cs" />
     <Compile Include="MetaData\ILugar.cs" />
     <Compile Include="MetaData\ISala.cs" />
+    <Compile Include="MetaData\ITarjetaDebito.cs" />
     <Compile Include="MetaData\ITipoComprobante.cs" />
     <Compile Include="MetaData\ITipoEvento.cs" />
     <Compile Include="MetaData\ITransporte.cs" />
