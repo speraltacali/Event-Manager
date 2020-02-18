@@ -603,6 +603,7 @@
     <Content Include="Views\Evento\ViewEvento.cshtml" />
     <Content Include="Views\Evento\PagarEntrada.cshtml" />
     <Content Include="Views\Evento\CreateEntrada.cshtml" />
+    <Content Include="Views\Evento\PerfilEvento.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
