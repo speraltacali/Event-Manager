@@ -72,6 +72,7 @@
     <Compile Include="ComprobanteFactura\DTOs\ComprobanteFacturaDto.cs" />
     <Compile Include="ComprobanteFactura\IComprobanteFacturaServicio.cs" />
     <Compile Include="Comprobante\DTOs\ComprobanteDto.cs" />
+    <Compile Include="Comprobante\DTOs\ComprobanteViewDto.cs" />
     <Compile Include="Comprobante\IComprobanteServicio.cs" />
     <Compile Include="CondicionIva\DTOs\CondicionIvaDto.cs" />
     <Compile Include="CondicionIva\ICondicionIvaServicio.cs" />
@@ -119,6 +120,8 @@
     <Compile Include="Provincia\IProvinciaServicio.cs" />
     <Compile Include="Sala\DTOs\SalaDto.cs" />
     <Compile Include="Sala\ISalaServicio.cs" />
+    <Compile Include="TarjetaDebito\DTO\TarjetaDebitoDto.cs" />
+    <Compile Include="TarjetaDebito\ITarjetaDebitoServicio.cs" />
     <Compile Include="TipoComprobante\DTOs\TipoComprobanteDto.cs" />
     <Compile Include="TipoComprobante\ITipoComprobanteServicio.cs" />
     <Compile Include="TipoEvento\DTOs\TipoEventoDto.cs" />

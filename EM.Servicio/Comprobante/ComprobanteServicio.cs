@@ -41,8 +41,8 @@ namespace EM.Servicio.Comprobante
                     SubTotal = x.SubTotal,
                     Total = x.Total,
                     Descuento = x.Descuento,
-                    TipoComprobanteId = x.TipoComprobanteId,
-                    FormaPagoId = x.FormaPagoId
+                    EventoId = x.EventoId,
+                    UsuarioId = x.UsuarioId
                 })
                 .ToList();
         }
@@ -57,8 +57,8 @@ namespace EM.Servicio.Comprobante
                     SubTotal = x.SubTotal,
                     Total = x.Total,
                     Descuento = x.Descuento,
-                    TipoComprobanteId = x.TipoComprobanteId,
-                    FormaPagoId = x.FormaPagoId
+                    EventoId = x.EventoId,
+                    UsuarioId = x.UsuarioId
                 })
                 .ToList();
         }
@@ -76,9 +76,35 @@ namespace EM.Servicio.Comprobante
                 SubTotal = comprobante.SubTotal,
                 Total = comprobante.Total,
                 Descuento = comprobante.Descuento,
-                TipoComprobanteId = comprobante.TipoComprobanteId,
-                FormaPagoId = comprobante.FormaPagoId
+                EventoId = comprobante.EventoId,
+                UsuarioId = comprobante.UsuarioId
             };
+        }
+
+        public ComprobanteDto Insertar(ComprobanteDto dto)
+        {
+            var Comprobante = new Dominio.Entity.Entidades.Comprobante()
+            {
+                Numero = dto.Numero,
+                Fecha = dto.Fecha,
+                SubTotal = dto.SubTotal,
+                Total = dto.Total,
+                Descuento = dto.Descuento,
+                EventoId = dto.EventoId,
+                UsuarioId = dto.UsuarioId
+            };
+
+            _comprobanteRepositorio.Add(Comprobante);
+            Guardar();
+
+            dto.Id = Comprobante.Id;
+            return dto;
+
+        }
+
+        public void Guardar()
+        {
+            _comprobanteRepositorio.Save();
         }
     }
 }
