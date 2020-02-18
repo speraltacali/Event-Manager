@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
+using EM.IServicio.Comprobante;
 using EM.IServicio.Comprobante.DTOs;
 using EM.IServicio.CreadorEvento;
 using EM.IServicio.CreadorEvento.DTO;
@@ -17,12 +18,15 @@ using EM.IServicio.FechaEvento;
 using EM.IServicio.FechaEvento.DTOs;
 using EM.IServicio.Helpers.Foto;
 using EM.IServicio.Helpers.Usuario;
+using EM.IServicio.TarjetaDebito;
 using EM.IServicio.TipoEvento;
+using EM.Servicio.Comprobante;
 using EM.Servicio.CreadorEvento;
 using EM.Servicio.Entrada;
 using EM.Servicio.Evento;
 using EM.Servicio.Fecha;
 using EM.Servicio.FechaEvento;
+using EM.Servicio.TarjetaDebito;
 using EM.Servicio.TipoEvento;
 
 namespace EM.Presentacion.WebAPI.Controllers
@@ -35,7 +39,8 @@ namespace EM.Presentacion.WebAPI.Controllers
         private readonly IFechaEventoServicio _fechaEventoServicio = new FechaEventoServicio();
         private readonly IEntradaServicio _entradaServicio = new EntradaServicio();
         private readonly ICreadorEventoServicio _creadorEventoServicio = new CreadorEventoServicio();
-
+        private readonly IComprobanteServicio _comprobanteServicio = new ComprobanteServicio();
+        private readonly ITarjetaDebitoServicio _tarjetaDebitpServicio = new TarjetaDebitoServicio();
 
         // GET: Evento
         public ActionResult Crear()
@@ -304,12 +309,14 @@ namespace EM.Presentacion.WebAPI.Controllers
         {
             try
             {
-                //dto.Numero = 
                 dto.Fecha = DateTime.Now;
                 dto.SubTotal = SessionActiva.Monto;
-                dto.Total = SessionActiva.Monto;
+                dto.Total = dto.Total;
                 dto.UsuarioId = SessionActiva.UsuarioId;
-                dto.EventoId = SessionActiva.EventoId;
+                dto.EventoId = dto.EventoId;
+
+
+
             }
             catch (Exception e)
             {
