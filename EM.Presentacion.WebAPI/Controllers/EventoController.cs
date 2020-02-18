@@ -159,6 +159,45 @@ namespace EM.Presentacion.WebAPI.Controllers
             return View(eventoView);
         }
 
+        [HttpGet]
+        public ActionResult PerfilEvento(long id)
+        {
+
+            var evento = _eventoServicio.ObtenerPorId(id);
+
+            var entrada = _entradaServicio.ObtenerPorIdEvento(evento.Id);
+
+            var auxfecha = _fechaEventoServicio.ObtenerPorIdEvento(evento.Id);
+
+            var fechaPrincipal = _fechaServicio.ObtenerPorId(auxfecha.FechaId);
+
+            var eventoView = new EventoViewDto
+            {
+
+                Titulo = evento.Titulo,
+                Descripcion = evento.Descripcion,
+                Mail = evento.Mail,
+                TipoEventoId = evento.TipoEventoId,
+                Orante = evento.Orante,
+                Organizacion = evento.Organizacion,
+                Telefono = evento.Telefono,
+                Precio = entrada.Monto,
+                EntradaId = entrada.Id,
+                Calle = evento.Domicilio,
+                CalleNumero = evento.Domicilio,
+                FechaEvento = fechaPrincipal.FechaEvento.Date,
+                HoraFin = fechaPrincipal.HoraCierre,
+                HoraInicio = fechaPrincipal.HoraInicio,
+                Id = evento.Id,
+                Longitud = evento.Longitud,
+                Latitud = evento.Latitud,
+                Imagen = evento.Imagen
+            };
+
+
+            return View(eventoView);
+        }
+
         public ActionResult GetImage(int id)
         {
             // fetch image data from database

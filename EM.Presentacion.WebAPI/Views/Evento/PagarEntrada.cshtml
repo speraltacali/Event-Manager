@@ -6,14 +6,13 @@
 <link rel="stylesheet" type="text/css" href="~/Content/Login/css/util.css">
 <link rel="stylesheet" type="text/css" href="~/Content/Login/css/main.css">
 
-
 <div class="container">
-    
+
     <form asp-action="CreateEntrada" asp-controller="Evento" method="get">
         <div class="container-login100">
             <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
 
-                <h2>|--- Pagar Entrada ---|</h2>
+                <h2>|---    Pagar Entrada    ---|</h2>
                 <br />
                 <h4><u>@Model.Titulo</u></h4>
                 <br />
@@ -22,21 +21,58 @@
                 <h6>Se Utiza Mercado Pago, Para El Cobro De La Entrada</h6>
                 <br />
                 <br />
-                <h4 style="text-align:center">Costo de Entrada $@Model.Precio</h4>
+                <h4 style="text-align:center; background-color:coral; padding-top:4px;padding-bottom:4px;border-style:groove;">Costo de Entrada $@Model.Precio</h4>
                 <br />
-                <a mp-mode="dftl" style="width:150px;text-align:center;margin-left:110px" href="https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=122557779-786b1d5e-4378-489e-b5d8-1d6e1b1924cc" name="MP-payButton" class='green-ar-l-sq-none'>Pagar</a>
+                <br />
+                <section class="container-fluid" style="background-color:antiquewhite; padding-top:15px; padding-bottom:15px;">
+                    <label>Numero Tarjeta Credito</label>
+                    <input type="text" class="form-control" name="Numero" placeholder="Numero Tarjeta" maxlength="15">
 
-                <div class="container-login100-form-btn">
-                    <button class="login100-form-btn">
-                        Crear
-                    </button>
-                </div>
+                    <label>Nombre del Titular</label>
+                    <input type="text" class="form-control" name="Nombre" placeholder="Nombre Completo">
+
+                    <div>
+                        <label>Mes    - - - - -    Año</label>
+                        <select name="Mes" class="form-control" style="width:60px;display:inline-block">
+                            <option Value="1" class="option">1</option>
+                            <option Value="2" class="option">2</option>
+                            <option Value="3" class="option">3</option>
+                            <option Value="4" class="option">4</option>
+                            <option Value="5" class="option">5</option>
+                            <option Value="6" class="option">6</option>
+                            <option Value="7" class="option">7</option>
+                            <option Value="8" class="option">8</option>
+                            <option Value="9" class="option">9</option>
+                            <option Value="10" class="option">10</option>
+                            <option Value="11" class="option">11</option>
+                            <option Value="12" class="option">12</option>
+                        </select>
+
+                        <select name="Ano" class="form-control" style="width:90px;display:inline-block">
+                            <option></option>
+                            <option value="2020" class="option">2020</option>
+                            <option value="2021" class="option">2021</option>
+                            <option value="2022" class="option">2022</option>
+                            <option value="2023" class="option">2023</option>
+                            <option value="2024" class="option">2024</option>
+                            <option value="2025" class="option">2025</option>
+                            <option value="2026" class="option">2026</option>
+                        </select>
+                        <label style="display:inline-block"> Fecha Vencimiento</label>
+                    </div>
+                    
+                    
+
+                    <label for="card-ccv">CCV</label>
+                    <input type="text" name="ccv" class="form-control" placeholder="CCV" maxlength="3" style="width:60px;"/>
+                    <br />
+
+                    <button class="btn btn-outline-success" style="margin-left:100px;width:150px;height:60px">Pagar</button>
+
+                </section>
+
             </div>
         </div>
-
-        <script type="text/javascript">
-            (function () { function $MPC_load() { window.$MPC_loaded !== true && (function () { var s = document.createElement("script"); s.type = "text/javascript"; s.async = true; s.src = document.location.protocol + "//secure.mlstatic.com/mptools/render.js"; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x); window.$MPC_loaded = true; })(); } window.$MPC_loaded !== true ? (window.attachEvent ? window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null; })();
-        </script>
     </form>
 
     <br /><br />
