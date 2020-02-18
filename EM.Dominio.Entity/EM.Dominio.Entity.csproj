@@ -52,6 +52,7 @@
     <Compile Include="Entidades\Alojamiento.cs" />
     <Compile Include="Entidades\ComprobanteFactura.cs" />
     <Compile Include="Entidades\CondicionIva.cs" />
+    <Compile Include="Entidades\CreadorEvento.cs" />
     <Compile Include="Entidades\Domicilio.cs" />
     <Compile Include="Entidades\Empresa.cs" />
     <Compile Include="Entidades\Entrada.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="MetaData\IComprobante.cs" />
     <Compile Include="MetaData\IComprobanteFactura.cs" />
     <Compile Include="MetaData\ICondicionIva.cs" />
+    <Compile Include="MetaData\ICreadorEvento.cs" />
     <Compile Include="MetaData\IDomicilio.cs" />
     <Compile Include="MetaData\IAlojamiento.cs" />
     <Compile Include="MetaData\IEmpresa.cs" />

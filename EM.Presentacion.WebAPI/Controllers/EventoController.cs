@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
+using EM.IServicio.CreadorEvento;
+using EM.IServicio.CreadorEvento.DTO;
 using EM.IServicio.Entrada;
 using EM.IServicio.Entrada.DTOs;
 using EM.IServicio.Evento;
@@ -13,7 +15,9 @@ using EM.IServicio.Fecha.DTOs;
 using EM.IServicio.FechaEvento;
 using EM.IServicio.FechaEvento.DTOs;
 using EM.IServicio.Helpers.Foto;
+using EM.IServicio.Helpers.Usuario;
 using EM.IServicio.TipoEvento;
+using EM.Servicio.CreadorEvento;
 using EM.Servicio.Entrada;
 using EM.Servicio.Evento;
 using EM.Servicio.Fecha;
@@ -24,22 +28,32 @@ namespace EM.Presentacion.WebAPI.Controllers
 {
     public class EventoController : Controller
     {
-        private IEventoServicio _eventoServicio = new EventoServicio();
-        private ITipoEventoServicio _tipoEventoServicio = new TipoEventoServicio();
-        private IFechaServicio _fechaServicio = new FechaServicio();
-        private IFechaEventoServicio _fechaEventoServicio = new FechaEventoServicio();
-        private IEntradaServicio _entradaServicio = new EntradaServicio();
+        private readonly IEventoServicio _eventoServicio = new EventoServicio();
+        private readonly ITipoEventoServicio _tipoEventoServicio = new TipoEventoServicio();
+        private readonly IFechaServicio _fechaServicio = new FechaServicio();
+        private readonly IFechaEventoServicio _fechaEventoServicio = new FechaEventoServicio();
+        private readonly IEntradaServicio _entradaServicio = new EntradaServicio();
+        private readonly ICreadorEventoServicio _creadorEventoServicio = new CreadorEventoServicio();
+
 
         // GET: Evento
         public ActionResult Crear()
         {
-            _tipoEventoServicio.InsertarPorDefecto();
 
-            ViewBag.ListaTipoEvento = _tipoEventoServicio.Get().ToList();
-            
-            //*************************************************************************//
+            if (Session["Usuario"] != null)
+            {
+                _tipoEventoServicio.InsertarPorDefecto();
 
-            return View();
+                ViewBag.ListaTipoEvento = _tipoEventoServicio.Get().ToList();
+
+                //*************************************************************************//
+
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Usuario");
+            }
         }
 
         [HttpPost]
@@ -107,6 +121,17 @@ namespace EM.Presentacion.WebAPI.Controllers
                 };
 
                 _entradaServicio.Insertar(entrada);
+
+                //*************************************************************//
+
+                var CreadorEvento = new CreadorEventoDto()
+                {
+                    EventoId = EventoObj.Id,
+                    UsuarioId = SessionActiva.UsuarioId,
+                    Fecha = DateTime.Now
+                };
+
+                _creadorEventoServicio.Insertar(CreadorEvento);
 
                 //*************************************************************//
 
@@ -212,7 +237,7 @@ namespace EM.Presentacion.WebAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult CreateEntrada()
+        public ActionResult CreateEntrada(long valor)
         {
             return View();
         }

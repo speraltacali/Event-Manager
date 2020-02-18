@@ -43,6 +43,7 @@
     <Compile Include="Alojamiento\AlojamientoServicio.cs" />
     <Compile Include="Comprobante\ComprobanteServicio.cs" />
     <Compile Include="CondicionIva\CondicionIvaServicio.cs" />
+    <Compile Include="CreadorEvento\CreadorEventoServicio.cs" />
     <Compile Include="Domicilio\DomicilioServicio.cs" />
     <Compile Include="Empresa\EmpresaServicio.cs" />
     <Compile Include="Entrada\EntradaServicio.cs" />

@@ -21,6 +21,10 @@ namespace EM.Presentacion.WebAPI.Controllers
             if (Session["Usuario"] != null)
             {
                 Session.Remove("Usuario");
+                SessionActiva.UsuarioId = 0;
+                SessionActiva.PersonaId = 0;
+                SessionActiva.ApyNom = null;
+
                 return View();
             }
             else

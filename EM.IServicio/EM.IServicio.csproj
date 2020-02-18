@@ -75,6 +75,8 @@
     <Compile Include="Comprobante\IComprobanteServicio.cs" />
     <Compile Include="CondicionIva\DTOs\CondicionIvaDto.cs" />
     <Compile Include="CondicionIva\ICondicionIvaServicio.cs" />
+    <Compile Include="CreadorEvento\DTO\CreadorEventoDto.cs" />
+    <Compile Include="CreadorEvento\ICreadorEventoServicio.cs" />
     <Compile Include="Domicilio\DTOs\DomicilioDto.cs" />
     <Compile Include="Domicilio\IDomicilioServicio.cs" />
     <Compile Include="Empresa\DTOs\EmpresaDto.cs" />

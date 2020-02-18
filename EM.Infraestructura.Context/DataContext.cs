@@ -50,6 +50,8 @@ namespace EM.Infraestructura.Context
 
         public IDbSet<FormaPago> FormaPagos { get; set; }
 
+        public IDbSet<CreadorEvento> CreadorEventos { get; set; }
+
         public IDbSet<Gastronomia> Gastronomias { get; set; }
 
         public IDbSet<InscripcionCuenta> InscripcionCuentas { get; set; }

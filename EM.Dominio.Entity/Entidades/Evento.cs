@@ -42,6 +42,8 @@ namespace EM.Dominio.Entity.Entidades
 
         public virtual ICollection<PersonaEvento> PersonasEventos { get; set; }
 
+        public virtual ICollection<CreadorEvento> CreadorEventos { get; set; }
+
         public virtual TipoEvento TiposEventos { get; set; }
     }
 }

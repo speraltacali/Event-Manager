@@ -51,6 +51,7 @@
     <Compile Include="ComprobanteFactura\ComprobanteFacturaRepositorio.cs" />
     <Compile Include="Comprobante\ComprobanteRepositorio.cs" />
     <Compile Include="CondicionIva\CondicionIvaRepositorio.cs" />
+    <Compile Include="CreadorEvento\CreadorEventoRepositorio.cs" />
     <Compile Include="Domicilio\DomicilioRepositorio.cs" />
     <Compile Include="Empresa\EmpresaRepositorio.cs" />
     <Compile Include="Entrada\EntradaRepositorio.cs" />

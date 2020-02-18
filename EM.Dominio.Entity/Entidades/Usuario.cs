@@ -1,6 +1,7 @@
 ﻿using EM.Dominio.Base;
 using EM.Dominio.Entity.MetaData;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -18,6 +19,8 @@ namespace EM.Dominio.Entity.Entidades
 
         public DateTime FechaCreacion { get; set; }
 
+        public byte[] Foto { get; set; }
+
         //public long OcupacionId { get; set; }
 
         public long PersonaId { get; set; }
@@ -26,6 +29,7 @@ namespace EM.Dominio.Entity.Entidades
 
         public virtual Persona Persona { get; set; }
 
+        public virtual IEnumerable<CreadorEvento> CreadorEventos { get; set; }
         //public virtual Ocupacion Ocupacion{ get; set; }
 
     }
