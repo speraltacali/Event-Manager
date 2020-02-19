@@ -65,9 +65,13 @@ namespace EM.Presentacion.WebAPI.Controllers
         public ActionResult Crear(EventoViewDto eventoViewDto, HttpPostedFileBase img)
         {
 
-            using (var reader = new BinaryReader(img.InputStream))
+
+            if (img != null)
             {
-                eventoViewDto.Imagen = reader.ReadBytes(img.ContentLength);
+                using (var reader = new BinaryReader(img.InputStream))
+                {
+                    eventoViewDto.Imagen = reader.ReadBytes(img.ContentLength);
+                }
             }
 
 
@@ -75,73 +79,81 @@ namespace EM.Presentacion.WebAPI.Controllers
 
             if (ModelState.IsValid)
             {
-
-                var evento = new EventoDto
+                try
                 {
-                    Titulo = eventoViewDto.Titulo,
-                    Descripcion = eventoViewDto.Descripcion,
-                    Mail = eventoViewDto.Mail,
-                    Latitud = eventoViewDto.Latitud,
-                    Longitud = eventoViewDto.Longitud,
-                    TipoEventoId = eventoViewDto.TipoEventoId,
-                    Orante = eventoViewDto.Orante,
-                    Organizacion = eventoViewDto.Organizacion,
-                    Domicilio = eventoViewDto.DomicilioCompleto,
-                    Telefono = eventoViewDto.Telefono,
-                    Imagen = eventoViewDto.Imagen
-                };
 
-                var EventoObj = _eventoServicio.Insertar(evento);
+                    var evento = new EventoDto
+                    {
+                        Titulo = eventoViewDto.Titulo,
+                        Descripcion = eventoViewDto.Descripcion,
+                        Mail = eventoViewDto.Mail,
+                        Latitud = eventoViewDto.Latitud,
+                        Longitud = eventoViewDto.Longitud,
+                        TipoEventoId = eventoViewDto.TipoEventoId,
+                        Orante = eventoViewDto.Orante,
+                        Organizacion = eventoViewDto.Organizacion,
+                        Domicilio = eventoViewDto.DomicilioCompleto,
+                        Telefono = eventoViewDto.Telefono,
+                        Imagen = eventoViewDto.Imagen
+                    };
 
-                //*************************************************************//
+                    var EventoObj = _eventoServicio.Insertar(evento);
 
-                var fecha = new FechaDto
+                    //*************************************************************//
+
+                    var fecha = new FechaDto
+                    {
+                        FechaEvento = eventoViewDto.FechaEvento,
+                        HoraInicio = eventoViewDto.HoraInicio,
+                        HoraCierre = eventoViewDto.HoraFin
+                    };
+
+                    var FechaObj = _fechaServicio.Insertar(fecha);
+
+                    //*************************************************************//
+
+                    var fechaEvento = new FechaEventoDto
+                    {
+                        EventosId = EventoObj.Id,
+                        FechaId = FechaObj.Id
+                    };
+
+                    _fechaEventoServicio.Insertar(fechaEvento);
+
+                    //*************************************************************//
+
+                    var entrada = new EntradaDto
+                    {
+                        Monto = eventoViewDto.Precio,
+                        FechaDesde = DateTime.Now,
+                        FechaHasta = DateTime.Now,
+                        EventoId = EventoObj.Id,
+                        Cantidad = 1
+                    };
+
+                    _entradaServicio.Insertar(entrada);
+
+                    //*************************************************************//
+
+                    var CreadorEvento = new CreadorEventoDto()
+                    {
+                        EventoId = EventoObj.Id,
+                        UsuarioId = SessionActiva.UsuarioId,
+                        Fecha = DateTime.Now
+                    };
+
+                    _creadorEventoServicio.Insertar(CreadorEvento);
+
+                    //*************************************************************//
+
+                    return RedirectToAction("ViewEvento", new { id = EventoObj.Id });
+
+                }
+                catch (Exception e)
                 {
-                    FechaEvento = eventoViewDto.FechaEvento,
-                    HoraInicio = eventoViewDto.HoraInicio,
-                    HoraCierre = eventoViewDto.HoraFin
-                };
-
-                var FechaObj = _fechaServicio.Insertar(fecha);
-
-                //*************************************************************//
-
-                var fechaEvento = new FechaEventoDto
-                {
-                    EventosId = EventoObj.Id,
-                    FechaId = FechaObj.Id
-                };
-
-                _fechaEventoServicio.Insertar(fechaEvento);
-
-                //*************************************************************//
-
-                var entrada = new EntradaDto
-                {
-                    Monto = eventoViewDto.Precio,
-                    FechaDesde = DateTime.Now,
-                    FechaHasta = DateTime.Now,
-                    EventoId = EventoObj.Id,
-                    Cantidad = 1
-                };
-
-                _entradaServicio.Insertar(entrada);
-
-                //*************************************************************//
-
-                var CreadorEvento = new CreadorEventoDto()
-                {
-                    EventoId = EventoObj.Id,
-                    UsuarioId = SessionActiva.UsuarioId,
-                    Fecha = DateTime.Now
-                };
-
-                _creadorEventoServicio.Insertar(CreadorEvento);
-
-                //*************************************************************//
-
-                return RedirectToAction("ViewEvento" , new {id = EventoObj.Id});
-
+                    ViewBag.ErrorEvento = e;
+                    return View();
+                }
             }
             else
             {

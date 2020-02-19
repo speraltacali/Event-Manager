@@ -88,6 +88,7 @@
     <Compile Include="MetaData\IEstado.cs" />
     <Compile Include="MetaData\IEvento.cs" />
     <Compile Include="MetaData\IEventoLugar.cs" />
+    <Compile Include="MetaData\IEventoView.cs" />
     <Compile Include="MetaData\IFecha.cs" />
     <Compile Include="MetaData\IFechaEvento.cs" />
     <Compile Include="MetaData\IFormaPago.cs" />
