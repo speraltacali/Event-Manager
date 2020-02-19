@@ -9,6 +9,7 @@
 
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <link href="~/Content/ImgEvento/ImagenPortada.css" rel="stylesheet" />
+<link href="~/Content/ImgEvento/ImgResponsive.css" rel="stylesheet" />
 
 <!--Load the API from the specified URL-->
 <script async defer
@@ -19,8 +20,9 @@
     <form asp-action="ViewEvento" asp-controller="Evento" method="get">
         <div class="polaroid">
             @*<img resource="@imagen" alt="5 Terre" style="width:70%" class="imgPortada">*@
-            <img src="@Url.Action("GetImage", new { id = Model.Id })" />
+            
             <div class="container">
+                <img src="@Url.Action("GetImage", new { id = Model.Id })" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" />
                 <h3>
                     <u>
                         @if (Model != null)
@@ -58,10 +60,7 @@
                             {@Model.FechaEvento.ToShortDateString()}
                         </h5>
 
-                        <p align="center">
-                            Desde: @if (Model != null)
-                            {@Model.HoraInicio.ToShortTimeString()} am | Hasta: @if (Model != null)
-                            {@Model.HoraFin.ToShortTimeString()} pm
+                        <p align="center">Desde: @if (Model != null){@Model.HoraInicio.ToShortTimeString()}am | Hasta: @if (Model != null){@Model.HoraFin.ToShortTimeString()}pm
                         </p>
 
                     </div>
@@ -84,10 +83,10 @@
                 <br />
                 <br />
                 <br />
-
+                <br />
 
                 <section class="container">
-                    <br />
+                    <br /><br />
                     <h5>
                         Lugar del Evento: @if (Model != null)
                         {@Model.CalleNumero}
