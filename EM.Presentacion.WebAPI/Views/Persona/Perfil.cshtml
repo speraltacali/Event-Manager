@@ -136,7 +136,7 @@
                                             foreach (var item in ListaEntradas)
                                             {
                                                 <tr>
-                                                    <td><a href="#">@_eventoServicio.ObtenerPorId(item.EventoId).Titulo</a></td>
+                                                    <td><a href="~/Evento/VerEntrada/@item.Id">@_eventoServicio.ObtenerPorId(item.EventoId).Titulo</a></td>
                                                     <td>@_eventoServicio.ObtenerPorId(item.EventoId).Organizacion</td>
                                                     <td>@item.Fecha.ToShortDateString()</td>
                                                     <td><a type="button" class="btn btn-success" href="~/Evento/VerEntrada/@item.Id">Ver</a></td>

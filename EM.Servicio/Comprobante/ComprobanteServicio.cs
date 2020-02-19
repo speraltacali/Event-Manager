@@ -83,6 +83,7 @@ namespace EM.Servicio.Comprobante
             {
                 var aux = new ComprobanteDto()
                 {
+                    Id = item.Id,
                     Numero = item.Numero,
                     Fecha = item.Fecha,
                     SubTotal = item.SubTotal,

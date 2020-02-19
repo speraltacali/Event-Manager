@@ -1,6 +1,11 @@
 ﻿@model EM.IServicio.Evento.DTOs.EventoViewDto
+@using EM.IServicio.TipoEvento;
+@using EM.IServicio.TipoEvento.DTOs;
+@using EM.Servicio.TipoEvento;
 @{
     ViewBag.Title = "CreateEntrada";
+
+    ITipoEventoServicio _tipoEvento = new TipoEventoServicio();
 }
 
 <link rel="stylesheet" type="text/css" href="~/Content/Login/css/util.css">
@@ -15,10 +20,11 @@
             <label class="form-control" style="background-color:cornflowerblue;color:black;">Puede Ver Su Entrada En Su Perfil</label>
             <br />
             <label class="form-control">Evento: @Model.Titulo </label>
-            <label class="form-control">Detalle: @Model.Descripcion </label>
+            <label class="form-control">Tipo Evento: @_tipoEvento.GetById(Model.TipoEventoId).Descripcion</label>
+            <label class="form-control">Detalle: </label>
             <label class="form-control">Pago por: @Model.Precio</label>
             <br />
-            <a class="btn btn-outline-primary" style="margin-left:115px;">Ver Entrada</a>
+            <a class="btn btn-outline-primary" style="margin-left:115px;" href="~/Persona/Perfil">Ir a Perfil</a>
 
 
 
