@@ -33,52 +33,56 @@
                 <h4 style="text-align:center; background-color:coral; padding-top:4px;padding-bottom:4px;border-style:groove;">Costo de Entrada $@Model.Precio</h4>
                 <br />
                 <br />
-                <section class="container-fluid" style="background-color:antiquewhite; padding-top:15px; padding-bottom:15px;">
-                    <label>Numero Tarjeta Credito</label>
-                    <input type="text" class="form-control" name="Tarjeta" placeholder="Numero Tarjeta" maxlength="15">
 
-                    <label>Nombre del Titular</label>
-                    <input type="text" class="form-control" name="NombreTitular" placeholder="Nombre Completo">
+                @if (Model.Precio > 0)
+                {
+                    <section class="container-fluid" style="background-color:antiquewhite; padding-top:15px; padding-bottom:15px;">
+                        <label>Numero Tarjeta Credito</label>
+                        <input type="text" class="form-control" name="Tarjeta" placeholder="Numero Tarjeta" maxlength="15">
 
-                    <div>
-                        <label>Mes    - - - - -    Año</label>
-                        <select name="Mes" class="form-control" style="width:60px;display:inline-block">
-                            <option Value="1" class="option">1</option>
-                            <option Value="2" class="option">2</option>
-                            <option Value="3" class="option">3</option>
-                            <option Value="4" class="option">4</option>
-                            <option Value="5" class="option">5</option>
-                            <option Value="6" class="option">6</option>
-                            <option Value="7" class="option">7</option>
-                            <option Value="8" class="option">8</option>
-                            <option Value="9" class="option">9</option>
-                            <option Value="10" class="option">10</option>
-                            <option Value="11" class="option">11</option>
-                            <option Value="12" class="option">12</option>
-                        </select>
+                        <label>Nombre del Titular</label>
+                        <input type="text" class="form-control" name="NombreTitular" placeholder="Nombre Completo">
 
-                        <select name="Año" class="form-control" style="width:90px;display:inline-block">
-                            <option></option>
-                            <option value="2020" class="option">2020</option>
-                            <option value="2021" class="option">2021</option>
-                            <option value="2022" class="option">2022</option>
-                            <option value="2023" class="option">2023</option>
-                            <option value="2024" class="option">2024</option>
-                            <option value="2025" class="option">2025</option>
-                            <option value="2026" class="option">2026</option>
-                        </select>
-                        <label style="display:inline-block"> Fecha Vencimiento</label>
-                    </div>
+                        <div>
+                            <label>Mes    - - - - -    Año</label>
+                            <select name="Mes" class="form-control" style="width:60px;display:inline-block">
+                                <option Value="1" class="option">1</option>
+                                <option Value="2" class="option">2</option>
+                                <option Value="3" class="option">3</option>
+                                <option Value="4" class="option">4</option>
+                                <option Value="5" class="option">5</option>
+                                <option Value="6" class="option">6</option>
+                                <option Value="7" class="option">7</option>
+                                <option Value="8" class="option">8</option>
+                                <option Value="9" class="option">9</option>
+                                <option Value="10" class="option">10</option>
+                                <option Value="11" class="option">11</option>
+                                <option Value="12" class="option">12</option>
+                            </select>
 
-                    <label for="card-ccv">CCV</label>
-                    <input type="text" name="CCV" class="form-control" placeholder="CCV" maxlength="3" style="width:60px;" />
+                            <select name="Año" class="form-control" style="width:90px;display:inline-block">
+                                <option></option>
+                                <option value="2020" class="option">2020</option>
+                                <option value="2021" class="option">2021</option>
+                                <option value="2022" class="option">2022</option>
+                                <option value="2023" class="option">2023</option>
+                                <option value="2024" class="option">2024</option>
+                                <option value="2025" class="option">2025</option>
+                                <option value="2026" class="option">2026</option>
+                            </select>
+                            <label style="display:inline-block"> Fecha Vencimiento</label>
+                        </div>
 
-                    <input type="hidden" name="EventoId" value="@Model.Id" />
-                    <input type="hidden" name="Total" value="@Model.Precio" />
+                        <label for="card-ccv">CCV</label>
+                        <input type="text" name="CCV" class="form-control" placeholder="CCV" maxlength="3" style="width:60px;" />
 
-                    <button class="btn btn-outline-success" style="margin-left:100px;width:150px;height:60px">Pagar</button>
+                    </section>
+                }
+                
+                <input type="hidden" name="EventoId" value="@Model.Id" />
+                <input type="hidden" name="Total" value="@Model.Precio" />
 
-                </section>
+                <button class="btn btn-outline-success" style="margin-left:100px;width:150px;height:60px">Pagar</button>
 
             </div>
         </div>

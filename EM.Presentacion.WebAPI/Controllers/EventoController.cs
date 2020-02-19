@@ -322,6 +322,7 @@ namespace EM.Presentacion.WebAPI.Controllers
         [HttpPost]
         public ActionResult PagarEntrada(ComprobanteViewDto dto)
         {
+
             try
             {
                 dto.Numero = _comprobanteServicio.ObtenerCodigo();
@@ -343,18 +344,20 @@ namespace EM.Presentacion.WebAPI.Controllers
 
                 dto.ComprobanteId = _comprobanteServicio.Insertar(Comprobante).Id;
 
-                var Tarjeta = new TarjetaDebitoDto()
+                if (dto.Total > 0)
                 {
-                    NombreTitular = dto.NombreTitular,
-                    Tarjeta = dto.Tarjeta,
-                    Mes = dto.Mes,
-                    Año = dto.Año,
-                    CCV = dto.CCV,
-                    ComprobanteId = dto.ComprobanteId
-                };
+                    var Tarjeta = new TarjetaDebitoDto()
+                    {
+                        NombreTitular = dto.NombreTitular,
+                        Tarjeta = dto.Tarjeta,
+                        Mes = dto.Mes,
+                        Año = dto.Año,
+                        CCV = dto.CCV,
+                        ComprobanteId = dto.ComprobanteId
+                    };
 
-                _tarjetaDebitoServicio.Insertar(Tarjeta);
-
+                    _tarjetaDebitoServicio.Insertar(Tarjeta);
+                }
                 //*****************************//
 
 
@@ -371,6 +374,8 @@ namespace EM.Presentacion.WebAPI.Controllers
 
         public ActionResult UpdateEvento(long id)
         {
+            ViewBag.ListaTipoEvento = _tipoEventoServicio.Get().ToList();
+
             var evento = _eventoServicio.ObtenerPorId(id);
 
             return View(evento);

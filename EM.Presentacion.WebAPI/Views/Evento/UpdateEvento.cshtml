@@ -69,6 +69,11 @@
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.TipoEventoId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="form-holder">
+
+                            @Html.DropDownListFor(x=>x.TipoEventoId, new SelectList(ViewBag.ListaTipoEvento, "Id", "Descripcion"), "Seleccionar Campo", new {@class = "form-control" , style="width:320px;height:40px;"})
+                            <i class="zmdi zmdi-caret-down"></i>
+                        </div>
                     </div>
 
                     <div class="form-group">
