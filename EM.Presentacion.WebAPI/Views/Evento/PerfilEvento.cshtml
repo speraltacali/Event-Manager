@@ -6,7 +6,7 @@
 
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <link href="~/Content/ImgEvento/ImagenPortada.css" rel="stylesheet" />
-
+<link href="~/Content/ImgEvento/ImgResponsive.css" rel="stylesheet" />
 <!--Load the API from the specified URL-->
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFA0cdJHdJdccOiUiKNpwQ3wze89fWH38&callback=initMap">
@@ -14,10 +14,11 @@
 
 <div class="container">
     <form asp-action="ViewEvento" asp-controller="Evento" method="get">
-        <div class="polaroid">
+        <div class="polaroid"><br />
             @*<img resource="@imagen" alt="5 Terre" style="width:70%" class="imgPortada">*@
-            <img src="@Url.Action("GetImage", new { id = Model.Id })" />
+            
             <div class="container">
+                <img src="@Url.Action("GetImage", new { id = Model.Id })" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"/>
                 <h3>
                     <u>
                         @if (Model != null)
@@ -56,9 +57,7 @@
                         </h5>
 
                         <p align="center">
-                            Desde: @if (Model != null)
-                            {@Model.HoraInicio.ToShortTimeString()} am | Hasta: @if (Model != null)
-                            {@Model.HoraFin.ToShortTimeString()} pm
+                            Desde: @if (Model != null){@Model.HoraInicio.ToShortTimeString()}am | Hasta: @if (Model != null){@Model.HoraFin.ToShortTimeString()}pm
                         </p>
 
                     </div>
@@ -74,15 +73,15 @@
                         </p>
 
                     </div>
-
+                   
                 </section>
-
                 <br />
                 <br />
                 <br />
                 <br />
                 <br />
-
+                <br />
+                <br /><br />
                 <label class="form-control" style="background-color:cornflowerblue;color:black;">Personas Inscriptas Al Evento</label>
 
 
@@ -94,17 +93,15 @@
                                     <th>Nombre Completo</th>
                                     <th>DNI</th>
                                     <th>Mail</th>
-                                    <th>Telefono</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- foreach (var item in collection)
-                     {-->
+                                {-->
                                 <tr>
                                     <td>Jose Perez</td>
                                     <td>408885541</td>
                                     <td>john@example.com</td>
-                                    <td>3814512478</td>
                                 </tr>
                                 <!--}-->
                             </tbody>
