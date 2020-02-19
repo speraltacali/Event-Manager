@@ -13,6 +13,8 @@ namespace EM.IServicio.Comprobante
 
         ComprobanteDto Insertar(ComprobanteDto dto);
 
+        long ObtenerCodigo();
+
         void Guardar();
     }
 }

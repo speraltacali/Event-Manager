@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 using System.Web;
-using System.Web.Helpers;
 using System.Web.Mvc;
 using EM.IServicio.Comprobante;
 using EM.IServicio.Comprobante.DTOs;
@@ -16,9 +15,9 @@ using EM.IServicio.Fecha;
 using EM.IServicio.Fecha.DTOs;
 using EM.IServicio.FechaEvento;
 using EM.IServicio.FechaEvento.DTOs;
-using EM.IServicio.Helpers.Foto;
 using EM.IServicio.Helpers.Usuario;
 using EM.IServicio.TarjetaDebito;
+using EM.IServicio.TarjetaDebito.DTO;
 using EM.IServicio.TipoEvento;
 using EM.Servicio.Comprobante;
 using EM.Servicio.CreadorEvento;
@@ -40,7 +39,7 @@ namespace EM.Presentacion.WebAPI.Controllers
         private readonly IEntradaServicio _entradaServicio = new EntradaServicio();
         private readonly ICreadorEventoServicio _creadorEventoServicio = new CreadorEventoServicio();
         private readonly IComprobanteServicio _comprobanteServicio = new ComprobanteServicio();
-        private readonly ITarjetaDebitoServicio _tarjetaDebitpServicio = new TarjetaDebitoServicio();
+        private readonly ITarjetaDebitoServicio _tarjetaDebitoServicio = new TarjetaDebitoServicio();
 
         // GET: Evento
         public ActionResult Crear()
@@ -309,33 +308,85 @@ namespace EM.Presentacion.WebAPI.Controllers
         {
             try
             {
+                dto.Numero = _comprobanteServicio.ObtenerCodigo();
                 dto.Fecha = DateTime.Now;
                 dto.SubTotal = SessionActiva.Monto;
                 dto.Total = dto.Total;
                 dto.UsuarioId = SessionActiva.UsuarioId;
                 dto.EventoId = dto.EventoId;
 
+                var Comprobante = new ComprobanteDto()
+                {
+                    Numero = dto.Numero,
+                    Fecha = dto.Fecha,
+                    SubTotal = dto.SubTotal,
+                    Total = dto.Total,
+                    UsuarioId = dto.UsuarioId,
+                    EventoId = dto.EventoId
+                };
+
+                dto.ComprobanteId = _comprobanteServicio.Insertar(Comprobante).Id;
+
+                var Tarjeta = new TarjetaDebitoDto()
+                {
+                    NombreTitular = dto.NombreTitular,
+                    Tarjeta = dto.Tarjeta,
+                    Mes = dto.Mes,
+                    Año = dto.Año,
+                    CCV = dto.CCV,
+                    ComprobanteId = dto.ComprobanteId
+                };
+
+                _tarjetaDebitoServicio.Insertar(Tarjeta);
+
+                //*****************************//
 
 
+                return RedirectToAction("CreateEntrada", new { id = dto.EventoId });
             }
             catch (Exception e)
             {
                 ViewBag.Error = e;
-                throw;
+
+                return View();
             }
 
-
-            return View();
         }
 
 
-
-
-
         [HttpGet]
-        public ActionResult CreateEntrada(long valor)
+        public ActionResult CreateEntrada(long id)
         {
-            return View();
+
+            var evento = _eventoServicio.ObtenerPorId(id);
+
+            var entrada = _entradaServicio.ObtenerPorIdEvento(evento.Id);
+
+            var auxfecha = _fechaEventoServicio.ObtenerPorIdEvento(evento.Id);
+
+            var fechaPrincipal = _fechaServicio.ObtenerPorId(auxfecha.FechaId);
+
+            var eventoView = new EventoViewDto
+            {
+                Id = evento.Id,
+                Titulo = evento.Titulo,
+                Descripcion = evento.Descripcion,
+                Mail = evento.Mail,
+                TipoEventoId = evento.TipoEventoId,
+                Orante = evento.Orante,
+                Organizacion = evento.Organizacion,
+                Telefono = evento.Telefono,
+                Precio = entrada.Monto,
+                EntradaId = entrada.Id,
+                Calle = evento.Domicilio,
+                CalleNumero = evento.Domicilio,
+                FechaEvento = fechaPrincipal.FechaEvento.Date,
+                HoraFin = fechaPrincipal.HoraCierre,
+                HoraInicio = fechaPrincipal.HoraInicio,
+                Imagen = evento.Imagen
+            };
+
+            return View(eventoView);
         }
 
     }

@@ -1,4 +1,4 @@
-﻿
+﻿@model EM.IServicio.Evento.DTOs.EventoViewDto
 @{
     ViewBag.Title = "CreateEntrada";
 }
@@ -14,9 +14,9 @@
             <br />
             <label class="form-control" style="background-color:cornflowerblue;color:black;">Puede Ver Su Entrada En Su Perfil</label>
             <br />
-            <label class="form-control">Detalle:</label>
-            <label class="form-control">Evento: Tecnologia</label>
-            <label class="form-control">Pago por: $100</label>
+            <label class="form-control">Evento: @Model.Titulo </label>
+            <label class="form-control">Detalle: @Model.Descripcion </label>
+            <label class="form-control">Pago por: @Model.Precio</label>
             <br />
             <a class="btn btn-outline-primary" style="margin-left:115px;">Ver Entrada</a>
 

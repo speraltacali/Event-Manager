@@ -8,6 +8,7 @@ using EM.Dominio.Entity.MetaData;
 using EM.Dominio.Repositorio.Comprobante;
 using EM.Dominio.Repositorio.FormaPago;
 using EM.Dominio.Repositorio.TipoComprobante;
+using EM.Infraestructura.Repositorio.Comprobante;
 using EM.IServicio.Comprobante;
 using EM.IServicio.Comprobante.DTOs;
 
@@ -17,22 +18,11 @@ namespace EM.Servicio.Comprobante
     {
         //Verificar si utilizamos las Interfaces
 
-        private readonly IFormaPagoRepositorio _formaPagoRepositorio;
-        private readonly ITipoComprobanteRepositorio _tipoComprobanteRepositorio;
-        private readonly IComprobanteRepositorio _comprobanteRepositorio;
-
-        public ComprobanteServicio(IFormaPagoRepositorio formaPagoRepositorio , ITipoComprobanteRepositorio
-              tipoComprobanteRepositorio , IComprobanteRepositorio comprobanteRepositorio)
-        {
-            _formaPagoRepositorio = formaPagoRepositorio;
-            _tipoComprobanteRepositorio = tipoComprobanteRepositorio;
-            _comprobanteRepositorio = comprobanteRepositorio;
-        }
+        private readonly IComprobanteRepositorio _comprobanteRepositorio = new ComprobanteRepositorio();
 
         public IEnumerable<ComprobanteDto> Obtener(string buscar)
         {
-            return _comprobanteRepositorio.GetByFilter(x => x.Fecha.Contains(buscar)
-                                                            || x.Numero.ToString().Contains(buscar)
+            return _comprobanteRepositorio.GetByFilter(x => x.Numero.ToString().Contains(buscar)
                                                             || x.Total.ToString().Contains(buscar))
                 .Select(x => new ComprobanteDto()
                 {
@@ -100,6 +90,13 @@ namespace EM.Servicio.Comprobante
             dto.Id = Comprobante.Id;
             return dto;
 
+        }
+
+        public long ObtenerCodigo()
+        {
+            return _comprobanteRepositorio.GetAll().Any()
+                ? _comprobanteRepositorio.GetAll().Max(x => x.Numero) + 1
+                : 1;
         }
 
         public void Guardar()

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using EM.Dominio.Base;
 using EM.Dominio.Entity.MetaData;
 using System.ComponentModel.DataAnnotations;
@@ -12,7 +13,7 @@ namespace EM.Dominio.Entity.Entidades
     {
         public long Numero { get; set; }
 
-        public string Fecha { get; set; }
+        public DateTime Fecha { get; set; }
 
         public decimal SubTotal { get; set; }
 
