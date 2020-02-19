@@ -65,5 +65,17 @@ namespace EM.Presentacion.WebAPI.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult BuscarEvento(string search)
+        {
+            if (search == null)
+            {
+                return View();
+            }
+
+            ViewBag.Busqueda = search;
+
+            return View();
+        }
+
     }
 }

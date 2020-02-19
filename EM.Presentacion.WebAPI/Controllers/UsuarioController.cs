@@ -101,5 +101,17 @@ namespace EM.Presentacion.WebAPI.Controllers
             }
 
         }
+
+        public ActionResult BuscarEvento(string search)
+        {
+            if (search == null)
+            {
+                return View();
+            }
+
+            ViewBag.Busqueda = search;
+
+            return View();
+        }
     }
 }

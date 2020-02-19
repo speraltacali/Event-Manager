@@ -4,15 +4,24 @@
 @using EM.IServicio.Helpers.Usuario
 @using EM.Servicio.Evento
 @using EM.IServicio.Evento
+@using EM.Servicio.CreadorEvento
+@using EM.IServicio.CreadorEvento;
+@using EM.IServicio.TipoEvento;
+@using EM.IServicio.TipoEvento.DTOs;
+@using EM.Servicio.TipoEvento;
 
 @{
     ViewBag.Title = "Perfil";
 
-IEventoServicio _eventoServicio = new EventoServicio();
+    IEventoServicio _eventoServicio = new EventoServicio();
+    ICreadorEventoServicio _creadorEventoServicio = new CreadorEventoServicio();
+    ITipoEventoServicio _tipoEvento = new TipoEventoServicio();
 
-IComprobanteServicio _comprobanteServicio = new ComprobanteServicio();
+    IComprobanteServicio _comprobanteServicio = new ComprobanteServicio();
 
-var ListaEntradas = _comprobanteServicio.ObtenerPoIdUsuario(SessionActiva.UsuarioId);
+    var ListaEntradas = _comprobanteServicio.ObtenerPoIdUsuario(SessionActiva.UsuarioId);
+
+    var ListaEventos = _creadorEventoServicio.ObtenerPorCreador(SessionActiva.UsuarioId);
 
 }
 
@@ -78,29 +87,23 @@ var ListaEntradas = _comprobanteServicio.ObtenerPoIdUsuario(SessionActiva.Usuari
                                         <tr>
                                             <th>Nombre Evento</th>
                                             <th>Tipo de Evento</th>
-                                            <th>Fecha Del Evento</th>
+                                            <th>Orante</th>
                                             <th>Opciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td><a href="#">Work 1</a></td>
-                                            <td>Doe</td>
-                                            <td>john@example.com</td>
-                                            <td><button type="button" class="btn btn-outline-info">Modificar Evento</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#">Work 2</a></td>
-                                            <td>Moe</td>
-                                            <td>mary@example.com</td>
-                                            <td><button type="button" class="btn btn-outline-info">Modificar Evento</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#">Work 3</a></td>
-                                            <td>Dooley</td>
-                                            <td>july@example.com</td>
-                                            <td><button type="button" class="btn btn-outline-info">Modificar Evento</button></td>
-                                        </tr>
+                                        @if (ListaEventos != null)
+                                        {
+                                            foreach (var item in ListaEventos)
+                                            {
+                                                <tr>
+                                                    <td><a href="/Evento/PerfilEvento/@item.Id">@item.Titulo</a></td>
+                                                    <td>@_tipoEvento.GetById(item.TipoEventoId).Descripcion</td>
+                                                    <td>@item.Orante</td>
+                                                    <td><button type="button" class="btn btn-outline-info">Modificar Evento</button></td>
+                                                </tr>
+                                            }
+                                        }
                                     </tbody>
                                 </table>
                             </div>
