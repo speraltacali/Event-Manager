@@ -1,7 +1,21 @@
 ﻿@model EM.IServicio.Persona.DTOs.PersonaDto
+@using EM.Servicio.Comprobante
+@using EM.IServicio.Comprobante
+@using EM.IServicio.Helpers.Usuario
+@using EM.Servicio.Evento
+@using EM.IServicio.Evento
+
 @{
     ViewBag.Title = "Perfil";
+
+IEventoServicio _eventoServicio = new EventoServicio();
+
+IComprobanteServicio _comprobanteServicio = new ComprobanteServicio();
+
+var ListaEntradas = _comprobanteServicio.ObtenerPoIdUsuario(SessionActiva.UsuarioId);
+
 }
+
 
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="~/Content/Login/css/util.css">
@@ -95,34 +109,29 @@
                                     <thead>
                                         <tr>
                                             <th>Nombre Entrada</th>
-                                            <th>Descripcion</th>
+                                            <th>Organizacion</th>
                                             <th>Fecha</th>
                                             <th>Opciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td><a href="#">Work 1</a></td>
-                                            <td>Doe</td>
-                                            <td>john@example.com</td>
-                                            <td><button type="button" class="btn btn-success">Ver</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#">Work 2</a></td>
-                                            <td>Moe</td>
-                                            <td>mary@example.com</td>
-                                            <td><button type="button" class="btn btn-success">Ver</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#">Work 3</a></td>
-                                            <td>Dooley</td>
-                                            <td>july@example.com</td>
-                                            <td><button type="button" class="btn btn-success">Ver</button></td>
-                                        </tr>
+                                        @if (ListaEntradas != null)
+                                        {
+                                            foreach (var item in ListaEntradas)
+                                            {
+                                                <tr>
+                                                    <td><a href="#">@_eventoServicio.ObtenerPorId(item.EventoId).Titulo</a></td>
+                                                    <td>@_eventoServicio.ObtenerPorId(item.EventoId).Organizacion</td>
+                                                    <td>@item.Fecha</td>
+                                                    <td><button type="button" class="btn btn-success">Ver</button></td>
+                                                </tr>
+                                            }
+                                        }
+
                                     </tbody>
                                 </table>
                             </div>
-                           
+
                         </div>
                     </div>
                 </div>

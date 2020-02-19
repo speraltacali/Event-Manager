@@ -71,6 +71,35 @@ namespace EM.Servicio.Comprobante
             };
         }
 
+        public List<ComprobanteDto> ObtenerPoIdUsuario(long id)
+        {
+            var comprobante = _comprobanteRepositorio.GetByFilter(x=>x.UsuarioId == id);
+
+            if (comprobante == null) throw new Exception("No se encontro registro solicitado");
+
+            List<ComprobanteDto> Lista = new List<ComprobanteDto>();
+
+            foreach (var item in comprobante)
+            {
+                var aux = new ComprobanteDto()
+                {
+                    Numero = item.Numero,
+                    Fecha = item.Fecha,
+                    SubTotal = item.SubTotal,
+                    Total = item.Total,
+                    Descuento = item.Descuento,
+                    EventoId = item.EventoId,
+                    UsuarioId = item.UsuarioId
+                };
+
+                Lista.Add(aux);
+
+            }
+
+            return Lista;
+
+        }
+
         public ComprobanteDto Insertar(ComprobanteDto dto)
         {
             var Comprobante = new Dominio.Entity.Entidades.Comprobante()
