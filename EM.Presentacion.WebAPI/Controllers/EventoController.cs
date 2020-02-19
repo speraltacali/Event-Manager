@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -54,6 +56,7 @@ namespace EM.Presentacion.WebAPI.Controllers
                 //*************************************************************************//
 
                 return View();
+
             }
             else
             {
@@ -411,6 +414,40 @@ namespace EM.Presentacion.WebAPI.Controllers
             ViewBag.Busqueda = search;
 
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult VerEntrada(long Id)
+        {
+            var evento = _eventoServicio.ObtenerPorId(Id);
+
+            var entrada = _entradaServicio.ObtenerPorIdEvento(evento.Id);
+
+            var auxfecha = _fechaEventoServicio.ObtenerPorIdEvento(evento.Id);
+
+            var fechaPrincipal = _fechaServicio.ObtenerPorId(auxfecha.FechaId);
+
+            var eventoView = new EventoViewDto
+            {
+                Id = evento.Id,
+                Titulo = evento.Titulo,
+                Descripcion = evento.Descripcion,
+                Mail = evento.Mail,
+                TipoEventoId = evento.TipoEventoId,
+                Orante = evento.Orante,
+                Organizacion = evento.Organizacion,
+                Telefono = evento.Telefono,
+                Precio = entrada.Monto,
+                EntradaId = entrada.Id,
+                Calle = evento.Domicilio,
+                CalleNumero = evento.Domicilio,
+                FechaEvento = fechaPrincipal.FechaEvento.Date,
+                HoraFin = fechaPrincipal.HoraCierre,
+                HoraInicio = fechaPrincipal.HoraInicio,
+                Imagen = evento.Imagen
+            };
+
+            return View(eventoView);
         }
 
     }
