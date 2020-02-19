@@ -6,18 +6,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EM.Dominio.Repositorio.Comprobante;
+using EM.Dominio.Repositorio.Usuario;
+using EM.Infraestructura.Repositorio.Comprobante;
 using EM.Infraestructura.Repositorio.Persona;
+using EM.Infraestructura.Repositorio.Usuario;
 
 namespace EM.Servicio.Persona
 {
     public class PersonaServicio : IPersonaServicio
     {
-        private readonly IPersonaRepositorio _personaRepositorio;
+        private readonly IPersonaRepositorio _personaRepositorio = new PersonaRepositorio();
+        private readonly IComprobanteRepositorio _comprobanteRepositorio = new ComprobanteRepositorio();
+        private readonly IUsuarioRepositorio _usuarioRepositorio = new UsuarioRepositorio();
 
-        public PersonaServicio()
-        {
-            _personaRepositorio = new PersonaRepositorio();
-        }
 
         public IEnumerable<PersonaDto> Obtener(string cadenabuscar)
         {
@@ -36,6 +38,40 @@ namespace EM.Servicio.Persona
                     Telefono = x.Telefono
                 })
                 .ToList();
+        }
+
+        public IEnumerable<PersonaDto> ObtenerPorEventoPago(long id)
+        {
+            List<PersonaDto> ListaParticipante = new List<PersonaDto>();
+
+            var Validar = _comprobanteRepositorio.GetAll().Any();
+
+            if(Validar)
+            {
+                var Comprobante = _comprobanteRepositorio.GetByFilter(x => x.EventoId == id);
+
+                foreach (var pago in Comprobante)
+                {
+                    var Usuario = _usuarioRepositorio.GetById(pago.UsuarioId);
+
+                    var Persona = _personaRepositorio.GetById(Usuario.PersonaId);
+
+
+                    ListaParticipante.Add(new PersonaDto()
+                    {
+                        Id = Persona.Id,
+                        Apellido = Persona.Apellido,
+                        Nombre = Persona.Nombre,
+                        Domicilio = Persona.Domicilio,
+                        Cuil = Persona.Cuil,
+                        FechaNacimiento = Persona.FechaNacimiento,
+                        Mail = Persona.Mail,
+                        Telefono = Persona.Telefono
+                    });
+                }
+            }
+
+            return ListaParticipante.ToList();
         }
 
         public IEnumerable<PersonaDto> ObtenerTodo()

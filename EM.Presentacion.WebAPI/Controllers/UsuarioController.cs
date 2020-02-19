@@ -63,29 +63,55 @@ namespace EM.Presentacion.WebAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(PersonaDto Persona, UsuarioDto Usuario)
+        public ActionResult Create(UsuarioViewDto UserPersona)
         {
 
             if (Session["Usuario"] == null)
             {
                 if (ModelState.IsValid)
                 {
-                    if (Usuario.Password == Usuario.PasswordRep)
+                    try
                     {
-                        //Verificar por el momento el insert en DB
+                        if (UserPersona.Password == UserPersona.PasswordRep)
+                        {
+                            var Persona = new PersonaDto()
+                            {
+                                Id = UserPersona.Id,
+                                Apellido = UserPersona.Apellido,
+                                Nombre = UserPersona.Nombre,
+                                Domicilio = UserPersona.Domicilio,
+                                Cuil = UserPersona.Cuil,
+                                FechaNacimiento = UserPersona.FechaNacimiento,
+                                Mail = UserPersona.Mail,
+                                Telefono = UserPersona.Telefono
+                            };
 
-                        var persona = _personaServicio.Insertar(Persona);
-                        Usuario.PersonaId = persona.Id;
-                        Usuario.FechaCreacion = DateTime.Now;
-                        _usuarioServicio.Insertar(Usuario);
+                            var Usuario = new UsuarioDto()
+                            {
+                                User = UserPersona.User,
+                                Password = UserPersona.Password,
+                            };
 
-                        return RedirectToAction("Login", "Usuario");
+                            //Verificar por el momento el insert en DB
+
+                            var persona = _personaServicio.Insertar(Persona);
+                            Usuario.PersonaId = persona.Id;
+                            Usuario.FechaCreacion = DateTime.Now;
+                            _usuarioServicio.Insertar(Usuario);
+
+                            return RedirectToAction("Login", "Usuario");
+                        }
+                        else
+                        {
+                            //expecion no funciona
+
+                            ViewBag.Error = "Repita la contraseña de manera correcta";
+                            return View();
+                        }
                     }
-                    else
+                    catch (Exception e)
                     {
-                        //expecion no funciona
-
-                        ViewBag.Error = "Repita la contraseña de manera correcta";
+                        ViewBag.ErrorUsuario = "Error inesperado en el sistema , reintentar";
                         return View();
                     }
 

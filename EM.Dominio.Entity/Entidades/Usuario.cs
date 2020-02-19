@@ -15,8 +15,6 @@ namespace EM.Dominio.Entity.Entidades
 
         public string Password { get; set; }
 
-        public string Mail { get; set; }
-
         public DateTime FechaCreacion { get; set; }
 
         public byte[] Foto { get; set; }

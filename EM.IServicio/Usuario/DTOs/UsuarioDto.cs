@@ -14,8 +14,6 @@ namespace EM.IServicio.Usuario.DTOs
 
         public string PasswordRep { get; set; }
 
-        public string Mail { get; set; }
-
         public DateTime FechaCreacion { get; set; }
 
         public long PersonaId { get; set; }

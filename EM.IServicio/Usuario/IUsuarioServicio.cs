@@ -19,6 +19,10 @@ namespace EM.IServicio.Usuario
 
         bool ValidarAcceso(string user, string pass);
 
+        bool ValidarUser(string user);
+
+        bool ValidarPass(string pass);
+
         void Guardar();
     }
 }

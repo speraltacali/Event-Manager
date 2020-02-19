@@ -107,6 +107,7 @@
     <Compile Include="MetaData\ITipoEvento.cs" />
     <Compile Include="MetaData\ITransporte.cs" />
     <Compile Include="MetaData\IUsuario.cs" />
+    <Compile Include="MetaData\IUsuarioView.cs" />
     <Compile Include="Operacion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

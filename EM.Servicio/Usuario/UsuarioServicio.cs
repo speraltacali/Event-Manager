@@ -25,7 +25,6 @@ namespace EM.Servicio.Usuario
                     Id = x.Id,
                     User = x.User,
                     Password = x.Password,
-                    Mail = x.Mail,
                     FechaCreacion = x.FechaCreacion,
                     PersonaId = x.PersonaId
 
@@ -35,14 +34,12 @@ namespace EM.Servicio.Usuario
         public IEnumerable<UsuarioDto> Obtener(string cadenaBuscar)
         {
             return _usuarioRepositorio.GetByFilter(x => x.User.Contains(cadenaBuscar)
-                                                        || x.Mail.Contains(cadenaBuscar) ||
-                                                        x.FechaCreacion.ToString().Contains(cadenaBuscar))
+                                                         || x.FechaCreacion.ToString().Contains(cadenaBuscar))
                 .Select(x => new UsuarioDto()
                 {
                     Id = x.Id,
                     User = x.User,
                     Password = x.Password,
-                    Mail = x.Mail,
                     FechaCreacion = x.FechaCreacion,
                     PersonaId = x.PersonaId
                 }).ToList();
@@ -59,7 +56,6 @@ namespace EM.Servicio.Usuario
                 Id = usuario.Id,
                 User = usuario.User,
                 Password = usuario.Password,
-                Mail = usuario.Mail,
                 FechaCreacion = usuario.FechaCreacion,
                 PersonaId = usuario.PersonaId
             };
@@ -71,7 +67,6 @@ namespace EM.Servicio.Usuario
             {
                 User = dto.User,
                 Password = dto.Password,
-                Mail = dto.Mail,
                 FechaCreacion = dto.FechaCreacion,
                 PersonaId = dto.PersonaId
             };
@@ -88,7 +83,6 @@ namespace EM.Servicio.Usuario
 
             usuario.User = dto.User;
             usuario.Password = dto.Password;
-            usuario.Mail = dto.Mail;
             usuario.FechaCreacion = dto.FechaCreacion;
 
             _usuarioRepositorio.Update(usuario);
@@ -183,18 +177,5 @@ namespace EM.Servicio.Usuario
             }
         }
 
-        public bool ValidarMail(string mail)
-        {
-            var Mail = _usuarioRepositorio.GetByFilter(x => x.User == mail);
-
-            if (Mail != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
     }
 }

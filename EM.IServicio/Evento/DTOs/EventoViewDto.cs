@@ -1,11 +1,14 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using System.IO;
+using EM.Dominio.Entity.MetaData;
 using EM.Servicio.Base.DtoBase;
 using Microsoft.AspNetCore.Http;
 
 namespace EM.IServicio.Evento.DTOs
 {
+    [MetadataType(typeof(IEventoView))]
     public class EventoViewDto : DtoBase
     {
         public string Titulo { get; set; }

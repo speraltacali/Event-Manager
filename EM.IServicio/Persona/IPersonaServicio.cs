@@ -7,6 +7,8 @@ namespace EM.IServicio.Persona
     {
         IEnumerable<PersonaDto> Obtener(string cadenabuscar);
 
+        IEnumerable<PersonaDto> ObtenerPorEventoPago(long id);
+
         IEnumerable<PersonaDto> ObtenerTodo();
 
         PersonaDto ObtenerPorId(long id);

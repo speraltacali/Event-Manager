@@ -1,7 +1,11 @@
 ﻿@using EM.IServicio.Helpers.Foto
+@using EM.IServicio.Persona
+@using EM.Servicio.Persona
 @model EM.IServicio.Evento.DTOs.EventoViewDto
 @{
     ViewBag.Title = "PerfilEvento";
+
+    IPersonaServicio _personaServicio = new PersonaServicio();
 }
 
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
@@ -91,19 +95,27 @@
                             <thead>
                                 <tr>
                                     <th>Nombre Completo</th>
-                                    <th>DNI</th>
+                                    <th>Cuil</th>
                                     <th>Mail</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- foreach (var item in collection)
-                                {-->
-                                <tr>
-                                    <td>Jose Perez</td>
-                                    <td>408885541</td>
-                                    <td>john@example.com</td>
-                                </tr>
-                                <!--}-->
+                            @foreach (var item in _personaServicio.ObtenerPorEventoPago(Model.Id))
+                            {
+                            <tr>
+                                <td>@item.Nombre , @item.Apellido</td>
+                                <td>@item.Cuil</td>
+                                <td>@item.Mail</td>
+                            </tr>
+                            }
+                            <!-- foreach (var item in collection)
+                            {-->
+                            <tr>
+                                <td>Jose Perez</td>
+                                <td>408885541</td>
+                                <td>john@example.com</td>
+                            </tr>
+                            <!--}-->
                             </tbody>
                         </table>
                     </div>

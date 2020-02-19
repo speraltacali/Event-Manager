@@ -84,6 +84,7 @@ namespace EM.Presentacion.WebAPI.Controllers
 
                     var evento = new EventoDto
                     {
+                        Id = eventoViewDto.Id,
                         Titulo = eventoViewDto.Titulo,
                         Descripcion = eventoViewDto.Descripcion,
                         Mail = eventoViewDto.Mail,
@@ -151,13 +152,13 @@ namespace EM.Presentacion.WebAPI.Controllers
                 }
                 catch (Exception e)
                 {
-                    ViewBag.ErrorEvento = e;
+                    ViewBag.ErrorEvento = "Ocurrio un error inesperado en el sistema";
                     return View();
                 }
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return View();
             }
         }
 

@@ -75,7 +75,7 @@
                         <span class="txt1 p-b-11" style="color:red">
                             @Html.ValidationMessageFor(x => x.Descripcion)
                         </span>
-                        <textarea name="Descripcion" id="" class="form-control" placeholder="Note about your order, eg. special notes fordelivery." style="height: 149px"></textarea>
+                        <textarea name="Descripcion" id="" class="form-control" placeholder="Ingrese una descripcion para su evento." style="height: 149px"></textarea>
                     </div>
 
                 </section>
@@ -131,8 +131,11 @@
                     <div class="form-row">
 
                         <label>Localizacion:</label>
+                        <span class="txt1 p-b-11" style="color:red">
+                            @Html.ValidationMessageFor(x => x.Latitud)
+                        </span>
 
-                        <input type="text" class="form-control" id="search_input" placeholder="Escriba aqui el lugar del Evento"/>
+                        <input type="text" class="form-control" id="search_input" placeholder="Escriba cuidadosamente el lugar del Evento , evitar ENTER"/>
                         <input type="hidden" id="latidude_input" name="Latitud"/>
                         <input type="hidden" id="longitude_input" name="Longitud"/>
 

@@ -129,6 +129,7 @@
     <Compile Include="Transporte\DTOs\TransporteDto.cs" />
     <Compile Include="Transporte\ITransporteServicio.cs" />
     <Compile Include="Usuario\DTOs\UsuarioDto.cs" />
+    <Compile Include="Usuario\DTOs\UsuarioViewDto.cs" />
     <Compile Include="Usuario\IUsuarioServicio.cs" />
   </ItemGroup>
   <ItemGroup>
