@@ -189,5 +189,34 @@ namespace EM.Servicio.Evento
         {
             _eventoRepositorio.Save();
         }
+
+        //************************ Validaciones *************************
+
+        public bool ValidarTitulo(string Titulo)
+        {
+            var titulo = _eventoRepositorio.GetByFilter(x => x.Titulo == Titulo).ToList();
+
+            if(titulo.Count() > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool ValidarFecha(DateTime fecha)
+        {
+            if(fecha <= DateTime.Now)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

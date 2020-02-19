@@ -1,4 +1,5 @@
-﻿using EM.IServicio.Evento.DTOs;
+﻿using System;
+using EM.IServicio.Evento.DTOs;
 using System.Collections.Generic;
 
 namespace EM.IServicio.Evento
@@ -20,5 +21,9 @@ namespace EM.IServicio.Evento
         void Eliminar(long id);
 
         void Guardar();
+
+        bool ValidarTitulo(string Titulo);
+
+        bool ValidarFecha(DateTime fecha);
     }
 }
