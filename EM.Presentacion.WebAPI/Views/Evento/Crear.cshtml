@@ -18,6 +18,10 @@
             <img src="~/Content/CrearEvento/images/form-wizard.png" alt="">
         </div>
         <form action="Crear" asp-controller="Evento" method="post" enctype="multipart/form-data">
+            @if (ViewBag.ErrorEvento != null)
+            {
+            <div class="alert-danger"> @ViewBag.ErrorEvento </div>
+            }
             <div id="wizard">
                 <!-- SECTION 1 -->
                 <h4></h4>
@@ -27,12 +31,18 @@
                             <label for="">
                                 Nombre del Evento *
                             </label>
+                            <span class="txt1 p-b-11" style="color:red">
+                                @Html.ValidationMessageFor(x => x.Titulo)
+                            </span>
                             <input type="text" class="form-control" name="Titulo">
                         </div>
                         <div class="form-row">
                             <label for="">
                                 Quien dara la Charla? *
                             </label>
+                            <span class="txt1 p-b-11" style="color:red">
+                                @Html.ValidationMessageFor(x => x.Orante)
+                            </span>
                             <input name="Orante" type="text" class="form-control">
                         </div>
                     </div>
@@ -40,15 +50,21 @@
                         <label for="">
                             Organizacion
                         </label>
+                        <span class="txt1 p-b-11" style="color:red">
+                            @Html.ValidationMessageFor(x => x.Organizacion)
+                        </span>
                         <input name="Organizacion" type="text" class="form-control">
                     </div>
                     <div class="form-row">
                         <label for="">
                             Tipo Evento *
                         </label>
+                        <span class="txt1 p-b-11" style="color:red">
+                            @Html.ValidationMessageFor(x => x.TipoEventoId)
+                        </span>
                         <div class="form-holder">
 
-                            @Html.DropDownList("TipoEventoId", new SelectList(ViewBag.ListaTipoEvento, "Id", "Descripcion"), "Seleccionar Campo", new { @class = "form-control" })
+                            @Html.DropDownList("TipoEventoId", new SelectList(ViewBag.ListaTipoEvento, "Id", "Descripcion"), "Seleccionar Campo", new {@class = "form-control"})
                             <i class="zmdi zmdi-caret-down"></i>
                         </div>
                     </div>
@@ -56,6 +72,9 @@
                         <label for="">
                             Descripcion del Evento
                         </label>
+                        <span class="txt1 p-b-11" style="color:red">
+                            @Html.ValidationMessageFor(x => x.Descripcion)
+                        </span>
                         <textarea name="Descripcion" id="" class="form-control" placeholder="Note about your order, eg. special notes fordelivery." style="height: 149px"></textarea>
                     </div>
 
@@ -69,34 +88,43 @@
 
                         var searchInput = 'search_input';
 
-                        $(document).ready(function () {
+                        $(document).ready(function() {
                             var autocomplete;
 
-                            autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
-                                types: ['geocode']
-                            });
+                            autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)),
+                                {
+                                    types: ['geocode']
+                                });
 
-                            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                            google.maps.event.addListener(autocomplete,
+                                'place_changed',
+                                function() {
 
-                                var near_place = autocomplete.getPlace();
-                                document.getElementById('latidude_input').value = near_place.geometry.location.lat();
-                                document.getElementById('longitude_input').value = near_place.geometry.location.lng();
+                                    var near_place = autocomplete.getPlace();
+                                    document.getElementById('latidude_input').value =
+                                        near_place.geometry.location.lat();
+                                    document.getElementById('longitude_input').value =
+                                        near_place.geometry.location.lng();
 
-                                document.getElementById('latidude_view').innerHTML = near_place.geometry.location.lat();
-                                document.getElementById('longitude_view').innerHTML = near_place.geometry.location.lng();
+                                    document.getElementById('latidude_view').innerHTML =
+                                        near_place.geometry.location.lat();
+                                    document.getElementById('longitude_view').innerHTML =
+                                        near_place.geometry.location.lng();
 
-                            });
-
-                        });
-
-                        $(document).on('change', '#' + searchInput, function () {
-
-                            document.getElementById('latidude_input').value = '';
-                            document.getElementById('longitude_input').value = '';
-                            document.getElementById('latidude_view').innerHTML = '';
-                            document.getElementById('longitude_input').innerHTML = '';
+                                });
 
                         });
+
+                        $(document).on('change',
+                            '#' + searchInput,
+                            function() {
+
+                                document.getElementById('latidude_input').value = '';
+                                document.getElementById('longitude_input').value = '';
+                                document.getElementById('latidude_view').innerHTML = '';
+                                document.getElementById('longitude_input').innerHTML = '';
+
+                            });
 
                     </script>
 
@@ -104,16 +132,16 @@
 
                         <label>Localizacion:</label>
 
-                        <input type="text" class="form-control" id="search_input" placeholder="Escriba aqui el lugar del Evento" />
-                        <input type="hidden" id="latidude_input" name="Latitud" />
-                        <input type="hidden" id="longitude_input" name="Longitud" />
+                        <input type="text" class="form-control" id="search_input" placeholder="Escriba aqui el lugar del Evento"/>
+                        <input type="hidden" id="latidude_input" name="Latitud"/>
+                        <input type="hidden" id="longitude_input" name="Longitud"/>
 
                     </div>
 
                     <div class="form-row">
 
-                        <p style="visibility:hidden"><b>Latitude:<span id="latidude_view"></span></b></p>
-                        <p style="visibility:hidden"><b>Longitude:<span id="longitude_view"></span></b></p>
+                        <p style="visibility: hidden"><b>Latitude:<span id="latidude_view"></span></b></p>
+                        <p style="visibility: hidden"><b>Longitude:<span id="longitude_view"></span></b></p>
 
                     </div>
 
@@ -121,24 +149,33 @@
                         <label for="">
                             Direccion *
                         </label>
+                        <span class="txt1 p-b-11" style="color:red">
+                            @Html.ValidationMessageFor(x => x.DomicilioCompleto)
+                        </span>
                         <input name="Calle" type="text" class="form-control" placeholder="Calle" style="margin-bottom: 20px">
                         <input name="CalleNumero" type="text" class="form-control" placeholder="Numero">
                     </div>
 
-                        <div class="form-row">
-                            <label for="">
-                                Telefono *
-                            </label>
-                            <input name="Telefono" type="text" class="form-control">
-                        </div>
-                        <div class="form-row">
-                            <label for="">
-                                Email *
-                            </label>
-                            <input type="text" class="form-control" name="Mail">
-                        </div>
-                    
-                    <br />
+                    <div class="form-row">
+                        <label for="">
+                            Telefono *
+                        </label>
+                        <span class="txt1 p-b-11" style="color:red">
+                            @Html.ValidationMessageFor(x => x.Telefono)
+                        </span>
+                        <input name="Telefono" type="text" class="form-control">
+                    </div>
+                    <div class="form-row">
+                        <label for="">
+                            Email *
+                        </label>
+                        <span class="txt1 p-b-11" style="color:red">
+                            @Html.ValidationMessageFor(x => x.Mail)
+                        </span>
+                        <input type="text" class="form-control" name="Mail">
+                    </div>
+
+                    <br/>
                 </section>
 
                 <!-- SECTION 3 -->
@@ -165,11 +202,14 @@
                         <label for="">
                             Precio *
                         </label>
+                        <span class="txt1 p-b-11" style="color:red">
+                            @Html.ValidationMessageFor(x => x.Precio)
+                        </span>
                         <div class="form-holder">
                             <input name="Precio" type="number" class="form-control">
                         </div>
                     </div>
-                    <br />
+                    <br/>
 
                     <div class="checkout">
                         <p class="shipping">
@@ -178,7 +218,7 @@
                         </p>
                     </div>
 
-                    <br />
+                    <br/>
                 </section>
 
                 <!-- SECTION 4 -->
@@ -189,42 +229,51 @@
                         <label class="active">
                             Agregue una Imagen para el Evento:
                         </label>
-                        @Html.TextBox("img", null, new { type = "file" })
+                        @Html.TextBox("img", null, new {type = "file"})
 
                     </div>
 
-                    <br />
+                    <br/>
                     <div class="form-holder">
                         <label>
                             Fecha del Evento:
                         </label>
+                        <span class="txt1 p-b-11" style="color:red">
+                            @Html.ValidationMessageFor(x => x.FechaEvento)
+                        </span>
                         <input name="FechaEvento" type="date" class="form-control">
                     </div>
-                    <br />
+                    <br/>
                     <div class="form-holder">
                         <label>
                             Hora Inicio:
                         </label>
+                        <span class="txt1 p-b-11" style="color:red">
+                            @Html.ValidationMessageFor(x => x.HoraInicio)
+                        </span>
                         <input name="HoraInicio" type="time" class="form-control">
                     </div>
-                    <br />
+                    <br/>
                     <div class="form-holder">
                         <label>
                             Hora Fin del Evento:
                         </label>
+                        <span class="txt1 p-b-11" style="color:red">
+                            @Html.ValidationMessageFor(x => x.HoraFin)
+                        </span>
                         <input name="HoraFin" type="time" class="form-control">
                     </div>
-                    <br />
-                    <br />
+                    <br/>
+                    <br/>
                     <div class="checkout">
                         <p class="shipping">
                             <span class="heading">Atencion:</span>
                             Antes De Finalizar Revise SI Todos Los DATOS SON CORRECTOS.
                         </p>
                     </div>
-                    
+
                     <div class="form-holder">
-                        <button class="btn btn-outline-success" style="width:150px;height:50px;">
+                        <button class="btn btn-outline-success" style="width: 150px; height: 50px;">
                             Finalizar
                         </button>
                     </div>
