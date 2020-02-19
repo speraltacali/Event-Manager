@@ -611,6 +611,7 @@
     <Content Include="Views\Evento\BuscarEvento.cshtml" />
     <Content Include="Views\Home\BuscarEvento.cshtml" />
     <Content Include="Views\Evento\VerEntrada.cshtml" />
+    <Content Include="Views\Evento\UpdateEvento.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

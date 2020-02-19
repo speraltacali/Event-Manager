@@ -369,6 +369,20 @@ namespace EM.Presentacion.WebAPI.Controllers
 
         }
 
+        public ActionResult UpdateEvento(long id)
+        {
+            var evento = _eventoServicio.ObtenerPorId(id);
+
+            return View(evento);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateEvento(EventoDto evento)
+        {
+            _eventoServicio.Modificar(evento);
+
+            return RedirectToAction("Perfil", "Persona");
+        }
 
         [HttpGet]
         public ActionResult CreateEntrada(long id)
