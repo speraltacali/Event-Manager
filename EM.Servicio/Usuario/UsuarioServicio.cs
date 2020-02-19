@@ -153,7 +153,7 @@ namespace EM.Servicio.Usuario
         {
             var User = _usuarioRepositorio.GetByFilter(x => x.User == user);
 
-            if(User != null)
+            if(User.Count() != 0)
             {
                 return true;
             }
@@ -167,7 +167,7 @@ namespace EM.Servicio.Usuario
         {
             var Pass = _usuarioRepositorio.GetByFilter(x => x.Password == pass);
 
-            if (Pass != null)
+            if (Pass.Count() != 0)
             {
                 return true;
             }

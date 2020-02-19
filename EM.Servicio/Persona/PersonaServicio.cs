@@ -185,6 +185,20 @@ namespace EM.Servicio.Persona
             }
         }
 
+        public bool ValidarTelefono(string Telefono)
+        {
+            var Persona = _personaRepositorio.GetByFilter(x => x.Telefono == Telefono);
+
+            if (Persona.Count() != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public void Guardar()
         {
             _personaRepositorio.Save();

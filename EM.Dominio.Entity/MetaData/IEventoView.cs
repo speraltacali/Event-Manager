@@ -46,7 +46,7 @@ namespace EM.Dominio.Entity.MetaData
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo Tipo Evento es obligatorio")]
         long TipoEventoId { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es obligatorio")]
+
         byte[] Imagen { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es obligatorio")]
@@ -55,15 +55,14 @@ namespace EM.Dominio.Entity.MetaData
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es obligatorio")]
         decimal Precio { get; set; }
 
-        long EntradaId { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es obligatorio")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
         DateTime FechaEvento { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es obligatorio")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
         DateTime HoraInicio { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es obligatorio")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
         DateTime HoraFin { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es obligatorio")]

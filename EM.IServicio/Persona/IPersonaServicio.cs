@@ -23,6 +23,8 @@ namespace EM.IServicio.Persona
 
         bool ValidarMail(string mail);
 
+        bool ValidarTelefono(string Telefono);
+
         void Guardar();
 
     }

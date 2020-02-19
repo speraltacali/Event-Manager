@@ -74,32 +74,72 @@ namespace EM.Presentacion.WebAPI.Controllers
                     {
                         if (UserPersona.Password == UserPersona.PasswordRep)
                         {
-                            var Persona = new PersonaDto()
-                            {
-                                Id = UserPersona.Id,
-                                Apellido = UserPersona.Apellido,
-                                Nombre = UserPersona.Nombre,
-                                Domicilio = UserPersona.Domicilio,
-                                Cuil = UserPersona.Cuil,
-                                FechaNacimiento = UserPersona.FechaNacimiento,
-                                Mail = UserPersona.Mail,
-                                Telefono = UserPersona.Telefono
-                            };
+                           if(!_personaServicio.ValidarCuil(UserPersona.Cuil))
+                           {
+                                if(!_personaServicio.ValidarMail(UserPersona.Mail))
+                                {
+                                    if(!_personaServicio.ValidarTelefono(UserPersona.Telefono))
+                                    {
+                                        if(!_usuarioServicio.ValidarUser(UserPersona.User))
+                                        {
+                                            if(!_usuarioServicio.ValidarPass(UserPersona.Password))
+                                            {
+                                                var Persona = new PersonaDto()
+                                                {
+                                                    Id = UserPersona.Id,
+                                                    Apellido = UserPersona.Apellido,
+                                                    Nombre = UserPersona.Nombre,
+                                                    Domicilio = UserPersona.Domicilio,
+                                                    Cuil = UserPersona.Cuil,
+                                                    FechaNacimiento = UserPersona.FechaNacimiento,
+                                                    Mail = UserPersona.Mail,
+                                                    Telefono = UserPersona.Telefono
+                                                };
 
-                            var Usuario = new UsuarioDto()
-                            {
-                                User = UserPersona.User,
-                                Password = UserPersona.Password,
-                            };
+                                                var Usuario = new UsuarioDto()
+                                                {
+                                                    User = UserPersona.User,
+                                                    Password = UserPersona.Password,
+                                                };
 
-                            //Verificar por el momento el insert en DB
+                                                //Verificar por el momento el insert en DB
 
-                            var persona = _personaServicio.Insertar(Persona);
-                            Usuario.PersonaId = persona.Id;
-                            Usuario.FechaCreacion = DateTime.Now;
-                            _usuarioServicio.Insertar(Usuario);
+                                                var persona = _personaServicio.Insertar(Persona);
+                                                Usuario.PersonaId = persona.Id;
+                                                Usuario.FechaCreacion = DateTime.Now;
+                                                _usuarioServicio.Insertar(Usuario);
 
-                            return RedirectToAction("Login", "Usuario");
+                                                return RedirectToAction("Login", "Usuario");
+                                            }
+                                            else
+                                            {
+                                                ViewBag.Error = "El Password ya esta siendo Utilizado ingreso otro.";
+                                                return View();
+                                            }
+                                        }
+                                        else
+                                        {
+                                            ViewBag.Error = "El Usuario ya esta siendo Utilizado ingreso otro.";
+                                            return View();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        ViewBag.Error = "El Telefono ya esta siendo Utilizado ingreso otro.";
+                                        return View();
+                                    }
+                                }
+                                else
+                                {
+                                    ViewBag.Error = "El Mail ya esta siendo Utilizado ingreso otro.";
+                                    return View();
+                                }
+                           }
+                           else
+                           {
+                               ViewBag.Error = "El Cuil ya esta siendo Utilizado ingreso otro.";
+                               return View();
+                           }
                         }
                         else
                         {
