@@ -384,6 +384,13 @@ namespace EM.Presentacion.WebAPI.Controllers
         [HttpPost]
         public ActionResult UpdateEvento(EventoDto evento)
         {
+            var eventoimg = _eventoServicio.ObtenerPorId(evento.Id);
+
+            if (evento.Imagen == null)
+            {
+                evento.Imagen = eventoimg.Imagen;
+            }
+
             _eventoServicio.Modificar(evento);
 
             return RedirectToAction("Perfil", "Persona");
@@ -439,13 +446,15 @@ namespace EM.Presentacion.WebAPI.Controllers
         [HttpGet]
         public ActionResult VerEntrada(long Id)
         {
-            var evento = _eventoServicio.ObtenerPorId(Id);
+            var comprobante = _comprobanteServicio.ObtenerPoId(Id);
 
-            var entrada = _entradaServicio.ObtenerPorIdEvento(evento.Id);
+            var entrada = _entradaServicio.ObtenerPorIdEvento(comprobante.EventoId);
 
-            var auxfecha = _fechaEventoServicio.ObtenerPorIdEvento(evento.Id);
+            var auxfecha = _fechaEventoServicio.ObtenerPorIdEvento(comprobante.EventoId);
 
             var fechaPrincipal = _fechaServicio.ObtenerPorId(auxfecha.FechaId);
+
+            var evento = _eventoServicio.ObtenerPorId(comprobante.EventoId);
 
             var eventoView = new EventoViewDto
             {
