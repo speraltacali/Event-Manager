@@ -374,7 +374,7 @@ namespace EM.Presentacion.WebAPI.Controllers
 
                 var eventoView = EventoView(comprobante.Id);
 
-                return View(eventoView);
+                return View(comprobante);
             }
             else
             {
