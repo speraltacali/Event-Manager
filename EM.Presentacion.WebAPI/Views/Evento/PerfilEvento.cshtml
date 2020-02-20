@@ -1,12 +1,16 @@
 ﻿@using EM.Dominio.Entity.Enum
+@using EM.IServicio.Comprobante
 @using EM.IServicio.Helpers.Foto
 @using EM.IServicio.Persona
+@using EM.Servicio.Comprobante
 @using EM.Servicio.Persona
 @model EM.IServicio.Evento.DTOs.EventoViewDto
 @{
     ViewBag.Title = "PerfilEvento";
 
     IPersonaServicio _personaServicio = new PersonaServicio();
+
+    IComprobanteServicio _comprobanteServicio = new ComprobanteServicio();
 
     var lista = _personaServicio.ObtenerPorEventoPago(Model.Id);
 
@@ -146,7 +150,7 @@
                     </table>
                 </div>
                 <br />
-                <label class="form-control" style="background-color:lawngreen;color:black;">Total Recaudado: $@TotalRecaudado</label>
+                <label class="form-control" style="background-color:lawngreen;color:black;">Total Recaudado: $@_comprobanteServicio.TotalComprobantePorEvento(Model.Id)</label>
                 <br />
                 <label class="form-control" style="background-color:cornflowerblue;color:black;">Lugar</label>
 

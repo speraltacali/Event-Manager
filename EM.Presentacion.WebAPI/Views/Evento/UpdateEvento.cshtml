@@ -1,4 +1,4 @@
-﻿@model EM.IServicio.Evento.DTOs.EventoDto
+﻿@model EM.IServicio.Evento.DTOs.EventoViewDto
 @{
     ViewBag.Title = "UpdateEvento";
 }
@@ -87,10 +87,10 @@
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Domicilio, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.DomicilioAlternativo, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Domicilio, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Domicilio, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.DomicilioAlternativo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DomicilioAlternativo, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
@@ -109,6 +109,28 @@
                             @Html.ValidationMessageFor(model => model.Mail, "", new { @class = "text-danger" })
                         </div>
                     </div>
+                    
+                    <div class="form-holder">
+                        <label for="">
+                            Precio Actual del Evento : @Model.Precio*
+                        </label>
+                        <span class="txt1 p-b-11" style="color:red">
+                            @Html.ValidationMessageFor(x => x.Precio)
+                        </span>
+                        <div class="form-holder">
+                            <input name="Precio" type="number" class="form-control" value="@Model.Precio">
+                        </div>
+                    </div>
+                    <br/>
+
+                    <div class="checkout">
+                        <p class="shipping">
+                            <span class="heading">Informacion:</span>
+                            Atencion si el evento es GRATUITO coloque como Valor = 0
+                        </p>
+                    </div>
+
+                    <br/>
 
 
                     <div class="form-group">

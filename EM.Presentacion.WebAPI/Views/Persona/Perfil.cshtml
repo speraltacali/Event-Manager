@@ -1,4 +1,5 @@
 ﻿@model EM.IServicio.Persona.DTOs.PersonaDto
+@using EM.Dominio.Entity.Enum
 @using EM.Servicio.Comprobante
 @using EM.IServicio.Comprobante
 @using EM.IServicio.Helpers.Usuario
@@ -7,7 +8,6 @@
 @using EM.Servicio.CreadorEvento
 @using EM.IServicio.CreadorEvento;
 @using EM.IServicio.TipoEvento;
-@using EM.IServicio.TipoEvento.DTOs;
 @using EM.Servicio.TipoEvento;
 @using EM.Servicio.Usuario
 @using EM.IServicio.Usuario
@@ -118,9 +118,18 @@
                                                     <td><a href="/Evento/PerfilEvento/@item.Id">@item.Titulo</a></td>
                                                     <td>@_tipoEvento.GetById(item.TipoEventoId).Descripcion</td>
                                                     <td>@item.Orante</td>
-                                                    <td><a class="btn btn-outline-info" href="~/Evento/UpdateEvento/@item.Id">Modificar</a> 
-                                                        <a class="btn btn-outline-secondary" href="~/Evento/Fecha/@item.Id">Fecha</a>
-                                                        <a class="btn btn-outline-dark" href="~/Evento/Localizacion/@item.Id">Localizacion</a></td>
+                                                    <td>
+                                                        @if (_eventoServicio.ObtenerPorId(item.Id).Estado != EventoEstado.Vencido)
+                                                        {
+                                                            <a class="btn btn-outline-info" href="~/Evento/UpdateEvento/@item.Id">Modificar</a>
+                                                            <a class="btn btn-outline-secondary" href="~/Evento/Fecha/@item.Id">Fecha</a>
+                                                            <a class="btn btn-outline-dark" href="~/Evento/Localizacion/@item.Id">Localizacion</a>
+                                                        }
+                                                       @if (_eventoServicio.ObtenerPorId(item.Id).Estado == EventoEstado.Vencido)
+                                                       {
+                                                           <a class="btn btn-outline-danger">El evento esta Vencido</a>
+                                                       }
+                                                    </td>
                                                 </tr>
                                             }
                                         }

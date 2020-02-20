@@ -17,6 +17,8 @@ namespace EM.IServicio.Comprobante
 
         ComprobanteDto Insertar(ComprobanteDto dto);
 
+        decimal TotalComprobantePorEvento(long eventoId);
+
         long ObtenerCodigo();
 
         bool ValidarCómprobanteEvento(long eventoId, long userId);

@@ -49,6 +49,8 @@ namespace EM.IServicio.Evento.DTOs
 
         public EventoEstado Estado { get; set; }
 
+        public string DomicilioAlternativo { get; set; }
+
         public string DomicilioCompleto => $"{Calle} {CalleNumero}";
     }
 }
