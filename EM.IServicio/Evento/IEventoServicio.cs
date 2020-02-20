@@ -22,6 +22,8 @@ namespace EM.IServicio.Evento
 
         void Guardar();
 
+        void EstadoActivo(long id);
+
         void EstadoSuspendido(long id);
 
         void EstadoVencido(long id);

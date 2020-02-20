@@ -134,5 +134,23 @@ namespace EM.Servicio.Comprobante
         {
             _comprobanteRepositorio.Save();
         }
+
+        //***************************** Validacion ******************************
+
+        public bool ValidarCómprobanteEvento(long eventoId , long userId)
+        {
+            var validar = _comprobanteRepositorio.GetByFilter(x => x.EventoId == eventoId && x.UsuarioId == userId)
+                .ToList();
+
+            if(validar.Count() > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
     }
 }

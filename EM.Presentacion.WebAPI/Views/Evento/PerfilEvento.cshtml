@@ -22,112 +22,114 @@
         <div class="polaroid"><br />
             @*<img resource="@imagen" alt="5 Terre" style="width:70%" class="imgPortada">*@
             
-            <div class="container">
-                <img src="@Url.Action("GetImage", new { id = Model.Id })" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"/>
-                <h3>
-                    <u>
-                        @if (Model != null)
-                        {@Model.Titulo}
-                    </u>
-                </h3>
+        <div class="container">
+            <img src="@Url.Action("GetImage", new { id = Model.Id })" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" />
+            <h3>
+                <u>
+                    @if (Model != null)
+                    {@Model.Titulo}
+                </u>
+            </h3>
 
-                <div class="col-lg-12">
-                    <p>
-                        @if (Model != null)
-                        {@Model.Descripcion}
-                    </p>
-                    <h6>
-                        Numero Contacto: @if (Model != null)
-                        {@Model.Telefono}
-                    </h6>
-                    <br />
+            <div class="col-lg-12">
+                <p>
+                    @if (Model != null)
+                    {@Model.Descripcion}
+                </p>
+                <h6>
+                    Numero Contacto: @if (Model != null)
+                    {@Model.Telefono}
+                </h6>
+                <br />
 
+                <p>
+                    <label class="form-control" role="button" style="background-color:salmon;color:black">
+                        Valor Entrada $@if (Model != null)
+                        {@Model.Precio} &raquo;
+                    </label>
+                </p>
+
+                @if (Model.Estado == EventoEstado.Activo)
+                {
                     <p>
-                        <label class="form-control" role="button" style="background-color:salmon;color:black">
-                            Valor Entrada $@if (Model != null)
-                            {@Model.Precio} &raquo;
+                        <label class="form-control" role="button" style="background-color:green;color:black">
+                            @Model.Estado
                         </label>
                     </p>
+                }
 
-                    @if (Model.Estado == EventoEstado.Activo)
-                    {
-                        <p>
-                            <label class="form-control" role="button" style="background-color:green;color:black">
-                                @Model.Estado
-                            </label>
-                        </p>
-                    }
+                @if (Model.Estado == EventoEstado.Vencido)
+                {
+                    <p>
+                        <label class="form-control" role="button" style="background-color:red;color:black">
+                            @Model.Estado
+                        </label>
+                    </p>
+                }
+                @if (Model.Estado == EventoEstado.Suspendido)
+                {
+                    <p>
+                        <label class="form-control" role="button" style="background-color:yellow;color:black">
+                            @Model.Estado
+                        </label>
+                    </p>
+                }
 
-                    @if (Model.Estado == EventoEstado.Vencido)
-                    {
-                        <p>
-                            <label class="form-control" role="button" style="background-color:red;color:black">
-                                @Model.Estado
-                            </label>
-                        </p>
-                    }
-                    @if (Model.Estado == EventoEstado.Suspendido)
-                    {
-                        <p>
-                            <label class="form-control" role="button" style="background-color:yellow;color:black">
-                                @Model.Estado
-                            </label>
-                        </p>
-                    }
+            </div><!-- /.col-lg-4 -->
 
-                </div><!-- /.col-lg-4 -->
+            <br />
 
-                <br />
+            <section class="container">
 
-                <section class="container">
+                <div class="col-lg-4" style="background-color:antiquewhite; float:left;padding-top:4px;padding-bottom:2px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);">
 
-                    <div class="col-lg-4" style="background-color:antiquewhite; float:left;padding-top:4px;padding-bottom:2px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);">
+                    <h5>
+                        Horario del Evento: @if (Model != null)
+                        {@Model.FechaEvento.ToShortDateString()}
+                    </h5>
 
-                        <h5>
-                            Horario del Evento: @if (Model != null)
-                            {@Model.FechaEvento.ToShortDateString()}
-                        </h5>
+                    <p align="center">
+                        Desde: @if (Model != null)
+                        {@Model.HoraInicio.ToShortTimeString()}am | Hasta: @if (Model != null)
+                        {@Model.HoraFin.ToShortTimeString()}pm
+                    </p>
 
-                        <p align="center">
-                            Desde: @if (Model != null){@Model.HoraInicio.ToShortTimeString()}am | Hasta: @if (Model != null){@Model.HoraFin.ToShortTimeString()}pm
-                        </p>
-
-                    </div>
+                </div>
 
 
-                    <div class="col-lg-4" style="background-color:antiquewhite; float:right;padding-top:4px;padding-bottom:2px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);">
+                <div class="col-lg-4" style="background-color:antiquewhite; float:right;padding-top:4px;padding-bottom:2px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);">
 
-                        <h5>Quien Dara La Charla:</h5>
+                    <h5>Quien Dara La Charla:</h5>
 
-                        <p align="center">
-                            | @if (Model != null)
-                            {@Model.Orante} |
-                        </p>
+                    <p align="center">
+                        | @if (Model != null)
+                        {@Model.Orante} |
+                    </p>
 
-                    </div>
-                   
-                </section>
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br /><br />
-                <label class="form-control" style="background-color:cornflowerblue;color:black;">Personas Inscriptas Al Evento</label>
+                </div>
+
+            </section>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br /><br />
+            <label class="form-control" style="background-color:cornflowerblue;color:black;">Personas Inscriptas Al Evento</label>
 
 
-                <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                        <table class="table" cellspacing="0">
-                            <thead>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <table class="table" cellspacing="0">
+                        <thead>
                             <tr>
                                 <th>Nombre Completo</th>
                                 <th>Cuil</th>
                                 <th>Mail</th>
                             </tr>
-                            </thead>
-                            <tbody>
+                        </thead>
+                        <tbody>
                             @foreach (var item in _personaServicio.ObtenerPorEventoPago(Model.Id))
                             {
                                 <tr>
@@ -136,31 +138,31 @@
                                     <td>@item.Mail</td>
                                 </tr>
                             }
-                            </tbody>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
+                </div>
+                <br />
+                <label class="form-control" style="background-color:cornflowerblue;color:black;">Lugar</label>
+
+                <section class="container">
                     <br />
-                    <label class="form-control" style="background-color:cornflowerblue;color:black;">Lugar</label>
+                    <h5>
+                        Lugar del Evento: @if (Model != null)
+                        {@Model.CalleNumero}
+                    </h5>
 
-                    <section class="container">
-                        <br />
-                        <h5>
-                            Lugar del Evento: @if (Model != null)
-                                              {@Model.CalleNumero}
-                        </h5>
-
-                        <div id="map">
-                        </div>
+                    <div id="map">
+                    </div>
 
 
-                        <style>
-                            #map {
-                                height: 400px;
-                                width: 100%;
-                            }
-                        </style>
+                    <style>
+                        #map {
+                            height: 400px;
+                            width: 100%;
+                        }
+                    </style>
 
-                        <script>
+                    <script>
 
                             function initMap()
                             {
@@ -181,18 +183,27 @@
 
                             }
                             initMap();
-                        </script>
+                    </script>
 
-                    </section>
+                </section>
 
-                    <br />
+                <br />
 
-                </div>
-                
-                <div class="col-md-12" style="text-align:center">
-                    <a class="btn btn-danger" href="~/Evento/SuspenderEvento/@Model.Id" style="width: 200px;height: 40px ">Suspender Evento</a> <br/>
-                </div>
             </div>
+
+            @if (Model.Estado == EventoEstado.Activo)
+            {
+                <div class="col-md-12" style="text-align:center">
+                    <a class="btn btn-danger" href="~/Evento/SuspenderEvento/@Model.Id" style="width: 200px;height: 40px ">Suspender Evento</a> <br />
+                </div>
+            }
+            @if (Model.Estado == EventoEstado.Suspendido)
+            {
+                <div class="col-md-12" style="text-align:center">
+                    <a class="btn btn-primary" href="~/Evento/HabilitarEvento/@Model.Id" style="width: 200px;height: 40px ">Habilitar Evento</a> <br />
+                </div>
+            }
+        </div>
     </form>
 </div>
 

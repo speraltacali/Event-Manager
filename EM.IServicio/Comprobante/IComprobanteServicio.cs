@@ -17,6 +17,8 @@ namespace EM.IServicio.Comprobante
 
         long ObtenerCodigo();
 
+        bool ValidarCómprobanteEvento(long eventoId, long userId);
+
         void Guardar();
     }
 }

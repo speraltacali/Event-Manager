@@ -80,6 +80,22 @@ namespace EM.Presentacion.WebAPI.Controllers
             }
         }
 
+        public ActionResult HabilitarEvento(long Id)
+        {
+
+            if (Session["Usuario"] != null)
+            {
+
+                _eventoServicio.EstadoActivo(Id);
+                return RedirectToAction("PerfilEvento", new { id = Id });
+
+            }
+            else
+            {
+                return RedirectToAction("Login", "Usuario");
+            }
+        }
+
         [HttpPost]
         public ActionResult SuspenderEvento(EventoViewDto dto)
         {
@@ -280,16 +296,24 @@ namespace EM.Presentacion.WebAPI.Controllers
             }
         }
 
-        public ActionResult PagarEntrada(long id)
+        public ActionResult PagarEntrada(long Id)
         {
             if(Session["Usuario"] != null)
             {
-                var eventoView = EventoView(id);
+                if (!_comprobanteServicio.ValidarCómprobanteEvento(Id, SessionActiva.UsuarioId))
+                {
+                    var eventoView = EventoView(Id);
 
-                SessionActiva.Monto = eventoView.Precio;
-                SessionActiva.EventoId = eventoView.Id;
+                    SessionActiva.Monto = eventoView.Precio;
+                    SessionActiva.EventoId = eventoView.Id;
 
-                return View(eventoView);
+                    return View(eventoView);
+                }
+                else
+                {
+                    TempData["Pago"] = "Usted ya se inscribio al evento , verificar su Perfil - Entradas";
+                    return RedirectToAction("ViewEvento", new {id = Id });
+                }
             }
             else
             {

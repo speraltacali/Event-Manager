@@ -208,6 +208,16 @@ namespace EM.Servicio.Evento
 
         //*********************** Cambiar de Estado *********************
 
+        public void EstadoActivo(long id)
+        {
+            var Estado = _eventoRepositorio.GetById(id);
+
+            Estado.Estado = EventoEstado.Activo;
+
+            _eventoRepositorio.Update(Estado);
+            Guardar();
+        }
+
         public void EstadoSuspendido(long id)
         {
             var Estado = _eventoRepositorio.GetById(id);

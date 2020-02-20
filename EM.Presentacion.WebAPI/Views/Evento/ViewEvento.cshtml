@@ -23,6 +23,14 @@
             
             <div class="container">
                 <img src="@Url.Action("GetImage", new { id = Model.Id })" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" />
+
+                @if (TempData["Pago"] != null)
+                {
+                    <br />
+                    <div class="alert-danger" style='width:625px; height:30px'> TempData["Pago"] </div>
+                    <br />
+                }
+
                 <h3>
                     <u>
                         @if (Model != null)
@@ -60,7 +68,10 @@
                             {@Model.FechaEvento.ToShortDateString()}
                         </h5>
 
-                        <p align="center">Desde: @if (Model != null){@Model.HoraInicio.ToShortTimeString()}am | Hasta: @if (Model != null){@Model.HoraFin.ToShortTimeString()}pm
+                        <p align="center">
+                            Desde: @if (Model != null)
+                            {@Model.HoraInicio.ToShortTimeString()}am | Hasta: @if (Model != null)
+                            {@Model.HoraFin.ToShortTimeString()}pm
                         </p>
 
                     </div>
