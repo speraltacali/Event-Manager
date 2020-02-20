@@ -237,6 +237,7 @@
     <Content Include="Content\ImageHome\entrada.png" />
     <Content Include="Content\ImageHome\eventosSlider.jpg" />
     <Content Include="Content\ImageHome\localizacion.png" />
+    <Content Include="Content\ImageHome\login.jpg" />
     <Content Include="Content\ImageHome\loginuser.png" />
     <Content Include="Content\ImgEvento\ImagenPortada.css" />
     <Content Include="Content\ImgEvento\ImgResponsive.css" />
