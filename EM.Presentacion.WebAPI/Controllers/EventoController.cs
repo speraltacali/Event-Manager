@@ -509,7 +509,7 @@ namespace EM.Presentacion.WebAPI.Controllers
         public ActionResult Localizacion(EventoViewDto eventoDto)
         {
 
-            if (eventoDto.Latitud != null)
+            if (eventoDto.Latitud != null && eventoDto.CalleNumero != null)
             {
                 _eventoServicio.ModificarEventoLocalizacion(eventoDto);
             }
