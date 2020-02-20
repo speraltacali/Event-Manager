@@ -37,6 +37,25 @@ namespace EM.Servicio.Comprobante
                 .ToList();
         }
 
+        public ComprobanteDto ObtenerPorEventoUser(long eventoId , long userId)
+        {
+            var comprobante = _comprobanteRepositorio.GetAll().FirstOrDefault(x => x.EventoId == eventoId
+                                                                                   || x.UsuarioId == userId);
+
+
+                return new ComprobanteDto()
+                {
+                    Numero = comprobante.Numero,
+                    Fecha = comprobante.Fecha,
+                    SubTotal = comprobante.SubTotal,
+                    Total = comprobante.Total,
+                    Descuento = comprobante.Descuento,
+                    EventoId = comprobante.EventoId,
+                    UsuarioId = comprobante.UsuarioId
+                };
+        }
+
+
         public IEnumerable<ComprobanteDto> ObtenerTodo()
         {
             return _comprobanteRepositorio.GetAll()

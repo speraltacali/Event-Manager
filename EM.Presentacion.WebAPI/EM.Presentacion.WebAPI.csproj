@@ -620,6 +620,7 @@
     <Content Include="Views\Evento\UpdateEvento.cshtml" />
     <Content Include="Views\Evento\SuspenderEvento.cshtml" />
     <Content Include="Views\Evento\Fecha.cshtml" />
+    <Content Include="Views\Evento\Localizacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

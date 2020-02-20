@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -279,10 +277,17 @@ namespace EM.Presentacion.WebAPI.Controllers
             if (Session["Usuario"] != null)
             {
 
-                var eventoView = EventoView(id);
+                if (_creadorEventoServicio.ValidarAlCreador(SessionActiva.UsuarioId, id))
+                {
+                    var eventoView = EventoView(id);
 
 
-                return View(eventoView);
+                    return View(eventoView);
+                }
+                else
+                {
+                    return RedirectToAction("ViewEvento", new { id = id });
+                }
             }
             else
             {
@@ -320,16 +325,24 @@ namespace EM.Presentacion.WebAPI.Controllers
             {
                 if (!_comprobanteServicio.ValidarCómprobanteEvento(Id, SessionActiva.UsuarioId))
                 {
-                    var eventoView = EventoView(Id);
+                    if (!_creadorEventoServicio.ValidarAlCreador(SessionActiva.UsuarioId, Id))
+                    {
+                        var eventoView = EventoView(Id);
 
-                    SessionActiva.Monto = eventoView.Precio;
-                    SessionActiva.EventoId = eventoView.Id;
+                        SessionActiva.Monto = eventoView.Precio;
+                        SessionActiva.EventoId = eventoView.Id;
 
-                    return View(eventoView);
+                        return View(eventoView);
+
+                    }
+                    else
+                    {
+                        return RedirectToAction("PerfilEvento", new { id = Id });
+                    }
                 }
                 else
                 {
-                    TempData["Pago"] = "Usted ya se inscribio al evento , verificar su Perfil - Entradas";
+                    TempData["Pago"] = "Usted ya se inscribio al evento , verificar Mi Perfil - Entradas";
                     return RedirectToAction("ViewEvento", new {id = Id });
                 }
             }
@@ -474,6 +487,13 @@ namespace EM.Presentacion.WebAPI.Controllers
             {
                 return RedirectToAction("Login", "Usuario");
             }
+        }
+
+        public ActionResult Localizacion(long id)
+        {
+            var evento = _eventoServicio.ObtenerPorId(id);
+
+            return View(evento);
         }
 
 

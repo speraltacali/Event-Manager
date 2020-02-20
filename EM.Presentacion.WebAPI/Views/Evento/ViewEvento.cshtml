@@ -1,4 +1,5 @@
-﻿@using EM.IServicio.Helpers.Foto
+﻿@using EM.Dominio.Entity.Enum
+@using EM.IServicio.Helpers.Foto
 @model EM.IServicio.Evento.DTOs.EventoViewDto
 @{
     ViewBag.Title = "ViewEvento";
@@ -27,7 +28,7 @@
                 @if (TempData["Pago"] != null)
                 {
                     <br />
-                    <div class="alert-danger" style='width:625px; height:30px'> TempData["Pago"] </div>
+                    <div class="alert-danger" style='width:837px; height:40px'> @TempData["Pago"] </div>
                     <br />
                 }
 
@@ -49,12 +50,38 @@
                     </h6>
                     <br />
 
-                    <p>
-                        <a class="btn btn-outline-primary" href="~/Evento/PagarEntrada/@Model.Id" role="button">
-                            Conseguir Entrada $@if (Model != null)
-                            {@Model.Precio} &raquo;
-                        </a>
-                    </p>
+                    @if (Model.Estado == EventoEstado.Activo)
+                    {
+                        <p>
+                            <a class="btn btn-outline-primary" href="~/Evento/PagarEntrada/@Model.Id" role="button">
+                                Conseguir Entrada $@if (Model != null)
+                                                   {@Model.Precio} &raquo;
+                            </a>
+                        </p>
+
+                        <p>
+                            <label class="form-control" role="button" style="background-color:green;color:black">
+                                @Model.Estado
+                            </label>
+                        </p>
+                    }
+
+                    @if (Model.Estado == EventoEstado.Vencido)
+                    {
+                        <p>
+                            <label class="form-control" role="button" style="background-color:red;color:black">
+                                @Model.Estado
+                            </label>
+                        </p>
+                    }
+                    @if (Model.Estado == EventoEstado.Suspendido)
+                    {
+                        <p>
+                            <label class="form-control" role="button" style="background-color:yellow;color:black">
+                                @Model.Estado
+                            </label>
+                        </p>
+                    }
                 </div><!-- /.col-lg-4 -->
 
                 <br />

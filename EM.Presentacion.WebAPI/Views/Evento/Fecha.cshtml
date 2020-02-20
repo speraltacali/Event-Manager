@@ -66,6 +66,37 @@
                         @Html.EditorFor(model => model.HoraCierre, new { htmlAttributes = new { @class = "form-control" } })                       
                     </div>
                     <br />
+                    
+                    
+                    <div class="form-holder">
+                        <label>
+                            Fecha del Evento:
+                        </label>
+                        <span class="txt1 p-b-11" style="color:red">
+                            @Html.ValidationMessageFor(x => x.FechaEvento)
+                        </span>
+                        <input name="FechaEvento" type="date" value="@Model.FechaEvento" class="form-control">
+                    </div>
+                    <br/>
+                    <div class="form-holder">
+                        <label>
+                            Hora Inicio:
+                        </label>
+                        <span class="txt1 p-b-11" style="color:red">
+                            @Html.ValidationMessageFor(x => x.HoraInicio)
+                        </span>
+                        <input name="HoraInicio" type="time" value="@Model.HoraInicio" class="form-control">
+                    </div>
+                    <br/>
+                    <div class="form-holder">
+                        <label>
+                            Hora Fin del Evento:
+                        </label>
+                        <span class="txt1 p-b-11" style="color:red">
+                            @Html.ValidationMessageFor(x => x.HoraCierre)
+                        </span>
+                        <input name="HoraFin" type="time" value="@Model.HoraCierre" class="form-control">
+                    </div>
                     <button class="btn btn-outline-primary" style="margin-left:110px">Guardar Cambios</button>
 
                 </form>

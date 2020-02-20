@@ -35,10 +35,7 @@
 
                 <h2>Modificar Datos</h2>
 
-
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
+                <form asp-action="Update" asp-controller="Persona" method="post" enctype="multipart/form-data">
 
                     <div class="form-horizontal">
                         <hr />
@@ -100,16 +97,28 @@
                                 @Html.ValidationMessageFor(model => model.FechaNacimiento, "", new { @class = "text-danger" })
                             </div>
                         </div>
+
+                        <div class="form-group">
+
+                            <label class="col-md-10">
+                                Modificar Imagen para el Usuario:
+                            </label>
+                            @Html.TextBox("img", null, new { type = "file" })
+
+                        </div>
                         <br />
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Guardar" class="btn btn-outline-success" style="width:130px;height:60px;margin-left:90px;"/>
+                                <input type="submit" value="Guardar" class="btn btn-outline-success" style="width:130px;height:60px;margin-left:90px;" />
 
                                 <a class="btn btn-outline-danger" href="~/Persona/Perfil" style="width:130px;height:40px;margin-left:90px;margin-top:10px;">Volver</a>
                             </div>
                         </div>
                     </div>
-                }
+
+                </form>
+                  
+                
 
                 @section Scripts {
                     @Scripts.Render("~/bundles/jqueryval")

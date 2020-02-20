@@ -45,8 +45,21 @@
         <div class="containerPerfil">
             <div class="row">
                 <div class="col-md-6 img">
-                    <img src="~/Content/ImageHome/login.jpg" alt="" class="rounded-circle" style="margin-right:2px;height:190px;width:350px;">
-                    <br /><br />
+
+                    @if (SessionActiva.Foto == null)
+                    {
+                        <img src="~/Content/ImageHome/login.jpg" alt="" class="rounded-circle" style="margin-right: 2px; height: 190px; width: 350px;">
+
+                        <br />
+                        <br />
+                    }
+                    @if (SessionActiva.Foto != null)
+                    {
+                        <img src="@Url.Action("GetImage", new { id = SessionActiva.Foto })" alt="" class="rounded-circle" style="margin-right: 2px; height: 190px; width: 350px;">
+
+                        <br />
+                        <br />
+                    }
                 </div>
                 <div class="col-md-6 details">
                     <blockquote>
@@ -100,7 +113,9 @@
                                                     <td><a href="/Evento/PerfilEvento/@item.Id">@item.Titulo</a></td>
                                                     <td>@_tipoEvento.GetById(item.TipoEventoId).Descripcion</td>
                                                     <td>@item.Orante</td>
-                                                    <td><a class="btn btn-outline-info" href="~/Evento/UpdateEvento/@item.Id">Modificar</a>  <a class="btn btn-outline-secondary" href="~/Evento/Fecha/@item.Id">Fecha</a></td>
+                                                    <td><a class="btn btn-outline-info" href="~/Evento/UpdateEvento/@item.Id">Modificar</a> 
+                                                        <a class="btn btn-outline-secondary" href="~/Evento/Fecha/@item.Id">Fecha</a>
+                                                        <a class="btn btn-outline-secondary" href="~/Evento/Localizacion/@item.Id">Localizacion</a></td>
                                                 </tr>
                                             }
                                         }
@@ -123,7 +138,7 @@
                                             foreach (var item in ListaEntradas)
                                             {
                                                 <tr>
-                                                    <td><a href="~/Evento/VerEntrada/@item.Id">@_eventoServicio.ObtenerPorId(item.EventoId).Titulo</a></td>
+                                                    <td><a href="~/Evento/ViewEvento/@item.Id">@_eventoServicio.ObtenerPorId(item.EventoId).Titulo</a></td>
                                                     <td>@_eventoServicio.ObtenerPorId(item.EventoId).Organizacion</td>
                                                     <td>@item.Fecha.ToShortDateString()</td>
                                                     <td><a type="button" class="btn btn-success" href="~/Evento/VerEntrada/@item.Id">Ver</a></td>

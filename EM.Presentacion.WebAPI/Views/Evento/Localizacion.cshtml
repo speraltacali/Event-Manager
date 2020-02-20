@@ -1,0 +1,134 @@
+﻿@model EM.IServicio.Evento.DTOs.EventoDto
+@{
+    ViewBag.Title = "Localizacion";
+}
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/animate/animate.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login/css/util.css">
+<link rel="stylesheet" type="text/css" href="~/Content/Login/css/main.css">
+
+<link href="~/Content/CrearEvento/css/style.css" rel="stylesheet" />
+<link href="~/Content/CrearEvento/fonts/material-design-iconic-font/css/material-design-iconic-font.css" rel="stylesheet" />
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyCFA0cdJHdJdccOiUiKNpwQ3wze89fWH38">
+</script>
+
+
+<body>
+
+    <div class="limiter">
+        <div class="container-login100">
+
+            <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
+
+                <h1>Modificacion La Localizacion del Evento</h1>
+                <br />
+                <form asp-action="Fecha" asp-controller="Evento" method="post">
+
+                    <script>
+
+                        var searchInput = 'search_input';
+
+                        $(document).ready(function () {
+                            var autocomplete;
+
+                            autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)),
+                                {
+                                    types: ['geocode']
+                                });
+
+                            google.maps.event.addListener(autocomplete,
+                                'place_changed',
+                                function () {
+
+                                    var near_place = autocomplete.getPlace();
+                                    document.getElementById('latidude_input').value =
+                                        near_place.geometry.location.lat();
+                                    document.getElementById('longitude_input').value =
+                                        near_place.geometry.location.lng();
+
+                                    document.getElementById('latidude_view').innerHTML =
+                                        near_place.geometry.location.lat();
+                                    document.getElementById('longitude_view').innerHTML =
+                                        near_place.geometry.location.lng();
+
+                                });
+
+                        });
+
+                        $(document).on('change',
+                            '#' + searchInput,
+                            function () {
+
+                                document.getElementById('latidude_input').value = '';
+                                document.getElementById('longitude_input').value = '';
+                                document.getElementById('latidude_view').innerHTML = '';
+                                document.getElementById('longitude_input').innerHTML = '';
+
+                            });
+
+                    </script>
+
+                    <div class="form-row">
+
+                        <label>Localizacion:</label>
+                        <span class="txt1 p-b-11" style="color:red">
+                            @Html.ValidationMessageFor(x => x.Latitud)
+                        </span>
+
+                        <input type="text" class="form-control" id="search_input" placeholder="Escriba cuidadosamente el lugar del Evento , evitar ENTER" />
+                        <input type="hidden" id="latidude_input" name="Latitud" value="@Model.Latitud" />
+                        <input type="hidden" id="longitude_input" name="Longitud" value="@Model.Longitud" />
+
+                    </div>
+
+                    <div class="form-row">
+
+                        <p style="visibility: hidden"><b>Latitude:<span id="latidude_view"></span></b></p>
+                        <p style="visibility: hidden"><b>Longitude:<span id="longitude_view"></span></b></p>
+
+                    </div>
+
+                    <div class="form-row">
+                        <label for="">
+                            Direccion *
+                        </label>
+                        <span class="txt1 p-b-11" style="color:red">
+                            @Html.ValidationMessageFor(x => x.Domicilio)
+                        </span>
+                        <input name="Calle" type="text" class="form-control" placeholder="Calle" style="margin-bottom: 20px">
+                        <input name="CalleNumero" type="text" class="form-control"  placeholder="Numero">
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script src="~/Content/CrearEvento/js/jquery-3.3.1.min.js"></script>
+<script src="~/Content/CrearEvento/js/jquery.steps.js"></script>
+<script src="~/Content/CrearEvento/js/main.js"></script>
+

@@ -26,7 +26,8 @@ namespace EM.Servicio.Usuario
                     User = x.User,
                     Password = x.Password,
                     FechaCreacion = x.FechaCreacion,
-                    PersonaId = x.PersonaId
+                    PersonaId = x.PersonaId,
+                    Foto = x.Foto
 
                 }).ToList();
         }
@@ -41,7 +42,8 @@ namespace EM.Servicio.Usuario
                     User = x.User,
                     Password = x.Password,
                     FechaCreacion = x.FechaCreacion,
-                    PersonaId = x.PersonaId
+                    PersonaId = x.PersonaId,
+                    Foto = x.Foto
                 }).ToList();
         }
 
@@ -57,7 +59,8 @@ namespace EM.Servicio.Usuario
                 User = usuario.User,
                 Password = usuario.Password,
                 FechaCreacion = usuario.FechaCreacion,
-                PersonaId = usuario.PersonaId
+                PersonaId = usuario.PersonaId,
+                Foto = usuario.Foto
             };
         }
 
@@ -68,7 +71,8 @@ namespace EM.Servicio.Usuario
                 User = dto.User,
                 Password = dto.Password,
                 FechaCreacion = dto.FechaCreacion,
-                PersonaId = dto.PersonaId
+                PersonaId = dto.PersonaId,
+                Foto = dto.Foto
             };
 
             _usuarioRepositorio.Add(usuario);
@@ -84,6 +88,7 @@ namespace EM.Servicio.Usuario
             usuario.User = dto.User;
             usuario.Password = dto.Password;
             usuario.FechaCreacion = dto.FechaCreacion;
+            usuario.Foto = dto.Foto;
 
             _usuarioRepositorio.Update(usuario);
             Guardar();
@@ -125,6 +130,7 @@ namespace EM.Servicio.Usuario
 
                     SessionActiva.UsuarioId = Usuario.Id;
                     SessionActiva.PersonaId = Usuario.PersonaId;
+                    SessionActiva.Foto = Usuario.Foto;
                     SessionActiva.ApyNom = Persona.Apellido + " , " + Persona.Nombre;
 
                     return true;

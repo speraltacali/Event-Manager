@@ -18,6 +18,8 @@ namespace EM.IServicio.Usuario.DTOs
 
         public long PersonaId { get; set; }
 
+        public byte[] Foto { get; set; }
+
         //public long EmpresaId { get; set; }
     }
 }

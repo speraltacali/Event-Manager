@@ -9,6 +9,8 @@ namespace EM.IServicio.Comprobante
 
         IEnumerable<ComprobanteDto> Obtener(string cadena);
 
+        ComprobanteDto ObtenerPorEventoUser(long eventoId, long userId);
+
         List<ComprobanteDto> ObtenerPoIdUsuario(long id);
 
         ComprobanteDto ObtenerPoId(long id);
