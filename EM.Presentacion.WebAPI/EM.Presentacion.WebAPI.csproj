@@ -233,9 +233,11 @@
     <Content Include="Content\CrearEvento\js\jquery.steps.js" />
     <Content Include="Content\CrearEvento\js\main.js" />
     <Content Include="Content\Grilla\Grilla.css" />
+    <Content Include="Content\ImageHome\alerta2.jpg" />
     <Content Include="Content\ImageHome\entrada.png" />
     <Content Include="Content\ImageHome\eventosSlider.jpg" />
     <Content Include="Content\ImageHome\localizacion.png" />
+    <Content Include="Content\ImageHome\login.jpg" />
     <Content Include="Content\ImageHome\loginuser.png" />
     <Content Include="Content\ImgEvento\ImagenPortada.css" />
     <Content Include="Content\ImgEvento\ImgResponsive.css" />
@@ -616,6 +618,7 @@
     <Content Include="Views\Home\BuscarEvento.cshtml" />
     <Content Include="Views\Evento\VerEntrada.cshtml" />
     <Content Include="Views\Evento\UpdateEvento.cshtml" />
+    <Content Include="Views\Evento\SuspenderEvento.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
