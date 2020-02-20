@@ -14,7 +14,7 @@ namespace EM.IServicio.Fecha
 
         FechaDto Insertar(FechaDto dto);
 
-        FechaDto Modificar(FechaDto dto);
+        void Modificar(FechaDto dto);
 
         void Eliminar(long id);
 

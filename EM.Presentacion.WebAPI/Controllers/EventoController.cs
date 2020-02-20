@@ -64,6 +64,24 @@ namespace EM.Presentacion.WebAPI.Controllers
             }
         }
 
+        public ActionResult Fecha(long id)
+        {
+            var fecha1 = _fechaEventoServicio.ObtenerPorIdEvento(id);
+
+            var fecha2 = _fechaServicio.ObtenerPorId(fecha1.FechaId);
+
+            return View(fecha2);
+        }
+
+        [HttpPost]
+        public ActionResult Fecha(FechaDto fechaEventoDto)
+        {
+
+            _fechaServicio.Modificar(fechaEventoDto);
+
+            return RedirectToAction("Perfil", "Persona");
+        }
+
         public ActionResult SuspenderEvento(long id)
         {
 

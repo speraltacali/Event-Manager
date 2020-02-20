@@ -38,9 +38,18 @@ namespace EM.Servicio.Fecha
             return dto;
         }
 
-        public FechaDto Modificar(FechaDto dto)
+        public void Modificar(FechaDto dto)
         {
-            throw new NotImplementedException();
+            var fecha = _fechaRepositorio.GetById(dto.Id);
+
+            fecha.HoraInicio = dto.HoraInicio;
+            fecha.HoraCierre = dto.HoraCierre;
+            fecha.FechaEvento = dto.FechaEvento;
+
+            _fechaRepositorio.Update(fecha);
+
+            Guardar();
+
         }
 
         public IEnumerable<FechaDto> Obtener()

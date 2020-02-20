@@ -71,7 +71,16 @@ namespace EM.Servicio.FechaEvento
 
         public FechaEventoDto ObtenerPorId(long id)
         {
-            throw new NotImplementedException();
+            var fecha = _fechaEventoRepositorio.GetById(id);
+
+            var aux = new FechaEventoDto
+            {
+                EventosId = fecha.EventosId,
+                FechaId = fecha.FechaId,
+                Id = fecha.Id
+            };
+
+            return aux;
         }
     }
 }
