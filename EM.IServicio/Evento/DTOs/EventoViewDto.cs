@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using System.IO;
+using EM.Dominio.Entity.Enum;
 using EM.Dominio.Entity.MetaData;
 using EM.Servicio.Base.DtoBase;
 using Microsoft.AspNetCore.Http;
@@ -46,6 +47,7 @@ namespace EM.IServicio.Evento.DTOs
 
         public DateTime HoraFin { get; set; }
 
+        public EventoEstado Estado { get; set; }
 
         public string DomicilioCompleto => $"{Calle} {CalleNumero}";
     }

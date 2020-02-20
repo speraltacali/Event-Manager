@@ -75,9 +75,17 @@ namespace EM.Presentacion.WebAPI.Controllers
 
         public ActionResult Update(long id)
         {
-            var tipo =_tipoEvento.ObtenerId(id);
 
-            return View(tipo);
+            if (Session["Usuario"] != null)
+            {
+                var tipo = _tipoEvento.ObtenerId(id);
+
+                return View(tipo);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Usuario");
+            }
         }
 
         [HttpPost]

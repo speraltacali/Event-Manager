@@ -22,6 +22,8 @@ namespace EM.IServicio.Evento
 
         void Guardar();
 
+        void EstadoVencido(long id);
+
         bool ValidarTitulo(string Titulo);
 
         bool ValidarFecha(DateTime fecha);

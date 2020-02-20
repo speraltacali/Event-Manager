@@ -3,6 +3,7 @@ using EM.Dominio.Entity.MetaData;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using EM.Dominio.Entity.Enum;
 
 namespace EM.Dominio.Entity.Entidades
 {
@@ -31,6 +32,8 @@ namespace EM.Dominio.Entity.Entidades
         public long TipoEventoId { get; set; }
 
         public byte[] Imagen { get; set; }
+
+        public EventoEstado Estado { get; set; }
 
         public virtual ICollection<Entrada> Entradas { get; set; }
 

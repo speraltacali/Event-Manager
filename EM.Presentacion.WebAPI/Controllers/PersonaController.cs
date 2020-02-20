@@ -54,8 +54,16 @@ namespace EM.Presentacion.WebAPI.Controllers
 
         public ActionResult Update(long id)
         {
-            var persona = _personaServicio.ObtenerPorId(id);
-            return View(persona);
+
+            if (Session["Usuario"] != null)
+            {
+                var persona = _personaServicio.ObtenerPorId(id);
+                return View(persona);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Usuario");
+            }
         }
 
         [HttpPost]

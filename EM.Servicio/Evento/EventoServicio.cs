@@ -4,8 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using EM.Dominio.Entity.Enum;
+using EM.Dominio.Entity.MetaData;
 using EM.Dominio.Repositorio.Evento;
+using EM.Dominio.Repositorio.Fecha;
+using EM.Dominio.Repositorio.FechaEvento;
 using EM.Infraestructura.Repositorio.Evento;
+using EM.Infraestructura.Repositorio.Fecha;
+using EM.Infraestructura.Repositorio.FechaEvento;
 using EM.IServicio.Evento;
 using EM.IServicio.Evento.DTOs;
 using EM.IServicio.EventoLugar.DTOs;
@@ -15,10 +21,13 @@ namespace EM.Servicio.Evento
     public class EventoServicio : IEventoServicio
     {
         private readonly IEventoRepositorio _eventoRepositorio = new EventoRepositorio();
+        private readonly IFechaEventoRepositorio _fechaEventoRepositorio = new FechaEventoRepositorio();
+        private readonly IFechaRepositorio _fechaRepositorio = new FechaRepositorio();
 
         public IEnumerable<EventoDto> ObtenerTodo()
         {
             return _eventoRepositorio.GetAll()
+                .Where(x=>x.Estado == EventoEstado.Activo)
                 .Select(x => new EventoDto()
                 {
                     Id = x.Id,
@@ -32,7 +41,8 @@ namespace EM.Servicio.Evento
                     Longitud = x.Longitud,
                     Domicilio = x.Domicilio,
                     Telefono = x.Telefono,
-                    Imagen = x.Imagen
+                    Imagen = x.Imagen,
+                    Estado = x.Estado
                 }).ToList();
         }
 
@@ -40,6 +50,7 @@ namespace EM.Servicio.Evento
         {
             return _eventoRepositorio.GetByFilter(x=>x.Descripcion.Contains(cadenaBuscar)
             || x.TiposEventos.Descripcion.Contains(cadenaBuscar)
+            || x.Estado == EventoEstado.Activo
             || x.Titulo.Contains(cadenaBuscar))
                 .Select(x => new EventoDto()
                 {
@@ -54,13 +65,15 @@ namespace EM.Servicio.Evento
                     Longitud = x.Longitud,
                     Domicilio = x.Domicilio,
                     Telefono = x.Telefono,
-                    Imagen = x.Imagen
+                    Imagen = x.Imagen,
+                    Estado = x.Estado
                 }).ToList();
         }
 
         public EventoDto ObtenerPorTitulo(string cadenaBuscar)
         {
-            var lista = _eventoRepositorio.GetByFilter(x => x.Titulo.Contains(cadenaBuscar))
+            var lista = _eventoRepositorio.GetByFilter(x => x.Titulo.Contains(cadenaBuscar)
+                                                            || x.Estado == EventoEstado.Activo)
                 .Select(x => new EventoDto()
                 {
                     Id = x.Id,
@@ -74,7 +87,8 @@ namespace EM.Servicio.Evento
                     Longitud = x.Longitud,
                     Domicilio = x.Domicilio,
                     Telefono = x.Telefono,
-                    Imagen = x.Imagen
+                    Imagen = x.Imagen,
+                    Estado = x.Estado
                 }).ToList();
 
             var listaResult = lista.FirstOrDefault(x => x.Titulo == cadenaBuscar);
@@ -101,7 +115,8 @@ namespace EM.Servicio.Evento
                 Longitud = evento.Longitud,
                 Domicilio = evento.Domicilio,
                 Telefono = evento.Telefono,
-                Imagen = evento.Imagen
+                Imagen = evento.Imagen,
+                Estado = evento.Estado
             };
         }
 
@@ -120,7 +135,8 @@ namespace EM.Servicio.Evento
                 Longitud = dto.Longitud,
                 Domicilio = dto.Domicilio,
                 Telefono = dto.Telefono,
-                Imagen = dto.Imagen
+                Imagen = dto.Imagen,
+                Estado = EventoEstado.Activo
             };
 
             _eventoRepositorio.Add(evento);
@@ -190,7 +206,55 @@ namespace EM.Servicio.Evento
             _eventoRepositorio.Save();
         }
 
+        //*********************** Cambiar de Estado *********************
+
+        public void EstadoSuspendido(long id)
+        {
+
+        }
+
+        public void EstadoVencido(long id)
+        {
+            var Estado = _eventoRepositorio.GetById(id);
+
+            Estado.Estado = EventoEstado.Vencido;
+
+            _eventoRepositorio.Update(Estado);
+            Guardar();
+        }
+
+        public void CambiarTodoEstadoVencido()
+        {
+            var EstadoActivo = _eventoRepositorio.GetByFilter(x => x.Estado == EventoEstado.Activo);
+
+            if (EstadoActivo.Count() > 0)
+            {
+                foreach (var evento in EstadoActivo)
+                {
+                    var FechaEvento = _fechaEventoRepositorio.GetByFilter(x => x.EventosId == evento.Id);
+
+                    foreach (var fechaEvento in FechaEvento)
+                    {
+                        var Fecha = _fechaRepositorio.GetByFilter(x => x.Id == fechaEvento.FechaId);
+
+                        foreach (var validar in Fecha)
+                        {
+                            var Validar = _fechaRepositorio.GetByFilter(x => x.FechaEvento >= DateTime.Now);
+
+                            evento.Estado = EventoEstado.Vencido;
+
+                            _eventoRepositorio.Update(evento);
+                            _eventoRepositorio.Save();
+                        }
+                    }
+                }
+            }
+        }
+
+
+
         //************************ Validaciones *************************
+
 
         public bool ValidarTitulo(string Titulo)
         {

@@ -1,4 +1,5 @@
-﻿using EM.Servicio.Base.DtoBase;
+﻿using EM.Dominio.Entity.Enum;
+using EM.Servicio.Base.DtoBase;
 
 namespace EM.IServicio.Evento.DTOs
 {
@@ -25,5 +26,7 @@ namespace EM.IServicio.Evento.DTOs
         public long TipoEventoId { get; set; }
 
         public byte[] Imagen { get; set; }
+
+        public EventoEstado Estado { get; set; }
     }
 }
