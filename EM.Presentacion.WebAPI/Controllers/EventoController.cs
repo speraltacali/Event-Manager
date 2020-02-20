@@ -509,7 +509,7 @@ namespace EM.Presentacion.WebAPI.Controllers
             {
                 var comprobante = _comprobanteServicio.ObtenerPoId(Id);
 
-                var eventoView = EventoView(comprobante.Id);
+                var eventoView = EventoView(comprobante.EventoId);
 
                 return View(eventoView);
             }

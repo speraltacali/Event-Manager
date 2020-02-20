@@ -1,6 +1,14 @@
-﻿@model EM.IServicio.Evento.DTOs.EventoViewDto
+﻿@using EM.IServicio.Evento
+@using EM.IServicio.TipoEvento
+@using EM.Servicio.Evento
+@using EM.Servicio.TipoEvento
+@model EM.IServicio.Evento.DTOs.EventoViewDto
 @{
     ViewBag.Title = "CrearEvento";
+
+    ITipoEventoServicio _tipoEventoServicio = new TipoEventoServicio();
+
+    ViewBag.ListaTipoEvento = _tipoEventoServicio.Get().ToList();
 }
 
 <link href="~/Content/CrearEvento/css/style.css" rel="stylesheet" />
