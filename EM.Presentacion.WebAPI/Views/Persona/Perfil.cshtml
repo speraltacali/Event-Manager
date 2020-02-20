@@ -9,6 +9,8 @@
 @using EM.IServicio.TipoEvento;
 @using EM.IServicio.TipoEvento.DTOs;
 @using EM.Servicio.TipoEvento;
+@using EM.Servicio.Usuario
+@using EM.IServicio.Usuario
 
 @{
     ViewBag.Title = "Perfil";
@@ -16,8 +18,11 @@
     IEventoServicio _eventoServicio = new EventoServicio();
     ICreadorEventoServicio _creadorEventoServicio = new CreadorEventoServicio();
     ITipoEventoServicio _tipoEvento = new TipoEventoServicio();
+    IUsuarioServicio usuarioServicio = new UsuarioServicio();
 
     IComprobanteServicio _comprobanteServicio = new ComprobanteServicio();
+
+
 
     var ListaEntradas = _comprobanteServicio.ObtenerPoIdUsuario(SessionActiva.UsuarioId);
 
@@ -55,7 +60,7 @@
                     }
                     @if (SessionActiva.Foto != null)
                     {
-                        <img src="@Url.Action("GetImage", new { id = SessionActiva.Foto })" alt="" class="rounded-circle" style="margin-right: 2px; height: 190px; width: 350px;">
+                        <img src="@Url.Action("GetImage", new { id = usuarioServicio.ObtenerPorId(SessionActiva.UsuarioId).Id })" alt="" class="rounded-circle" style="margin-right: 2px; height: 190px; width: 350px;">
 
                         <br />
                         <br />
