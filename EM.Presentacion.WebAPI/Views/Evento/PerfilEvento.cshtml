@@ -7,6 +7,10 @@
     ViewBag.Title = "PerfilEvento";
 
     IPersonaServicio _personaServicio = new PersonaServicio();
+
+    var lista = _personaServicio.ObtenerPorEventoPago(Model.Id);
+
+    var TotalRecaudado = lista.Count() * Model.Precio;
 }
 
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
@@ -141,6 +145,8 @@
                         </tbody>
                     </table>
                 </div>
+                <br />
+                <label class="form-control" style="background-color:lawngreen;color:black;">Total Recaudado: $@TotalRecaudado</label>
                 <br />
                 <label class="form-control" style="background-color:cornflowerblue;color:black;">Lugar</label>
 
