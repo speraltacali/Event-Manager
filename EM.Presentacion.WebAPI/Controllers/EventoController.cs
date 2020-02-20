@@ -496,6 +496,16 @@ namespace EM.Presentacion.WebAPI.Controllers
             return View(evento);
         }
 
+        [HttpPost]
+        public ActionResult Localizacion(EventoDto eventoDto)
+        {
+            var evento = _eventoServicio.ObtenerPorId(eventoDto.Id);
+
+            //modificar falta
+
+            return RedirectToAction("Perfil", "Persona");
+        }
+
 
         public EventoViewDto EventoView(long id)
         {

@@ -116,15 +116,15 @@
                         <span class="txt1 p-b-11" style="color:red">
                             @Html.ValidationMessageFor(x => x.Domicilio)
                         </span>
-                        <input name="Calle" type="text" class="form-control" placeholder="Calle" style="margin-bottom: 20px">
-                        <input name="CalleNumero" type="text" class="form-control"  placeholder="Numero">
+                        <input name="Calle" type="text" class="form-control" placeholder="Calle" style="margin-bottom: 20px" value="@Model.Domicilio">
+                        <input name="CalleNumero" type="text" class="form-control"  placeholder="Numero" value="@Model.Domicilio">
                     </div>
 
                     <button class="btn btn-outline-success" style="margin-left:75px;">Guardar Cambios</button>
                     <a href="~/Persona/Perfil" class="btn btn-outline-info">Volver</a>
 
                 </form>
-
+                <br /><br />
             </div>
         </div>
     </div>
