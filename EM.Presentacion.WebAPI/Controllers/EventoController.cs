@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using EM.Dominio.Entity.Enum;
 using EM.IServicio.Comprobante;
 using EM.IServicio.Comprobante.DTOs;
 using EM.IServicio.CreadorEvento;
@@ -411,7 +412,7 @@ namespace EM.Presentacion.WebAPI.Controllers
             {
                 ViewBag.ListaTipoEvento = _tipoEventoServicio.Get().ToList();
 
-                var evento = _eventoServicio.ObtenerPorId(id);
+                var evento = EventoView(id);
 
                 return View(evento);
             }
@@ -422,7 +423,7 @@ namespace EM.Presentacion.WebAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateEvento(EventoDto evento, HttpPostedFileBase img)
+        public ActionResult UpdateEvento(EventoViewDto evento, HttpPostedFileBase img)
         {
             if (img != null)
             {
@@ -439,7 +440,36 @@ namespace EM.Presentacion.WebAPI.Controllers
                 evento.Imagen = eventoimg.Imagen;
             }
 
-            _eventoServicio.Modificar(evento);
+            var Evento = new EventoDto()
+            {
+                Id = evento.Id,
+                Titulo = evento.Titulo,
+                Descripcion = evento.Descripcion,
+                Mail = evento.Mail,
+                TipoEventoId = evento.TipoEventoId,
+                Orante = evento.Orante,
+                Organizacion = evento.Organizacion,
+                Latitud = evento.Latitud,
+                Longitud = evento.Longitud,
+                Domicilio = evento.DomicilioAlternativo,
+                Telefono = evento.Telefono,
+                Imagen = evento.Imagen,
+                Estado = EventoEstado.Activo
+            };
+
+            
+
+            if (evento.Precio != null)
+            {
+                var entrada = _entradaServicio.ObtenerPorIdEvento(evento.Id);
+
+                entrada.Monto = evento.Precio;
+
+                _entradaServicio.Modificar(entrada);
+            }
+
+
+            _eventoServicio.Modificar(Evento);
 
             return RedirectToAction("Perfil", "Persona");
         }
@@ -554,7 +584,8 @@ namespace EM.Presentacion.WebAPI.Controllers
                 FechaEvento = fechaPrincipal.FechaEvento.Date,
                 HoraFin = fechaPrincipal.HoraCierre,
                 HoraInicio = fechaPrincipal.HoraInicio,
-                Imagen = evento.Imagen
+                Imagen = evento.Imagen,
+                DomicilioAlternativo = evento.Domicilio
             };
 
             return eventoView;
