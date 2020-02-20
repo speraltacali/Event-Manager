@@ -1,4 +1,5 @@
-﻿@using EM.IServicio.Helpers.Foto
+﻿@using EM.Dominio.Entity.Enum
+@using EM.IServicio.Helpers.Foto
 @using EM.IServicio.Persona
 @using EM.Servicio.Persona
 @model EM.IServicio.Evento.DTOs.EventoViewDto
@@ -47,6 +48,33 @@
                             {@Model.Precio} &raquo;
                         </label>
                     </p>
+
+                    @if (Model.Estado == EventoEstado.Activo)
+                    {
+                        <p>
+                            <label class="form-control" role="button" style="background-color:green;color:black">
+                                @Model.Estado
+                            </label>
+                        </p>
+                    }
+
+                    @if (Model.Estado == EventoEstado.Vencido)
+                    {
+                        <p>
+                            <label class="form-control" role="button" style="background-color:red;color:black">
+                                @Model.Estado
+                            </label>
+                        </p>
+                    }
+                    @if (Model.Estado == EventoEstado.Suspendido)
+                    {
+                        <p>
+                            <label class="form-control" role="button" style="background-color:yellow;color:black">
+                                @Model.Estado
+                            </label>
+                        </p>
+                    }
+
                 </div><!-- /.col-lg-4 -->
 
                 <br />
@@ -93,20 +121,20 @@
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                         <table class="table" cellspacing="0">
                             <thead>
-                                <tr>
-                                    <th>Nombre Completo</th>
-                                    <th>Cuil</th>
-                                    <th>Mail</th>
-                                </tr>
+                            <tr>
+                                <th>Nombre Completo</th>
+                                <th>Cuil</th>
+                                <th>Mail</th>
+                            </tr>
                             </thead>
                             <tbody>
                             @foreach (var item in _personaServicio.ObtenerPorEventoPago(Model.Id))
                             {
-                            <tr>
-                                <td>@item.Nombre , @item.Apellido</td>
-                                <td>@item.Cuil</td>
-                                <td>@item.Mail</td>
-                            </tr>
+                                <tr>
+                                    <td>@item.Nombre , @item.Apellido</td>
+                                    <td>@item.Cuil</td>
+                                    <td>@item.Mail</td>
+                                </tr>
                             }
                             </tbody>
                         </table>
@@ -118,7 +146,7 @@
                         <br />
                         <h5>
                             Lugar del Evento: @if (Model != null)
-                            {@Model.CalleNumero}
+                                              {@Model.CalleNumero}
                         </h5>
 
                         <div id="map">
@@ -134,31 +162,35 @@
 
                         <script>
 
-                    function initMap()
-                    {
-                        var options =
-                        {
-                            zoom: 18,
-                            center: { lat:@Model.Latitud, lng:@Model.Longitud}
-                        }
+                            function initMap()
+                            {
+                                var options =
+                                {
+                                    zoom: 18,
+                                    center: { lat:@Model.Latitud, lng:@Model.Longitud}
+                                }
 
 
-                        var map = new google.maps.Map(document.getElementById('map'), options);
+                                var map = new google.maps.Map(document.getElementById('map'), options);
 
-                        var marker = new google.maps.Marker({
-                            position: { lat:@Model.Latitud, lng:@Model.Longitud},
-                            map: map,
-                            icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
-                        })
+                                var marker = new google.maps.Marker({
+                                    position: { lat:@Model.Latitud, lng:@Model.Longitud},
+                                    map: map,
+                                    icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+                                })
 
-                        }
-                        initMap();
+                            }
+                            initMap();
                         </script>
 
                     </section>
 
                     <br />
 
+                </div>
+                
+                <div class="col-md-12" style="text-align:center">
+                    <a class="btn btn-danger" href="~/Evento/SuspenderEvento/@Model.Id" style="width: 200px;height: 40px ">Suspender Evento</a> <br/>
                 </div>
             </div>
     </form>

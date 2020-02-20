@@ -76,6 +76,11 @@ namespace EM.Presentacion.WebAPI.Controllers
                     eventoViewDto.Imagen = reader.ReadBytes(img.ContentLength);
                 }
             }
+            else
+            {
+                ViewBag.ErrorEvento = "Ingrese una Imagen para su evento.";
+                return View();
+            }
 
 
             ViewBag.ListaTipoEvento = _tipoEventoServicio.Get().ToList();
@@ -224,15 +229,23 @@ namespace EM.Presentacion.WebAPI.Controllers
         {
             // fetch image data from database
 
-            if(Session["Usuario"] != null)
+            try
             {
-                var evento = _eventoServicio.ObtenerPorId(id);
+                if (Session["Usuario"] != null)
+                {
+                    var evento = _eventoServicio.ObtenerPorId(id);
 
-                return File(evento.Imagen, "image/jpg");
+                    return File(evento.Imagen, "image/jpg");
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Usuario");
+                }
             }
-            else
+            catch (Exception e)
             {
-                return RedirectToAction("Login", "Usuario");
+                ViewBag.ErrorEvento = "Cargar una imagen para su evento";
+                return RedirectToAction("Crear", "Evento");
             }
         }
 
@@ -323,8 +336,16 @@ namespace EM.Presentacion.WebAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateEvento(EventoDto evento)
+        public ActionResult UpdateEvento(EventoDto evento, HttpPostedFileBase img)
         {
+            if (img != null)
+            {
+                using (var reader = new BinaryReader(img.InputStream))
+                {
+                    evento.Imagen = reader.ReadBytes(img.ContentLength);
+                }
+            }
+
             var eventoimg = _eventoServicio.ObtenerPorId(evento.Id);
 
             if (evento.Imagen == null)
@@ -374,7 +395,7 @@ namespace EM.Presentacion.WebAPI.Controllers
 
                 var eventoView = EventoView(comprobante.Id);
 
-                return View(comprobante);
+                return View(eventoView);
             }
             else
             {
@@ -411,6 +432,7 @@ namespace EM.Presentacion.WebAPI.Controllers
                 Precio = entrada.Monto,
                 Latitud = evento.Latitud,
                 Longitud = evento.Longitud,
+                Estado = evento.Estado,
                 EntradaId = entrada.Id,
                 Calle = evento.Domicilio,
                 CalleNumero = evento.Domicilio,

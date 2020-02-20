@@ -41,10 +41,16 @@ namespace EM.Presentacion.WebAPI.Controllers
         public ActionResult GetImage(int id)
         {
             // fetch image data from database
+            try
+            {
+                var evento = _eventoServicio.ObtenerPorId(id);
 
-            var evento = _eventoServicio.ObtenerPorId(id);
-
-            return File(evento.Imagen, "image/jpg");
+                return File(evento.Imagen, "image/jpg");
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         public ActionResult BuscarEvento(string search)

@@ -34,9 +34,11 @@
 
                 <h1> Modificacion Del Evento</h1>
 
-                @using (Html.BeginForm())
+                @*@using (Html.BeginForm())
                 {
-                    @Html.AntiForgeryToken()
+                    @Html.AntiForgeryToken()*@
+                
+            <form action="UpdateEvento" asp-controller="Evento" method="post" enctype="multipart/form-data">
 
                 <div class="form-horizontal">
                     <hr />
@@ -71,7 +73,7 @@
                         @Html.LabelFor(model => model.TipoEventoId, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="form-holder">
 
-                            @Html.DropDownListFor(x=>x.TipoEventoId, new SelectList(ViewBag.ListaTipoEvento, "Id", "Descripcion"), "Seleccionar Campo", new {@class = "form-control" , style="width:320px;height:40px;"})
+                            @Html.DropDownListFor(x => x.TipoEventoId, new SelectList(ViewBag.ListaTipoEvento, "Id", "Descripcion"), "Seleccionar Campo", new { @class = "form-control", style = "width:320px;height:40px;" })
                             <i class="zmdi zmdi-caret-down"></i>
                         </div>
                     </div>
@@ -110,11 +112,15 @@
 
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Imagen, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
+
+                        <label class="col-md-10">
+                            Modificar Imagen para el Evento:
+                        </label>
                         @Html.TextBox("img", null, new { type = "file" })
-                        </div>
+
                     </div>
+
+
                     <br />
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
@@ -125,7 +131,10 @@
                     </div>
 
                 </div>
-                }
+
+            </form>
+           
+                @*}*@
 
 
                 @section Scripts {

@@ -62,9 +62,6 @@
                         <span class="txt1 p-b-11" style="color:red">
                             @Html.ValidationMessageFor(x => x.TipoEventoId)
                         </span>
-                        <span class="txt1 p-b-11" style="color:red">
-                            @Html.ValidationMessageFor(x => x.TipoEventoId)
-                        </span>
                         <div class="form-holder">
 
                             @Html.DropDownList("TipoEventoId", new SelectList(ViewBag.ListaTipoEvento, "Id", "Descripcion"), "Seleccionar Campo", new {@class = "form-control"})
