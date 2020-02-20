@@ -64,9 +64,35 @@ namespace EM.Presentacion.WebAPI.Controllers
             }
         }
 
-        public ActionResult SuspenderEvento()
+        public ActionResult SuspenderEvento(long id)
         {
-            return View();
+
+            if (Session["Usuario"] != null)
+            {
+                var eventoView = EventoView(id);
+
+                return View(eventoView);
+
+            }
+            else
+            {
+                return RedirectToAction("Login", "Usuario");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult SuspenderEvento(EventoViewDto dto)
+        {
+            try
+            {
+                _eventoServicio.EstadoSuspendido(dto.Id);
+                return RedirectToAction("PerfilEvento", new {id = dto.Id});
+
+            }
+            catch (Exception e)
+            {
+                return View();
+            }
         }
 
         [HttpPost]

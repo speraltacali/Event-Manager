@@ -22,6 +22,8 @@ namespace EM.IServicio.Evento
 
         void Guardar();
 
+        void EstadoSuspendido(long id);
+
         void EstadoVencido(long id);
 
         bool ValidarTitulo(string Titulo);
