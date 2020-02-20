@@ -238,6 +238,9 @@
     <Content Include="Content\ImageHome\loginuser.png" />
     <Content Include="Content\ImgEvento\ImagenPortada.css" />
     <Content Include="Content\ImgEvento\ImgResponsive.css" />
+    <Content Include="Content\Libreria\js\main.js" />
+    <Content Include="Content\Libreria\js\site.js" />
+    <Content Include="Content\Libreria\js\Usuario.js" />
     <Content Include="Content\Login\css\main.css" />
     <Content Include="Content\Login\css\user.css" />
     <Content Include="Content\Login\css\util.css" />

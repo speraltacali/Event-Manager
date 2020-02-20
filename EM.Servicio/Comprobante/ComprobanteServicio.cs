@@ -61,6 +61,7 @@ namespace EM.Servicio.Comprobante
 
             return new ComprobanteDto()
             {
+                Id = comprobante.Id,
                 Numero = comprobante.Numero,
                 Fecha = comprobante.Fecha,
                 SubTotal = comprobante.SubTotal,

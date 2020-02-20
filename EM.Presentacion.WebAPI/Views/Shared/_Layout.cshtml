@@ -1,7 +1,7 @@
 ﻿@*@using Microsoft.AspNet.Identity*@
 @using EM.IServicio.Helpers.Usuario
 
-@{ 
+@{
 
     string ApyNom = $"User {SessionActiva.ApyNom} ";
 
@@ -18,7 +18,10 @@
 <script src="~/Scripts/jquery-3.4.1.slim.min.js"></script>
 <script src="~/Scripts/popper.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
-
+<!-- Modal -->
+<link src="~/Content/Libreria/js/main.js"/>
+<link src="~/Content/Libreria/js/site.js"/>
+<link src="~/Content/Libreria/js/Usuario.js"/>
 <!-- FontAwesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
 
@@ -41,10 +44,45 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="~/Home/Index">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <!--
+                    <!--///////////////////////////////////////////////////////////////////////////////
                     <li class="nav-item">
                         <a class="nav-link" href="#">Nuevo Evento</a>
                     </li>-->
+
+                    <div class="modal fade" id="add-session" tabindex="-1" role="dialog" aria-labelledby="addContactLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="addContactLabel">Cerrar Session</h5>
+                                    <button type="button" class="close" data-dismiss="modal01" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <form asp-action="Login" asp-controller="Usuario" method="get" enctype="multipart/form-data">
+
+                                    <div class="modal-body">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <h2>Desea cerrar Session?</h2>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal" style='width: 500px; height: 50px'>Cancelar</button>
+                                                    <button type="submit" value="Guardar Datos" class="btn btn-primary" onclick="cerrarSession.CerrarSession" style='width: 500px; height: 50px' data-save="modal">Aceptar</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    @* ///////////////////////////////////////////////////////////////////////////////////////// *@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Perfil
@@ -65,6 +103,9 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="~/Home/index">Eventos</a>
                                 <a class="dropdown-item" href="~/Usuario/Login">Cerrar Sesion</a>
+                                <button type="button" class="dropdown-item" data-toggle="modal" data-target="#add-session" style='width:200px; height:50px'>
+                                    Cerrar Session
+                                </button>
                             }
 
                         </div>

@@ -210,7 +210,12 @@ namespace EM.Servicio.Evento
 
         public void EstadoSuspendido(long id)
         {
+            var Estado = _eventoRepositorio.GetById(id);
 
+            Estado.Estado = EventoEstado.Suspendido;
+
+            _eventoRepositorio.Update(Estado);
+            Guardar();
         }
 
         public void EstadoVencido(long id)
@@ -221,34 +226,6 @@ namespace EM.Servicio.Evento
 
             _eventoRepositorio.Update(Estado);
             Guardar();
-        }
-
-        public void CambiarTodoEstadoVencido()
-        {
-            var EstadoActivo = _eventoRepositorio.GetByFilter(x => x.Estado == EventoEstado.Activo);
-
-            if (EstadoActivo.Count() > 0)
-            {
-                foreach (var evento in EstadoActivo)
-                {
-                    var FechaEvento = _fechaEventoRepositorio.GetByFilter(x => x.EventosId == evento.Id);
-
-                    foreach (var fechaEvento in FechaEvento)
-                    {
-                        var Fecha = _fechaRepositorio.GetByFilter(x => x.Id == fechaEvento.FechaId);
-
-                        foreach (var validar in Fecha)
-                        {
-                            var Validar = _fechaRepositorio.GetByFilter(x => x.FechaEvento >= DateTime.Now);
-
-                            evento.Estado = EventoEstado.Vencido;
-
-                            _eventoRepositorio.Update(evento);
-                            _eventoRepositorio.Save();
-                        }
-                    }
-                }
-            }
         }
 
 
