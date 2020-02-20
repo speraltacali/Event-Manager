@@ -142,6 +142,25 @@ namespace EM.Servicio.Comprobante
 
         }
 
+        public decimal TotalComprobantePorEvento(long eventoId)
+        {
+            decimal aux = 0;
+
+            var validacion = _comprobanteRepositorio.GetAll().Any();
+
+            if(validacion)
+            {
+                var comprobante =_comprobanteRepositorio.GetByFilter(x => x.EventoId == eventoId);
+
+                foreach (var precio in comprobante)
+                {
+                    aux += precio.Total;
+                }
+            }
+
+            return aux;
+        }
+
         public long ObtenerCodigo()
         {
             return _comprobanteRepositorio.GetAll().Any()

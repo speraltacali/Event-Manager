@@ -3,6 +3,10 @@
     ViewBag.Title = "CrearEvento";
 }
 
+<link href="~/Content/CrearEvento/css/style.css" rel="stylesheet" />
+<link href="~/Content/CrearEvento/fonts/material-design-iconic-font/css/material-design-iconic-font.css" rel="stylesheet" />
+
+
 <!--Load the API from the specified URL-->
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyCFA0cdJHdJdccOiUiKNpwQ3wze89fWH38">
@@ -17,7 +21,7 @@
         <form action="Crear" asp-controller="Evento" method="post" enctype="multipart/form-data">
             @if (ViewBag.ErrorEvento != null)
             {
-            <div class="alert-danger" style='width:625px; height:30px'> @ViewBag.ErrorEvento </div>
+                <div class="alert-danger" style='width:625px; height:30px'> @ViewBag.ErrorEvento </div>
             }
             <div id="wizard">
                 <!-- SECTION 1 -->
@@ -61,7 +65,7 @@
                         </span>
                         <div class="form-holder">
 
-                            @Html.DropDownList("TipoEventoId", new SelectList(ViewBag.ListaTipoEvento, "Id", "Descripcion"), "Seleccionar Campo", new {@class = "form-control"})
+                            @Html.DropDownList("TipoEventoId", new SelectList(ViewBag.ListaTipoEvento, "Id", "Descripcion"), "Seleccionar Campo", new { @class = "form-control" })
                             <i class="zmdi zmdi-caret-down"></i>
                         </div>
                     </div>
@@ -85,7 +89,7 @@
 
                         var searchInput = 'search_input';
 
-                        $(document).ready(function() {
+                        $(document).ready(function () {
                             var autocomplete;
 
                             autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)),
@@ -95,7 +99,7 @@
 
                             google.maps.event.addListener(autocomplete,
                                 'place_changed',
-                                function() {
+                                function () {
 
                                     var near_place = autocomplete.getPlace();
                                     document.getElementById('latidude_input').value =
@@ -114,7 +118,7 @@
 
                         $(document).on('change',
                             '#' + searchInput,
-                            function() {
+                            function () {
 
                                 document.getElementById('latidude_input').value = '';
                                 document.getElementById('longitude_input').value = '';
@@ -132,9 +136,9 @@
                             @Html.ValidationMessageFor(x => x.Latitud)
                         </span>
 
-                        <input type="text" class="form-control" id="search_input" placeholder="Escriba cuidadosamente el lugar del Evento , evitar ENTER"/>
-                        <input type="hidden" id="latidude_input" name="Latitud"/>
-                        <input type="hidden" id="longitude_input" name="Longitud"/>
+                        <input type="text" class="form-control" id="search_input" placeholder="Escriba cuidadosamente el lugar del Evento , evitar ENTER" />
+                        <input type="hidden" id="latidude_input" name="Latitud" />
+                        <input type="hidden" id="longitude_input" name="Longitud" />
 
                     </div>
 
@@ -175,7 +179,7 @@
                         <input type="text" class="form-control" name="Mail">
                     </div>
 
-                    <br/>
+                    <br />
                 </section>
 
                 <!-- SECTION 3 -->
@@ -209,7 +213,7 @@
                             <input name="Precio" type="number" class="form-control">
                         </div>
                     </div>
-                    <br/>
+                    <br />
 
                     <div class="checkout">
                         <p class="shipping">
@@ -218,7 +222,7 @@
                         </p>
                     </div>
 
-                    <br/>
+                    <br />
                 </section>
 
                 <!-- SECTION 4 -->
@@ -229,11 +233,11 @@
                         <label class="active">
                             Agregue una Imagen para el Evento:
                         </label>
-                        @Html.TextBox("img", null, new {type = "file"})
+                        @Html.TextBox("img", null, new { type = "file" })
 
                     </div>
 
-                    <br/>
+                    <br />
                     <div class="form-holder">
                         <label>
                             Fecha del Evento:
@@ -243,7 +247,7 @@
                         </span>
                         <input name="FechaEvento" type="date" class="form-control">
                     </div>
-                    <br/>
+                    <br />
                     <div class="form-holder">
                         <label>
                             Hora Inicio:
@@ -253,7 +257,7 @@
                         </span>
                         <input name="HoraInicio" type="time" class="form-control">
                     </div>
-                    <br/>
+                    <br />
                     <div class="form-holder">
                         <label>
                             Hora Fin del Evento:
@@ -263,8 +267,8 @@
                         </span>
                         <input name="HoraFin" type="time" class="form-control">
                     </div>
-                    <br/>
-                    <br/>
+                    <br />
+                    <br />
                     <div class="checkout">
                         <p class="shipping">
                             <span class="heading">Atencion:</span>
