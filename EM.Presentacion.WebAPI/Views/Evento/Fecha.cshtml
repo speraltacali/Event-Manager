@@ -1,0 +1,77 @@
+﻿@model EM.IServicio.Fecha.DTOs.FechaDto
+@{
+    ViewBag.Title = "Fecha";
+}
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/animate/animate.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/Content/Login/css/util.css">
+<link rel="stylesheet" type="text/css" href="~/Content/Login/css/main.css">
+
+<body>
+
+    <div class="limiter">
+        <div class="container-login100">
+
+            <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
+
+                <h1>Modificacion Del Horario Del Evento</h1>
+                <br />
+                <form asp-action="Fecha" asp-controller="Evento" method="post">
+
+                    <div class="form-holder">
+                        <label>
+                            Fecha del Evento:
+                        </label>
+                        <span class="txt1 p-b-11" style="color:red">
+                            @Html.ValidationMessageFor(x => x.FechaEvento)
+                        </span>
+                        @Html.EditorFor(model => model.FechaEvento, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <br />
+                    <div class="form-holder">
+                        <label>
+                            Hora Inicio:
+                        </label>
+                        <span class="txt1 p-b-11" style="color:red">
+                            @Html.ValidationMessageFor(x => x.HoraInicio)
+                        </span>
+                        @Html.EditorFor(model => model.HoraInicio, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <br />
+                    <div class="form-holder">
+                        <label>
+                            Hora Fin del Evento:
+                        </label>
+                        <span class="txt1 p-b-11" style="color:red">
+                            @Html.ValidationMessageFor(x => x.HoraCierre)
+                        </span>
+                        @Html.EditorFor(model => model.HoraCierre, new { htmlAttributes = new { @class = "form-control" } })                       
+                    </div>
+                    <br />
+                    <button class="btn btn-outline-primary" style="margin-left:110px">Guardar Cambios</button>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</body>
