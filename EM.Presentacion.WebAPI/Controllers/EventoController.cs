@@ -501,7 +501,7 @@ namespace EM.Presentacion.WebAPI.Controllers
         {
             var evento = _eventoServicio.ObtenerPorId(eventoDto.Id);
 
-            //modificar falta
+            _eventoServicio.ModificarEventoLocalizacion(eventoDto);
 
             return RedirectToAction("Perfil", "Persona");
         }

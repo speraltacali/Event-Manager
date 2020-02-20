@@ -157,6 +157,26 @@ namespace EM.Servicio.Evento
             evento.Mail = dto.Mail;
             evento.TipoEventoId = dto.TipoEventoId;
             evento.Imagen = dto.Imagen;
+            evento.Orante = dto.Orante;
+            evento.Organizacion = dto.Organizacion;
+            evento.Telefono = dto.Telefono;
+
+            _eventoRepositorio.Update(evento);
+            Guardar();
+
+            dto.Id = evento.Id;
+            return dto;
+        }
+
+        public EventoDto ModificarEventoLocalizacion(EventoDto dto)
+        {
+            var evento = _eventoRepositorio.GetById(dto.Id);
+
+            if (evento == null) throw new Exception("No se encontro el registro solicitado.");
+
+            evento.Domicilio = dto.Domicilio;
+            evento.Longitud = dto.Longitud;
+            evento.Latitud = dto.Latitud;
 
             _eventoRepositorio.Update(evento);
             Guardar();
