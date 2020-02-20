@@ -493,15 +493,27 @@ namespace EM.Presentacion.WebAPI.Controllers
         {
             var evento = _eventoServicio.ObtenerPorId(id);
 
-            return View(evento);
+            var eventoView = new EventoViewDto
+            {
+                Longitud = evento.Longitud,
+                Latitud = evento.Latitud,
+                Calle = evento.Domicilio,
+                CalleNumero = evento.Domicilio,
+                Id = evento.Id
+            };
+
+            return View(eventoView);
         }
 
         [HttpPost]
-        public ActionResult Localizacion(EventoDto eventoDto)
+        public ActionResult Localizacion(EventoViewDto eventoDto)
         {
-            var evento = _eventoServicio.ObtenerPorId(eventoDto.Id);
 
-            _eventoServicio.ModificarEventoLocalizacion(eventoDto);
+            if (eventoDto.Latitud != null)
+            {
+                _eventoServicio.ModificarEventoLocalizacion(eventoDto);
+            }
+           
 
             return RedirectToAction("Perfil", "Persona");
         }

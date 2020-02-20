@@ -10,7 +10,7 @@ namespace EM.IServicio.Evento
 
         IEnumerable<EventoDto> Obtener(string cadenaBuscar);
 
-        EventoDto ModificarEventoLocalizacion(EventoDto dto);
+        void ModificarEventoLocalizacion(EventoViewDto dto);
 
         EventoDto ObtenerPorId(long id);
 

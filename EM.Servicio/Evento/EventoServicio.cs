@@ -168,21 +168,19 @@ namespace EM.Servicio.Evento
             return dto;
         }
 
-        public EventoDto ModificarEventoLocalizacion(EventoDto dto)
+        public void ModificarEventoLocalizacion(EventoViewDto dto)
         {
             var evento = _eventoRepositorio.GetById(dto.Id);
 
             if (evento == null) throw new Exception("No se encontro el registro solicitado.");
 
-            evento.Domicilio = dto.Domicilio;
+            evento.Domicilio = dto.CalleNumero;
             evento.Longitud = dto.Longitud;
             evento.Latitud = dto.Latitud;
 
             _eventoRepositorio.Update(evento);
             Guardar();
 
-            dto.Id = evento.Id;
-            return dto;
         }
 
         public void Eliminar(long id)
