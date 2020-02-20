@@ -64,6 +64,11 @@ namespace EM.Presentacion.WebAPI.Controllers
             }
         }
 
+        public ActionResult SuspenderEvento()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult Crear(EventoViewDto eventoViewDto, HttpPostedFileBase img)
         {

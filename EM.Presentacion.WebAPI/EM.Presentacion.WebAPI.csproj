@@ -233,6 +233,7 @@
     <Content Include="Content\CrearEvento\js\jquery.steps.js" />
     <Content Include="Content\CrearEvento\js\main.js" />
     <Content Include="Content\Grilla\Grilla.css" />
+    <Content Include="Content\ImageHome\alerta2.jpg" />
     <Content Include="Content\ImageHome\entrada.png" />
     <Content Include="Content\ImageHome\eventosSlider.jpg" />
     <Content Include="Content\ImageHome\localizacion.png" />
@@ -616,6 +617,7 @@
     <Content Include="Views\Home\BuscarEvento.cshtml" />
     <Content Include="Views\Evento\VerEntrada.cshtml" />
     <Content Include="Views\Evento\UpdateEvento.cshtml" />
+    <Content Include="Views\Evento\SuspenderEvento.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
